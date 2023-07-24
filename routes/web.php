@@ -27,9 +27,7 @@ Route::get('/client/register', function () {
 
 
 // Route veiw Dashboard
-Route::get('/dashboard', function () {
-    return view('user.dashboard');
-})->middleware('auth')->name('user.dashboard');
+Route::get('/dashboard', [MainController::class, 'get_data_produk_profile'], function () {return view('user.dashboard');})->middleware('auth')->name('user.dashboard');
 
 // Route veiw For function transaksi_main_admin_kelola
 Route::get('/dashboard/admin/transaksi', [UserController::class, 'transaksi_main_admin_kelola'])->middleware('auth')->name('admin.transaksi');
@@ -100,6 +98,9 @@ Route::put('/dashboard/view/produk/{id}', [UserController::class, 'penghapus_pes
 // Route view For function get_data_produk_main
 Route::get('/', [MainController::class, 'get_data_produk_main'])->name('main.home');
 
+// Route view For function privacy policy
+Route::get('/pr', [MainController::class, 'pr'])->name('main.pr');
+
 // Route post For function updateItems
 Route::post('/dashboard/view/produk', [UserController::class, 'updateItems'])->middleware('auth')->name('34534534534534');
 
@@ -164,3 +165,23 @@ Route::post('/dashboard/job/aktif', [UserController::class, 'order_working_done'
 Route::get('/runtask', [MainController::class, 'run']);
 
 Route::get('/search', [MainController::class, 'search'])->name('products.search');
+
+
+// Comment and like
+Route::post('/produk/{id}/likepro', [MainController::class, 'likeProduk'])->name('produk.likepro');
+Route::post('/produk/comment/{id}/like', [MainController::class, 'likecomment'])->name('produk.comment.like');
+
+Route::post('/produk/{id}/comment', [MainController::class, 'commentProduk'])->name('produk.comment');
+Route::post('/comment/{id}/reply', [MainController::class, 'replyComment'])->name('comment.reply');
+Route::put('/comment/{id}/edit', [MainController::class, 'editComment'])->name('comment.edit');
+Route::delete('/comment/{id}/delete', [MainController::class, 'deleteComment'])->name('comment.delete');
+
+//load product home
+Route::get('/load-more-products', [MainController::class, 'loadMoreProducts'])->name('load.more.products');
+
+
+
+// Route Error
+Route::fallback(function(){
+    return view('eror.404');
+});

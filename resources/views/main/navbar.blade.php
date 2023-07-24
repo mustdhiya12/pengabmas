@@ -1,85 +1,203 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="no-js" lang="zxx">
+@php
+$cookieValue = request()->cookie(rand());
+@endphp
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
 
+    <link rel="stylesheet" href="{{ asset('css/font-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
-
-
-
-<link rel="icon" type="image/x-icon" href="{{ asset('home/assets/favicon.ico') }}" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <!--<link href="{{ asset('home/css/styles.css') }}" rel="stylesheet" /> -->
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="{{ asset('icon/Icon_unican.png') }}" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
 </head>
+
 <body>
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="{{ route('main.home') }}">Raboot</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('main.home') }}">Home</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dashboard</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                @if(Auth::id())
-                                <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">Dashboard</a></li>
-                                <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
-                                @else
-                                <li><a class="dropdown-item" href="/client/login">Sign In</a></li>
-                                <li><a class="dropdown-item" href="{{ route('user.sign_up') }}">Sign Up</a></li>
-                                @endif
-                            </ul>
-                        </li>
-                    </ul>
-                    @if(Auth::id())
-                    @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
-                    <div class="d-flex">
-                        <a href="{{ route('main.produk') }}">
-                        <button type="button" class="btn btn-primary">
-                            
-                            Keranjang
-                            <span class="badge bg-white text-dark ms-1">{{$hitung}}</span>
-                        </button>
-                        </a>
-                        <span><div style="width:10px;"></div></span>
-                        <a href="{{ route('poin') }}">
-                        <button type="button" class="btn btn-secondary">
-                            
-                            Saldo
-                            <span class="badge bg-white text-dark ms-1">Rp{{Auth::user()->saldo}}</span>
-                        </button>
-                        </a>
+    <div class="body-wrapper">
+
+        <!-- HEADER AREA START (header-5) -->
+        <header class="ltn__header-area ltn__header-5 ltn__header-transparent gradient-color-4---">
+            <!-- ltn__header-top-area start -->
+            <div class="ltn__header-top-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="ltn__top-bar-menu">
+                                <ul>
+                                    <style>
+                                        a {
+                                            text-decoration: none; 
+                                            color: darkgray;
+                                        }
+                                    </style>
+                                    <li><a href="https://www.google.com/maps/place/Universitas+Muhammadiyah+Kalimantan+Timur+Samarinda/@-0.4749719,117.1388952,15z/data=!4m2!3m1!1s0x0:0x108077d433712165?sa=X&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhZEAA&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhnEAg">
+                                        <i class="icon-placeholder"></i>
+                                         Jl. Ir. H. Juanda No.15, Sidodadi, Kec. Samarinda Ulu, Kota Samarinda, Kalimantan Timur 75124
+                                        </a>
+                                    </li>
+                                    <li><a href="mailto:mustfauzan0@gmail.com?Subject=Flower%20greetings%20to%20you"><i class="icon-mail"></i> mustfauzan0@gmail.com</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="top-bar-right text-right">
+                                <div class="ltn__top-bar-menu">
+                                    <ul>
+                                        <li>
+                                            <!-- ltn__language-menu -->
+                                            <div class="ltn__drop-menu ltn__currency-menu ltn__language-menu">
+                                                <ul>
+                                                    <li><a href="#" class="dropdown-toggle"><span class="active-currency">Indonesian</span></a>
+                                                        <ul>
+                                                            <li><a href="#">Arabic</a></li>
+                                                            <li><a href="#">English</a></li>
+                                                            <li><a href="#">Chinese</a></li>
+                                                            <li><a href="#">Indonesian</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <!-- ltn__social-media -->
+                                            <div class="ltn__social-media">
+                                                <ul>
+                                                    <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                                    <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+
+                                                    <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                                    <li><a href="#" title="Dribbble"><i class="fab fa-dribbble"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    @elseif(!empty(Auth::user()) && Auth::user()->user_type == 'Penjual')
-                    <div class="d-flex">
-                        <a href="{{ route('poin') }}">
-                        <button type="button" class="btn btn-secondary">
-                            
-                            Saldo
-                            <span class="badge bg-white text-dark ms-1">Rp{{Auth::user()->saldo}}</span>
-                        </button>
-                        </a>
-                    </div>
-                    @elseif(!empty(Auth::user()) && Auth::user()->user_type == 'Kurir')
-                    @endif
-                    @else
-                    @endif
                 </div>
             </div>
-        </nav>
+            <!-- ltn__header-top-area end -->
 
-        <!-- Bootstrap core JS-->
-        <!-- Core theme JS-->
-        <!-- <script src="{{ asset('home/js/scripts.js') }}"></script> -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+            <!-- ltn__header-middle-area start -->
+            <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white sticky-active-into-mobile--- plr--9---">
+                <div class="container">
+                    <div class="row">
+                        <div class="col " style="background-color: white; border-radius: 10px 0px 5px 0px;">
+                            <div class="site-logo-wrap">
+                                <div class="site-logo">
+                                    <a href="{{ route('main.home') }}" rel="nofollow" alt="Logo">
+                                        <img src="{{ asset('icon/Icon_unican.png') }}" alt="UNICAN" style="width: 55px;" class="navbar-brand logo rounded-3"> U N I C A
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col header-menu-column menu-color-white---">
+                            <div class="header-menu d-none d-xl-block">
+                                <nav>
+                                    <div class="ltn__main-menu">
+                                        <ul>
+                                            <li class="menu-icon"><a href="{{ route('main.home') }}">Home</a>
+                                            </li>
+                                            <li class="menu-icon"><a href="{{ route('main.pr') }}">About</a>
+                                                <ul>
+                                                    <li><a href="{{ route('main.pr') }}">FAQ</a></li>
+                                                    <li><a href="https://www.google.com/maps/place/Universitas+Muhammadiyah+Kalimantan+Timur+Samarinda/@-0.4749719,117.1388952,15z/data=!4m2!3m1!1s0x0:0x108077d433712165?sa=X&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhZEAA&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhnEAg">Google Map Locations</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{{ route('main.pr') }}">Contact</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col ltn__header-options ltn__header-options-2">
+                            <!-- user-menu -->
+                            <div class="ltn__drop-menu user-menu">
+                                <ul>
+                                    <li>
+                                        <a href="#"><i class="icon-user"></i></a>
+                                        <ul>
+                                            @if(Auth::id())
+                                            <li><a href="{{ route('user.dashboard') }}" class="badge bg-white text-bg-light">
+                                                        <img src="{{ asset('icon/astronaut.png') }}" class="img-fluid rounded-circle"
+                                                            width="33.5" alt="user_comment">
+                                                        <u style="font-size: 15px;" class="ms-1">{{Auth::user()->username}}</u>
+                                                </a>
+                                            </li>
+                                            <li><a href="{{ route('user.dashboard') }}">My Account</a></li>
+                                            <li><a href="{{ route('main.produk') }}">Wishlist</a></li>
+                                            <li><a href="{{ route('logout') }}">Log-out</a></li>
+                                            @else
+                                            <li><a href="/client/login">Sign In</a></li>
+                                            <li><a href="{{ route('user.sign_up') }}">Register</a></li>
+                                            @endif
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- mini-cart -->
+                            @Auth
+                            @if(Auth::user()->user_type == 'Pembeli')
+                            <div class="mini-cart-icon">
+                                <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle" href="{{ route('main.produk') }}">
+                                    <i class="icon-shopping-cart"></i>
+                                    <sup>{{$hitung}}</sup>
+                                </a>                            
+                            </div>
+                            @endif
+                            @endauth
+                            <!-- mini-cart -->
+                            <!-- Mobile Menu Button -->
+                            <div class="mobile-menu-toggle d-xl-none">
+                                <a href="#ltn__utilize-mobile-menu" class="ltn__utilize-toggle">
+                                    <svg viewBox="0 0 800 600">
+                                        <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
+                                        <path d="M300,320 L540,320" id="middle"></path>
+                                        <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ltn__header-middle-area end -->
+        </header>
+        <!-- HEADER AREA END -->
+
+        
+
+    </div>
+    <!-- Body main wrapper end -->
+
+    <!-- preloader area start -->
+    <div class="preloader d-none" id="preloader">
+        <div class="preloader-inner">
+            <div class="spinner">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+        </div>
+    </div>
+    <!-- preloader area end -->
+
+    <!-- All JS Plugins -->
+    <script src="{{asset('js/plugins.js')}}"></script>
+    <!-- Main JS -->
+    <script src="{{asset('js/main.js')}}"></script>
 </body>
+
 </html>

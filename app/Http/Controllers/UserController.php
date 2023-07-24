@@ -39,7 +39,7 @@ public function poin(){
   }elseif(Auth::user()->user_type == 'Penjual'){
     return view('user.pembeli.poin');
   }else{
-    abort(404);
+    return view('eror.404');
   }
 }
 
@@ -50,7 +50,7 @@ public function tambah(){
     if(Auth::user()->user_type == 'Penjual'){
        return view('user.tambah');
    }else{
-       abort(404);
+       return view('eror.404');
     }
 }
 
@@ -66,7 +66,7 @@ public function peninjauan(){
     if(Auth::user()->user_type == 'Penjual'){
         return view('user.konfirmasi', compact('peninjauan', 'pengembalian_belum_ditinjau', 'pengembalian_belum_ditinjau_view'));
    }else{
-       abort(404);
+       return view('eror.404');
     }
 }
 
@@ -77,7 +77,7 @@ public function notices(){
     if(Auth::user()->user_type == 'Pembeli' || Auth::user()->user_type == 'Admin' || Auth::user()->user_type == 'Penjual'){
         return view('user.notices', compact('notices'));
    }else{
-       abort(404);
+       return view('eror.404');
     }
 }
 
@@ -87,7 +87,7 @@ public function kelola_users(){
         $tdr = User::all();
        return view('user.admin.edit_users', compact('tdr'));
    }else{
-       abort(404);
+       return view('eror.404');
     }
 }
 
@@ -102,7 +102,7 @@ public function kirim_saldo_view(){
 #                ->get();
        return view('user.admin.kirim_saldo_view', compact('tdr_saldo_helper'));
    }else{
-       abort(404);
+       return view('eror.404');
     }
 }
 
@@ -175,58 +175,58 @@ return redirect()->back();
 }    
 
 // Run function pengembalian For Pembeli
-public function pengembalian(Request $request)
-{
+// public function pengembalian(Request $request)
+// {
 
-    $validated = $request->validate([
-        'u_id' => 'required',
-        'name' => 'required',
-        'order_id' => 'required',
-        'produk_id' => 'required',
-        'kurir_pengirim' => 'required',
-        'owner_id' => 'required',
-        'owner_name' => 'required',
-        'penjelasan' => 'required',
-        'gambarrrrrr.*' => 'image|mimes:jpeg,png,jpg|max:2048',
-        'info_helper' => 'required',
-    ]);
-
-
-    $gambarrrrrr=array();
-    if($files=$request->file('gambarrrrrr')){
-        foreach($files as $file){
-            $name=$file->getClientOriginalName();
-            $file->move('gambarrrrrr',$name);
-            $gambarrrrrr[]=$name;
-        }
-    }
-
-    $helper=array();
-    if($aewtwet=$request->info_helper){
-        foreach($aewtwet as $down_helper){
-            $helper[]=$down_helper; 
-        }
-    }
-    $helper[] = $request->penjelasan;
-
-notices::create([
-                'send_to_id' => $request->owner_id,
-                'send_to_name' => $request->owner_name,
-                'send_by_name' => $request->name,
-                'send_by_id' => $request->u_id,
-                'message' => 'alasan pembeli:' . $request->penjelasan . '. order id:' . $request->order_id . '. produk id:' . $request->produk_id  . '. kurir pengirim:' . $request->kurir_pengirim,
-                'img' => implode("|",$gambarrrrrr),
-                'info_helper' => implode("|",$helper)
-            ]);
-
-    $t_lol = pesanan_users::where('id_pesanan', $request->order_id )->where('produk_owner_id', $request->owner_id)->where('produk_id', $request->produk_id)->first();
-    $t_lol->status_pesanan = 'pengembalian_belum_ditinjau';
-    $t_lol->save();
-
-return redirect()->back();
+//     $validated = $request->validate([
+//         'u_id' => 'required',
+//         'name' => 'required',
+//         'order_id' => 'required',
+//         'produk_id' => 'required',
+//         'kurir_pengirim' => 'required',
+//         'owner_id' => 'required',
+//         'owner_name' => 'required',
+//         'penjelasan' => 'required',
+//         'gambarrrrrr.*' => 'image|mimes:jpeg,png,jpg|max:2000',
+//         'info_helper' => 'required',
+//     ]);
 
 
-}  
+//     $gambarrrrrr=array();
+//     if($files=$request->file('gambarrrrrr')){
+//         foreach($files as $file){
+//             $name=$file->getClientOriginalName();
+//             $file->move('gambarrrrrr',$name);
+//             $gambarrrrrr[]=$name;
+//         }
+//     }
+
+//     $helper=array();
+//     if($aewtwet=$request->info_helper){
+//         foreach($aewtwet as $down_helper){
+//             $helper[]=$down_helper; 
+//         }
+//     }
+//     $helper[] = $request->penjelasan;
+
+// notices::create([
+//                 'send_to_id' => $request->owner_id,
+//                 'send_to_name' => $request->owner_name,
+//                 'send_by_name' => $request->name,
+//                 'send_by_id' => $request->u_id,
+//                 'message' => 'alasan pembeli:' . $request->penjelasan . '. order id:' . $request->order_id . '. produk id:' . $request->produk_id  . '. kurir pengirim:' . $request->kurir_pengirim,
+//                 'img' => implode("|",$gambarrrrrr),
+//                 'info_helper' => implode("|",$helper)
+//             ]);
+
+//     $t_lol = pesanan_users::where('id_pesanan', $request->order_id )->where('produk_owner_id', $request->owner_id)->where('produk_id', $request->produk_id)->first();
+//     $t_lol->status_pesanan = 'pengembalian_belum_ditinjau';
+//     $t_lol->save();
+
+// return redirect()->back();
+
+
+// }  
 
 
 // View Poin Page For 'Penjual' & 'Pembeli'
@@ -236,7 +236,7 @@ public function poin_manual(){
    }elseif(Auth::user()->user_type == 'Penjual'){
     return view('user.pembeli.manual');
     }else{
-        abort(404);
+        return view('eror.404');
     }
 }
 
@@ -279,7 +279,7 @@ public function transaksi_main_admin_kelola(){
     if(Auth::user()->user_type == 'Admin'){
     return view('user.admin.transaksi', compact('daftar_manual_adm'));
     }else{
-       abort(404);
+       return view('eror.404');
     }
 }
 
@@ -300,7 +300,7 @@ $mang->status_pesanan = $request->status;
 $mang->save();
 
    }else{
-       abort(404);
+       return view('eror.404');
     }
     return redirect()->back();
 }
@@ -347,7 +347,7 @@ $mang->status_pesanan = $request->status;
 $mang->save();
 }
 }else{
-       abort(404);
+       return view('eror.404');
     }
     return redirect()->back();
 }
@@ -359,14 +359,18 @@ public function tambah_produk(Request $request)
         'produk_id' => 'required',
         'judul' => 'required',
         'deskripsi' => 'required',
-        'harga' => 'required',
+        'min_harga' => 'required',
+        'max_harga' => 'required',
         'produk_owner_id' => 'required',
         'produk_owner_nama' => 'required',
-        'gambar.*' => 'image|mimes:jpeg,png,jpg|max:2048',
+        'gambar.*' => 'image|mimes:jpeg,png,jpg|max:2000',
         'kantitas' => 'required',
+        'link.*' => 'url',
         // add validation rules for your field
         ]);
-        $images=array();
+
+
+    $images=array();
     if($files=$request->file('gambar')){
         foreach($files as $file){
             $name=$file->getClientOriginalName();
@@ -374,17 +378,20 @@ public function tambah_produk(Request $request)
             $images[]=$name;
         }
     }
-
+    $links = $request->input('link');
+    $linkString = implode("|", $links);
     
     Produk::create([
         'produk_id' => $validated['produk_id'],
         'produk_name' => $validated['judul'],
         'produk_deskripsi' => $validated['deskripsi'],
-        'produk_price' => $validated['harga'],
+        'min_price' => $validated['min_harga'],
+        'max_price' => $validated['max_harga'],
         'produk_owner_id' => $validated['produk_owner_id'],
         'produk_owner_nama' => $validated['produk_owner_nama'],
         'gambar' => implode("|",$images),
         'kuantitas' => $validated['kantitas'],
+        'link.*' => $linkString,
         // add fields to be inserted into the table
     ]);
 
@@ -400,7 +407,7 @@ public function get_data_produk()
     if(Auth::user()->user_type == 'Penjual'){
     return view('user.view_edit', compact('users'));
     }else{
-        abort(404);
+        return view('eror.404');
     }
 }
 
@@ -411,7 +418,7 @@ public function get_data_produk_adm()
     if(Auth::user()->user_type == 'Admin'){
     return view('user.admin.edit_produk_penjual_view', compact('users'));
     }else{
-        abort(404);
+        return view('eror.404');
     }
 }
 
@@ -421,12 +428,12 @@ public function ubah($id)
 {
     $polpot = Produk::where('id', $id)->where('produk_owner_id', Auth::user()->id)->first();
     if(empty($polpot->id)){
-    abort(404);
+    return view('eror.404');
     }elseif(isset($polpot->id)) {
         if(Auth::user()->user_type == 'Penjual'){
     return view('user.ubah', compact('polpot'));
     }else{
-      abort(404);  
+      return view('eror.404');  
     }
     }
 
@@ -439,12 +446,12 @@ public function ubah_adm($id)
     #$polpot = Produk::findorfail($id);
     $polpot = Produk::where('id', $id)->first();
     if(empty($polpot->id)){
-    abort(404);
+    return view('eror.404');
     }elseif(isset($polpot->id)) {
         if(Auth::user()->user_type == 'Admin'){
     return view('user.admin.edit_produk_penjual', compact('polpot'));
     }else{
-      abort(404);  
+      return view('eror.404');  
     }
     }
 
@@ -457,12 +464,12 @@ public function kelola_users_edit($id)
     #$polpot = Produk::findorfail($id);
     $polpot = User::where('id', $id)->first();
     if(empty($polpot->id)){
-    abort(404);
+    return view('eror.404');
     }elseif(isset($polpot->id)) {
         if(Auth::user()->user_type == 'Admin'){
     return view('user.admin.edit_users_bottom', compact('polpot'));
     }else{
-      abort(404);  
+      return view('eror.404');  
     }
     }
 }
@@ -509,7 +516,8 @@ public function rus(Request $request)
     $polpot_change_main->produk_name = $request->judul;
     $polpot_change_main->produk_deskripsi = $request->deskripsi;
     $polpot_change_main->gambar = implode("|",$images);
-    $polpot_change_main->produk_price = $request->harga;
+    $polpot_change_main->min_price = $request->min_harga;
+    $polpot_change_main->max_price = $request->max_harga;
     $polpot_change_main->kuantitas = $request->kantitas;
 
     $polpot_change_main->save();
@@ -517,7 +525,8 @@ public function rus(Request $request)
 }else{
     $polpot_change_main->produk_name = $request->judul;
     $polpot_change_main->produk_deskripsi = $request->deskripsi;
-    $polpot_change_main->produk_price = $request->harga;
+    $polpot_change_main->min_price = $request->min_harga;
+    $polpot_change_main->max_price = $request->max_harga;
     $polpot_change_main->kuantitas = $request->kantitas;
 
     $polpot_change_main->save();
@@ -545,7 +554,8 @@ public function rus_adm(Request $request)
     $polpot_change_main->produk_name = $request->judul;
     $polpot_change_main->produk_deskripsi = $request->deskripsi;
     $polpot_change_main->gambar = implode("|",$images);
-    $polpot_change_main->produk_price = $request->harga;
+    $polpot_change_main->min_price = $request->min_harga;
+    $polpot_change_main->max_price = $request->max_harga;
     $polpot_change_main->kuantitas = $request->kantitas;
 
     $polpot_change_main->save();
@@ -553,7 +563,8 @@ public function rus_adm(Request $request)
 }else{
     $polpot_change_main->produk_name = $request->judul;
     $polpot_change_main->produk_deskripsi = $request->deskripsi;
-    $polpot_change_main->produk_price = $request->harga;
+    $polpot_change_main->min_price = $request->min_harga;
+    $polpot_change_main->max_price = $request->max_harga;
     $polpot_change_main->kuantitas = $request->kantitas;
 
     $polpot_change_main->save();
@@ -584,20 +595,28 @@ public function hapus_produk_aksi_admin($id)
 public function sign_up_action(Request $request)
 {
     $this->validate($request, [
-        'name' => 'required|max:255|unique:users',
+        'username' => 'required|max:255|unique:users',
+        'name' => 'required|max:255',
         'email' => 'required|email|unique:users|max:255',
         'password' => 'required',
         'password_confirmation' => 'required|same:password',
         'user_type' => 'required',
+        'link.*' => 'url',
     ]);
+
+    $links = $request->input('link');
+    $linkString = implode("|", $links);
+
     $api_key = bin2hex(random_bytes(32));
-    $user = new User([
-        'name' => $request->input('name'),
-        'email' => $request->input('email'),
-        'password' => Hash::make($request->input('password')),
-        'user_type' => $request->input('user_type'),
-        'api_key' => $api_key,
-    ]);
+
+    $user = new User();
+    $user->username = $request->input('username');
+    $user->name = $request->input('name');
+    $user->email = $request->input('email');
+    $user->password = Hash::make($request->input('password'));
+    $user->user_type = $request->input('user_type');
+    $user->api_key = $api_key;
+    $user->link = $linkString;
 
     $user->save();
 
@@ -611,7 +630,7 @@ public function sign_in_action(Request $request)
             'username' => 'required',
             'password' => 'required',
         ]);
-        if (Auth::attempt(['name' => $request->username, 'password' => $request->password])) {
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             $request->session()->regenerate();
             return redirect()->intended('/dashboard');
         }
@@ -624,11 +643,11 @@ public function sign_in_action(Request $request)
 public function login_api(Request $request)
     {
         $credentials = $request->validate([
-            'name' => 'required',
+            'username' => 'required',
             'password' => 'required',
         ]);
 
-        $user = User::where('name', $credentials['name'])->first();
+        $user = User::where('username', $credentials['username'])->first();
 
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
@@ -646,7 +665,7 @@ public function tambah_produk_api(Request $request)
         // Validate the API key
         $user = null;
         if ($request->header('API-Key')) {
-            $user = User::where('api_key', $request->header('API-Key'))->where('name', $request->header('name'))->first();
+            $user = User::where('api_key', $request->header('API-Key'))->where('username', $request->header('username'))->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -655,8 +674,9 @@ public function tambah_produk_api(Request $request)
         $validated = $request->validate([
             'judul' => 'required',
             'deskripsi' => 'required',
-            'harga' => 'required',
-            'gambar.*' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'min_harga' => 'required',
+            'max_harga' => 'required',
+            'gambar.*' => 'image|mimes:jpeg,png,jpg|max:2000',
             'kantitas' => 'required',
             // add validation rules for your fields
         ]);
@@ -675,7 +695,8 @@ public function tambah_produk_api(Request $request)
         'produk_id' => $randomWord1,
         'produk_name' => $validated['judul'],
         'produk_deskripsi' => $validated['deskripsi'],
-        'produk_price' => $validated['harga'],
+        'min_price' => $validated['min_harga'],
+        'max_price' => $validated['max_harga'],
         'produk_owner_id' => $user->id,
         'produk_owner_nama' => $user->name,
         'gambar' => implode("|",$images),
@@ -693,7 +714,7 @@ public function tambah_produk_api(Request $request)
     {
         $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -706,7 +727,8 @@ public function tambah_produk_api(Request $request)
         
     $a43636236->produk_name = $request->header('judul');
     $a43636236->produk_deskripsi = $request->header('deskripsi');
-    $a43636236->produk_price = $request->header('harga');
+    $a43636236->min_price = $request->header('min_harga');
+    $a43636236->max_price = $request->header('max_harga');
     $a43636236->kuantitas = $request->header('kantitas');
 
     $a43636236->save();
@@ -718,7 +740,7 @@ public function tambah_produk_api(Request $request)
     {
         $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -732,7 +754,8 @@ public function tambah_produk_api(Request $request)
         
     $a43636236->produk_name = $request->header('judul');
     $a43636236->produk_deskripsi = $request->header('deskripsi');
-    $a43636236->produk_price = $request->header('harga');
+    $a43636236->min_price = $request->header('min_harga');
+    $a43636236->max_price = $request->header('max_harga');
     $a43636236->kuantitas = $request->header('kantitas');
 
     $a43636236->save();
@@ -747,7 +770,7 @@ public function tambah_produk_api(Request $request)
 
     $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -765,7 +788,7 @@ $mang->save();
 return response()->json($mang, 201);
 
    }else{
-       abort(404);
+       return view('eror.404');
     }
 }
 
@@ -773,7 +796,7 @@ return response()->json($mang, 201);
 public function peninjauan_pengembalian_api(Request $request){
     $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -783,80 +806,80 @@ public function peninjauan_pengembalian_api(Request $request){
         if($status_check->status_pesanan == 'pengembalian_belum_ditinjau'){
         
 // if approved by 'Penjual'
-if($request->header('status') == 'approve'){
+    if($request->header('status') == 'approve'){
 
-    $mang = pesanan_users::where('id_pesanan', $request->header('id_pesanan'))->where('produk_buyer_name', $request->header('nama_pembeli'))->first();
-$mang_seller = Produk::where('produk_id', $request->header('id_produk'))->where('produk_owner_id', $user->id)->first();
-$mang->status_pesanan = 'pengembalian_di_approve_penjual';
-$mang->save();
-if($mang->save()){
-    $saiders = User::where('id', $user->id)->first();
-    $saiders->decrement('saldo', $mang->harga_produk * $mang->kuantitas);
-    $saiders->save();
-    if($saiders->save()){
-       $saiders_bottom = User::where('name', $request->header('nama_pembeli'))->first();
-       $saiders_bottom->increment('saldo', $mang->harga_produk * $mang->kuantitas);
-       $saiders_bottom->save();
-       if($saiders_bottom->save()){
-        $sr = Produk::where('produk_owner_id', $user->id)->where('produk_id', $request->header('id_produk'))->first();
-        $sr->increment('kuantitas', $mang->kuantitas);
-        $sr->save(); 
-       }
-    }
-}
-
-return response()->json($mang, 201);
-// if rejected by 'Penjual'
-}elseif($request->header('status') == 'reject'){
-    $mang = pesanan_users::where('id_pesanan', $request->header('id_pesanan'))->where('produk_buyer_name', $request->header('nama_pembeli'))->first();
-$mang_seller = Produk::where('produk_id', $request->header('id_produk'))->where('produk_owner_id', $user->id)->first();
-$mang->status_pesanan = 'pengembalian_di_tolak_penjual';
-$mang->save();
-return response()->json($mang, 201);
-}
-
-return response()->json($mang, 201);
-
-
-}else{
-return response()->json(['error' => 'sudah_di_tinjau'], 401);
-}
-
-}else{
-       abort(404);
+        $mang = pesanan_users::where('id_pesanan', $request->header('id_pesanan'))->where('produk_buyer_name', $request->header('nama_pembeli'))->first();
+    $mang_seller = Produk::where('produk_id', $request->header('id_produk'))->where('produk_owner_id', $user->id)->first();
+    $mang->status_pesanan = 'pengembalian_di_approve_penjual';
+    $mang->save();
+    if($mang->save()){
+        $saiders = User::where('id', $user->id)->first();
+        $saiders->decrement('saldo', $mang->harga_produk * $mang->kuantitas);
+        $saiders->save();
+        if($saiders->save()){
+        $saiders_bottom = User::where('username', $request->header('nama_pembeli'))->first();
+        $saiders_bottom->increment('saldo', $mang->harga_produk * $mang->kuantitas);
+        $saiders_bottom->save();
+        if($saiders_bottom->save()){
+            $sr = Produk::where('produk_owner_id', $user->id)->where('produk_id', $request->header('id_produk'))->first();
+            $sr->increment('kuantitas', $mang->kuantitas);
+            $sr->save(); 
+        }
+        }
     }
 
-}
+    return response()->json($mang, 201);
+    // if rejected by 'Penjual'
+    }elseif($request->header('status') == 'reject'){
+        $mang = pesanan_users::where('id_pesanan', $request->header('id_pesanan'))->where('produk_buyer_name', $request->header('nama_pembeli'))->first();
+    $mang_seller = Produk::where('produk_id', $request->header('id_produk'))->where('produk_owner_id', $user->id)->first();
+    $mang->status_pesanan = 'pengembalian_di_tolak_penjual';
+    $mang->save();
+    return response()->json($mang, 201);
+    }
+
+// return response()->json($mang, 201);
 
 
-public function hapus_produk_aksi_api(Request $request)
-{
-    $user = null;
-        if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+    }else{
+    return response()->json(['error' => 'sudah_di_tinjau'], 401);
+    }
+
+    }else{
+        return view('eror.404');
         }
-        if (!$user) {
-            return response()->json(['error' => 'Invalid API key'], 401);
-        }
-    $id = $request->header('produk_id');
-        $a43636236 = Produk::where('produk_id', $id)->where('produk_owner_id', $user->id)->first();
-        if (!$a43636236) {
-            return response()->json(['error' => 'Record not found'], 404);
-        }
 
-    $produk_hapus = Produk::where('produk_id', $request->header('produk_id'))->where('produk_owner_id', $user->id)->first();
-    $produk_hapus->delete();
+    }
 
-    return response()->json($produk_hapus, 201);
 
-    
-}
+    public function hapus_produk_aksi_api(Request $request)
+    {
+        $user = null;
+            if ($request->header('api_key') ) {
+                $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
+            }
+            if (!$user) {
+                return response()->json(['error' => 'Invalid API key'], 401);
+            }
+        $id = $request->header('produk_id');
+            $a43636236 = Produk::where('produk_id', $id)->where('produk_owner_id', $user->id)->first();
+            if (!$a43636236) {
+                return response()->json(['error' => 'Record not found'], 404);
+            }
+
+        $produk_hapus = Produk::where('produk_id', $request->header('produk_id'))->where('produk_owner_id', $user->id)->first();
+        $produk_hapus->delete();
+
+        return response()->json($produk_hapus, 201);
+
+        
+    }
 
 public function hapus_produk_aksi_api_admin(Request $request)
 {
     $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -883,7 +906,7 @@ return response()->json(['error' => 'not admin'], 401);
     {
         $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -899,7 +922,7 @@ return response()->json(['error' => 'not admin'], 401);
     {
         $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -916,7 +939,7 @@ return response()->json(['error' => 'not admin'], 401);
     {
         $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -934,7 +957,7 @@ return response()->json(['error' => 'not admin'], 401);
     {
         $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -952,7 +975,7 @@ return response()->json(['error' => 'not admin'], 401);
     {
         $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -969,7 +992,7 @@ public function masukkan_kedalam_keranjang_api(Request $request)
 
     $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -992,11 +1015,11 @@ if($user->user_type == 'Pembeli'){
         $data = pesanan_users::create([
         'nama_produk_yang_dipesan' => $add_check_picker->produk_name,
         'produk_id' => $add_check_picker->produk_id,
-        'harga_produk' => $add_check_picker->produk_price,
+        'harga_produk' => $add_check_picker->min_price,
         'produk_owner_id' => $add_check_picker->produk_owner_id,
         'produk_owner_name' => $add_check_picker->produk_owner_nama,
         'produk_buyer_id' => $user->id,
-        'produk_buyer_name' => $user->name,
+        'produk_buyer_name' => $user->username,
         'kuantitas' => $request->header('kuantitas'),
         'id_pesanan' => $randomWord1,
         'status_pesanan' => 'di_keranjang',
@@ -1033,7 +1056,7 @@ public function penghapus_pesanan_api(Request $request)
 {
     $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -1053,7 +1076,7 @@ public function penghapus_pesanan_api(Request $request)
 public function lihat_peninjauan_api(Request $request){
     $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -1067,9 +1090,8 @@ public function lihat_peninjauan_api(Request $request){
     $pengembalian_belum_ditinjau = pesanan_users::all()->where('produk_owner_id', $user->id)->where('status_pesanan', 'pengembalian_belum_ditinjau');
     if($user->user_type == 'Penjual'){
         return response()->json($peninjauan);
-        return response()->json($peninjauan);
    }else{
-       abort(404);
+       return view('eror.404');
     }
 }else{
 
@@ -1081,7 +1103,7 @@ public function checkout_api(Request $request)
 
      $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -1133,7 +1155,7 @@ public function pengaturan_user_api(Request $request)
 {
     $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -1156,7 +1178,7 @@ public function pengaturan_user_api(Request $request)
 public function kirim_saldo_view_api(Request $request){
     $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -1178,7 +1200,7 @@ public function doners_kirim_saldo_api(Request $request)
 
     $user = null;
         if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('name', $request->header('name') )->first();
+            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
         }
         if (!$user) {
             return response()->json(['error' => 'Invalid API key'], 401);
@@ -1231,7 +1253,7 @@ public function masukkan_kedalam_keranjang(Request $request)
     $validated = $request->validate([
         'produk_yang_ingin_di_pesan' => 'required',
         'produk_id' => 'required',
-        'produk_price' => 'required',
+        'min_price' => 'required',
         'produk_owner_id' => 'required',
         'produk_owner_name' => 'required',
         'produk_buyer_id' => 'required',
@@ -1247,7 +1269,7 @@ public function masukkan_kedalam_keranjang(Request $request)
         pesanan_users::create([
         'nama_produk_yang_dipesan' => $validated['produk_yang_ingin_di_pesan'],
         'produk_id' => $validated['produk_id'],
-        'harga_produk' => $validated['produk_price'],
+        'harga_produk' => $validated['min_price'],
         'produk_owner_id' => $validated['produk_owner_id'],
         'produk_owner_name' => $validated['produk_owner_name'],
         'produk_buyer_id' => $validated['produk_buyer_id'],
@@ -1492,7 +1514,7 @@ public function job_orderan_kurir(){
     if(Auth::user()->user_type == 'Kurir'){
        return view('user.kurir.job_orderan', compact('order_jobs'));
    }else{
-       abort(404);
+       return view('eror.404');
     }
 }
 
@@ -1502,17 +1524,17 @@ public function job_orderan_aktif_kurir(){
     if(Auth::user()->user_type == 'Kurir'){
        return view('user.kurir.job_aktif', compact('order_jobs_aktive'));
    }else{
-       abort(404);
+       return view('eror.404');
     }
 }
 
 // View Job Orderan 'Kurir' That Been Delivered To 'Pembeli' By 'Kurir'
 public function job_orderan_selesai_kurir(){
-    $order_jobs_selesai = pesanan_users::all()->where('status_pesanan', 'sudah_dikirim')->where('kurir', Auth::user()->id . Auth::user()->name);
+    $order_jobs_selesai = pesanan_users::all()->where('status_pesanan', 'sudah_dikirim')->where('kurir', Auth::user()->id . Auth::user()->username);
     if(Auth::user()->user_type == 'Kurir'){
        return view('user.kurir.job_orderan_selesai', compact('order_jobs_selesai'));
    }else{
-       abort(404);
+       return view('eror.404');
     }
 }
 

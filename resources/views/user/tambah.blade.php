@@ -2,158 +2,266 @@
 @if(!empty(Auth::user()) && Auth::user()->user_type == 'Penjual')
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/x-icon" href="{{ asset('home/assets/favicon.ico') }}" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{ asset('home/css/styles.css') }}" rel="stylesheet" />
-	<title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{{ asset('home/assets/favicon.ico') }}" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{{ asset('home/css/styles.css') }}" rel="stylesheet" />
+    <title>{{Auth::user()->user_type}}</title>
 </head>
+
 <body>
 
-@include('main/navbar')
-<div style="margin-top:150px;" class="container">
-
-@if(session('success'))
-<div class="row justify-content-center">
-        <div class="col-8">
-        <p class="alert alert-success">{{ session('success') }}</p>
-        </div>
-</div>
-    @endif
-
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+    @include('main/navbar')
+    <div style="margin-top:150px;" class="container m-4 p-5">
     </div>
-@endif
+    <div style="margin-top:150px;" class="container m-4 p-5">
+        @if(session('success'))
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <p class="alert alert-success">{{ session('success') }}</p>
+            </div>
+        </div>
+        @endif
+
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
 
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Tambah Produk') }}</div>
-                <div class="card-body">
-                    <form enctype="multipart/form-data" method="POST" action="{{ route('tambah.sedikit_aksi') }}">
-                        @csrf
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ __('Tambah Produk') }}</div>
+                    <div class="card-body">
+                        <form enctype="multipart/form-data" method="POST" action="{{ route('tambah.sedikit_aksi') }}">
+                            @csrf
 
-                        <div class="form-group">
-                            <label for="field1">{{ __('Judul Produk') }}</label>
-                            <input id="field1" type="text" class="form-control @error('field1') is-invalid @enderror" name="judul" value="{{ old('field1') }}" required autocomplete="field1" autofocus>
+                            <div class="form-group">
+                                <label for="field1">{{ __('Judul Produk') }}</label>
+                                <input id="field1" type="text" class="form-control @error('field1') is-invalid @enderror" name="judul" value="{{ old('field1') }}" required autocomplete="field1" autofocus>
 
-                            @error('field1')
+                                @error('field1')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror
-                        </div>
+                                @enderror
+                            </div>
 
-                        <div class="form-group">
-                            <label for="field2">{{ __('Deskripsi Produk') }}</label>
-                            <textarea id="field2" type="text" class="form-control @error('field2') is-invalid @enderror" name="deskripsi" value="{{ old('field2') }}" required autocomplete="field2"></textarea>
+                            <div class="form-group">
+                                <label for="field2">{{ __('Deskripsi Produk') }}</label>
+                                <textarea id="field2" type="text" class="form-control @error('field2') is-invalid @enderror" name="deskripsi" value="{{ old('field2') }}" required autocomplete="field2"></textarea>
 
-                            @error('field2')
+                                @error('field2')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror
-                        </div>
-<br>
+                                @enderror
+                            </div>
+                            <br>
 
-                        <div class="form-group">
-                            <style type="text/css">
-                                .form-control[type="file"]{
+                            <div class="form-group">
+                                <style type="text/css">
+                                    .gambar-container {
+                                        display: flex;
+                                        align-items: center;
+                                        margin-bottom: 10px;
+                                    }
+                                    .gambar-container input[type="file"] {
+                                        flex: 1;
+                                        margin-right: 10px;
+                                    }
+                                    .gambar-container .preview-img {
                                         width: 100px;
                                         height: 100px;
-                                        margin-left: none;
+                                        object-fit: cover;
+                                    }
+                                    .gambar-container .link-buttons {
+                                        display: flex;
+                                    }
+                                    .gambar-container .link-buttons a {
+                                        margin-left: 5px;
+                                    }
+                                </style>
+                                <label>Pilih Gambar Produk</label>
+                                <div class="gambar-container">
+                                    <input required type="file" class="form-control" name="gambar[]" accept="image/*">
+                                    <div class="link-buttons">
+                                        <a href="#" class="btn btn-outline-secondary" onclick="addgambar()">Add</a>
+                                        <a href="#" class="btn btn-outline-danger remove-link" onclick="removegambar(this)">Remove</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3" id="links-container">
+                                <label for="add-link" class="form-label">Add Link</label>
+                                <div class="link-container">
+                                    <div class="input-group">
+                                        <input type="text" name="link[]" placeholder="Enter link" required class="form-control link-input">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-outline-secondary add-link" onclick="addLink()">Add</button>
+                                            <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this)">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <style>
+                                .link-container {
+                                    display: flex;
+                                    align-items: center;
+                                    margin-bottom: 10px;
+                                }
+                                .link-container .link-input {
+                                    flex: 1;
+                                    margin-right: 10px;
+                                }
+                                .link-container .link-buttons {
+                                    display: flex;
+                                }
+                                .link-container .link-buttons a {
+                                    margin-left: 5px;
                                 }
                             </style>
-        <label>Pilih Gambar Produk</label>
-         <div class="row">
-  <div class="col-md-2">
-    <div class="form-group">
-      <input required type="file" class="form-control" id="image1" name="gambar[]" accept="image/*">
-    </div>
-  </div>
-  <div class="col-md-2">
-    <div class="form-group">
-      <input type="file" class="form-control" id="image2" name="gambar[]" accept="image/*">
-    </div>
-  </div>
-  <div class="col-md-2">
-    <div class="form-group">
-      <input type="file" class="form-control" id="image2" name="gambar[]" accept="image/*">
-    </div>
-  </div>
-  <div class="col-md-2">
-    <div class="form-group">
-      <input type="file" class="form-control" id="image2" name="gambar[]" accept="image/*">
-    </div>
-  </div>
-</div>
-            
 
-
-    </div>
-
-    <br>
+                            <br>
 
 
 
-                        <div class="form-group">
-                            <label for="harga">{{ __('Harga Produk') }}</label>
-                            <input id="harga" type="number" class="form-control @error('harga') is-invalid @enderror" name="harga" value="{{ old('harga') }}" required autocomplete="harga">
+                            <div class="form-group">
+                                <label for="harga">{{ __('Harga minimal:') }}</label>
+                                <input id="min_harga" placeholder="minimal price" type="number" class="form-control @error('min_harga') is-invalid @enderror" name="min_harga" value="{{ old('min_harga') }}" required autocomplete="min_harga">
+                                <label for="harga">{{ __('Harga maximal:') }}</label>
+                                <input id="max_harga" placeholder="maximal price" type="number" class="form-control @error('max_harga') is-invalid @enderror" name="max_harga" value="{{ old('max_harga') }}" required autocomplete="max_harga">
 
-                            @error('harga')
+                                @error('harga')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror
-                        </div>
+                                @enderror
+                            </div>
 
-                        <div class="form-group">
-                            <label for="kantitas">{{ __('Kuantitas Produk') }}</label>
-                            <input id="kantitas" type="number" class="form-control @error('kantitas') is-invalid @enderror" name="kantitas" value="{{ old('kantitas') }}" required autocomplete="kantitas">
+                            <div class="form-group">
+                                <label for="kantitas">{{ __('Kuantitas Produk') }}</label>
+                                <input id="kantitas" type="number" class="form-control @error('kantitas') is-invalid @enderror" name="kantitas" value="{{ old('kantitas') }}" required autocomplete="kantitas">
 
-                            @error('kantitas')
+                                @error('kantitas')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror
-                        </div>
-                        
-                        <input type="hidden" class="form-control" name="produk_owner_id" value="{{ Auth::user()->id }}" required>
+                                @enderror
+                            </div>
 
-                        <input type="hidden" class="form-control" name="produk_owner_nama" value="{{ Auth::user()->name }}" required>
-                        @php
-                        $randomWord1 = Str::random(10);
-                        @endphp
-                    <input type="hidden" class="form-control" name="produk_id" value="{{$randomWord1.random_int(1, 10000) }}" required>
+                            <input type="hidden" class="form-control" name="produk_owner_id" value="{{ Auth::user()->id }}" required>
 
-                        <!-- add more fields here -->
+                            <input type="hidden" class="form-control" name="produk_owner_nama" value="{{ Auth::user()->username }}" required>
+                            @php
+                            $randomWord1 = Str::random(10);
+                            @endphp
+                            <input type="hidden" class="form-control" name="produk_id" value="{{$randomWord1.random_int(1, 10000) }}" required>
 
-                        <div class="form-group mb-0">
-                        	<br>
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Tambah') }}
-                            </button>
-                        </div>
-                    </form>
+                            <!-- add more fields here -->
+
+                            <div class="form-group mb-0">
+                                <br>
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Tambah') }}
+                                </button>
+                            </div>
+                        </form>
+                        <script>
+                            function addgambar() {
+                                var linksContainer = document.querySelector('.gambar-container');
+                                
+                                var linkContainer = document.createElement('div');
+                                linkContainer.classList.add('gambar-container');
+                                
+                                var linkInput = document.createElement('input');
+                                linkInput.type = 'file';
+                                linkInput.classList.add('form-control');
+                                linkInput.name = 'gambar[]';
+                                linkInput.accept = 'image/*';
+                                linkInput.required = true;
+                                
+                                var linkButtons = document.createElement('div');
+                                linkButtons.classList.add('link-buttons');
+                                
+                                var removeButton = document.createElement('a');
+                                removeButton.textContent = 'Remove';
+                                removeButton.href = '#';
+                                removeButton.classList.add('btn', 'btn-outline-danger', 'remove-link');
+                                removeButton.addEventListener('click', function(event) {
+                                    event.preventDefault();
+                                    removegambar(linkContainer);
+                                });
+                                
+                                linkButtons.appendChild(removeButton);
+                                
+                                linkContainer.appendChild(linkInput);
+                                linkContainer.appendChild(linkButtons);
+                                
+                                linksContainer.parentNode.insertBefore(linkContainer, linksContainer.nextSibling);
+                            }
+                            
+                            function removegambar(linkContainer) {
+                                linkContainer.remove();
+                            }
+
+                            function addLink() {
+                                var linksContainer = document.getElementById('links-container');
+                                
+                                var linkContainer = document.createElement('div');
+                                linkContainer.classList.add('link-container');
+                                
+                                var linkInput = document.createElement('input');
+                                linkInput.type = 'text';
+                                linkInput.classList.add('form-control', 'link-input');
+                                linkInput.name = 'link[]';
+                                linkInput.placeholder = 'Enter link';
+                                linkInput.required = true;
+                                
+                                var linkButtons = document.createElement('div');
+                                linkButtons.classList.add('link-buttons');
+                                
+                                var removeButton = document.createElement('a');
+                                removeButton.textContent = 'Remove';
+                                removeButton.href = '#';
+                                removeButton.classList.add('btn', 'btn-outline-danger', 'remove-link');
+                                removeButton.addEventListener('click', function(event) {
+                                    event.preventDefault();
+                                    removeLink(linkContainer);
+                                });
+                                
+                                linkButtons.appendChild(removeButton);
+                                
+                                linkContainer.appendChild(linkInput);
+                                linkContainer.appendChild(linkButtons);
+                                
+                                linksContainer.parentNode.insertBefore(linkContainer, linksContainer.nextSibling);
+                            }
+                            
+                            function removeLink(linkContainer) {
+                                linkContainer.remove();
+                            }
+                        </script>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
 </body>
+
 </html>
 @endif
 @endif
