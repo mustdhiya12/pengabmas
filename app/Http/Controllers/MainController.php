@@ -349,7 +349,6 @@ class MainController extends Controller
             'hasMore' => $products->hasMorePages()
         ]);
     }
-
     // Run CronJob For transaksi_batal
     public function run()
     {

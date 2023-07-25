@@ -16,6 +16,12 @@ $cookieValue = request()->cookie(rand());
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
+    <!-- CSS Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- JavaScript Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="icon" type="image/x-icon" href="{{ asset('icon/Icon_unican.png') }}" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -95,7 +101,7 @@ $cookieValue = request()->cookie(rand());
             <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white sticky-active-into-mobile--- plr--9---">
                 <div class="container">
                     <div class="row">
-                        <div class="col " style="background-color: white; border-radius: 10px 0px 5px 0px;">
+                        <div class="col " style="background-color: white; border-radius: 10px 0px 5px 0px; height: 60px;">
                             <div class="site-logo-wrap">
                                 <div class="site-logo">
                                     <a href="{{ route('main.home') }}" rel="nofollow" alt="Logo">
