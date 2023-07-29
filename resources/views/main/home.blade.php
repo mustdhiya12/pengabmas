@@ -89,27 +89,21 @@
                     </div>
                     <button class="ltn__utilize-close">×</button>
                 </div>
-                <div class="ltn__utilize-menu-search-form">
-                    <form action="#">
-                        <input type="text" placeholder="Search...">
-                        <button><i class="fas fa-search"></i></button>
-                    </form>
-                </div>
                 <div class="ltn__utilize-menu">
                     <ul>
-                        <li><a href="#">Home</a>
-                            <ul class="sub-menu">
-                                <li><a href="index.html">Home Pages 01</a></li>
+                        <li class="menu-icon">
+                            <a href="{{ route('main.home') }}">Home</a>
+                        </li>
+                        <li class="menu-icon"><a href="{{ route('main.pr') }}">About</a>
+                            <ul>
+                                <li><a href="{{ route('main.pr') }}">FAQ</a></li>
+                                <li><a href="https://www.google.com/maps/place/Universitas+Muhammadiyah+Kalimantan+Timur+Samarinda/@-0.4749719,117.1388952,15z/data=!4m2!3m1!1s0x0:0x108077d433712165?sa=X&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhZEAA&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhnEAg">Google Map Locations</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">About</a>
-                            <ul class="sub-menu">
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="locations.html">Google Map Locations</a></li>
-                            </ul>
+                        <li class="menu-icon">
+                            <a href="{{ route('main.shop') }}">Shop</a>
                         </li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="{{ route('main.pr') }}">Contact</a></li>
                     </ul>
                 </div>
                 <div class="ltn__utilize-buttons ltn__utilize-b uttons-2">
@@ -183,8 +177,13 @@
                                         </div>
                                     </div>
                                     <div class="slide-item-img ltn__slide-animation">
-                                        <img class="slide-title animated" src="{{ asset('icon/2.gif') }}" alt="#">
+                                        <img src="{{ asset('icon/2.gif') }}"
+                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                                            -webkit-mask-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0));
+                                            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0));
+                                            z-index: 2;">
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -210,7 +209,10 @@
                                         </div>
                                     </div>
                                     <div class="slide-item-img slide-img-left ltn__slide-animation">
-                                        <img class="slide-title animated" src="{{ asset('icon/1.gif') }}" alt="#">
+                                        <img class="rounded-3 slide-title animated" src="{{ asset('icon/1.gif') }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                                        -webkit-mask-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0));
+                                        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0));
+                                        z-index: 2;" alt="#">
                                     </div>
                                 </div>
                             </div>
@@ -354,9 +356,7 @@
                                     <h2 class="product-title"><a href="/produk/{{ $product->id }}">{!! $produk_name !!}</a></h2>
                                 <div class="product-price">
                                     <span style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}}</span><br>
-                                    @if ($product->discounted_price)
                                         <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price * 2}}</s>
-                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -393,6 +393,41 @@
         <!-- VIDEO AREA END -->
 
         <!-- TESTIMONIAL AREA START (testimonial-4) -->
+        @php
+        $testimonials = [
+            [
+                'image' => 'img/testimonial/7.jpg',
+                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                'name' => 'RUDIMAN, S.KOM., M.SC.',
+                'title' => 'Concept Developer',
+            ],
+            [
+                'image' => 'img/testimonial/7.jpg',
+                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                'name' => 'ROFILDE HASUDUNGAN, S.Kom., M.Sc',
+                'title' => 'DevOps Engineer',
+            ],
+            [
+                'image' => 'img/testimonial/6.jpg',
+                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                'name' => 'Muhammad Fauzan Nur Ilham',
+                'title' => 'Software Developer/Programmer',
+            ],
+            [
+                'image' => 'img/testimonial/7.jpg',
+                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                'name' => 'Muhammad Haikal Mahardika',
+                'title' => 'Software Developer/Programmer',
+            ],
+            [
+                'image' => 'img/testimonial/7.jpg',
+                'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                'name' => 'Pandu Wirayuda',
+                'title' => 'Software Developer/Programmer',
+            ],
+            // Add more testimonials here
+        ];
+        @endphp
         <div class="ltn__testimonial-area section-bg-1 pt-290 pb-70">
             <div class="container-fluid">
                 <div class="row">
@@ -404,85 +439,26 @@
                     </div>
                 </div>
                 <div class="row ltn__testimonial-slider-3-active slick-arrow-1 slick-arrow-1-inner">
-                    <div class="col-lg-12">
-                        <div class="ltn__testimonial-item ltn__testimonial-item-4">
-                            <div class="ltn__testimoni-img">
-                                <img src="img/testimonial/6.jpg" alt="#">
-                            </div>
-                            <div class="ltn__testimoni-info">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                <h4>Rosalina D. William</h4>
-                                <h6>Founder</h6>
-                            </div>
-                            <div class="ltn__testimoni-bg-icon">
-                                <i class="far fa-comments"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="ltn__testimonial-item ltn__testimonial-item-4">
-                            <div class="ltn__testimoni-img">
-                                <img src="img/testimonial/7.jpg" alt="#">
-                            </div>
-                            <div class="ltn__testimoni-info">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                <h4>Rosalina D. William</h4>
-                                <h6>Founder</h6>
-                            </div>
-                            <div class="ltn__testimoni-bg-icon">
-                                <i class="far fa-comments"></i>
+                    @foreach($testimonials as $testimonial)
+                        <div class="col-lg-12">
+                            <div class="ltn__testimonial-item ltn__testimonial-item-4">
+                                <div class="ltn__testimoni-img">
+                                    <img src="{{ $testimonial['image'] }}" alt="#">
+                                </div>
+                                <div class="ltn__testimoni-info">
+                                    <p>{{ $testimonial['content'] }}</p>
+                                    <h4>{{ $testimonial['name'] }}</h4>
+                                    <h6>{{ $testimonial['title'] }}</h6>
+                                </div>
+                                <div class="ltn__testimoni-bg-icon">
+                                    <i class="far fa-comments"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="ltn__testimonial-item ltn__testimonial-item-4">
-                            <div class="ltn__testimoni-img">
-                                <img src="img/testimonial/1.jpg" alt="#">
-                            </div>
-                            <div class="ltn__testimoni-info">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                <h4>Rosalina D. William</h4>
-                                <h6>Founder</h6>
-                            </div>
-                            <div class="ltn__testimoni-bg-icon">
-                                <i class="far fa-comments"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="ltn__testimonial-item ltn__testimonial-item-4">
-                            <div class="ltn__testimoni-img">
-                                <img src="img/testimonial/2.jpg" alt="#">
-                            </div>
-                            <div class="ltn__testimoni-info">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                <h4>Rosalina D. William</h4>
-                                <h6>Founder</h6>
-                            </div>
-                            <div class="ltn__testimoni-bg-icon">
-                                <i class="far fa-comments"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="ltn__testimonial-item ltn__testimonial-item-4">
-                            <div class="ltn__testimoni-img">
-                                <img src="img/testimonial/5.jpg" alt="#">
-                            </div>
-                            <div class="ltn__testimoni-info">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                <h4>Rosalina D. William</h4>
-                                <h6>Founder</h6>
-                            </div>
-                            <div class="ltn__testimoni-bg-icon">
-                                <i class="far fa-comments"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <!--  -->
+                    @endforeach
                 </div>
             </div>
-        </div>
+        </div>        
         <!-- TESTIMONIAL AREA END -->
 
         <!-- BLOG AREA START (blog-3) -->
@@ -1020,67 +996,7 @@
         </div>
         <!-- MODAL AREA END -->
 
-  <!-- Main Navigation -->
-  <header>
-    <div class="bg-primary text-white py-5 ">
-      <div class="container py-5">
-        <h1>
-          UNICA E-commerce
-        </h1>
-        <p>
-          Linking Excellence, Unleashing Possibilities
-        </p>
-        <button type="button" class="btn btn-outline-light">
-          Learn more
-        </button>
-        <a href="">
-          <button type="button" class="btn btn-light shadow-0 text-primary pt-2 border border-white">
-            <span class="pt-1">Purchase now</span>
-          </button>
-        </a>
-      </div>
-    </div>
-    <!-- Jumbotron -->
-  </header>
-  <!-- Products -->
-  <section>
-    <div class="container my-5">
-      <header class="mb-4">
-        <h3>Cari produk :</h3>
-      </header>
-      <form action="{{ route('products.search') }}" method="GET">
-        <div class="row">
-          <div class="col-md-4 mb-3">
-            <input required type="text" name="query" class="form-control" placeholder="Search...">
-          </div>
-          <div class="col-md-4 mb-3">
-            <input type="number" name="min_price" class="form-control" placeholder="Min Price">
-          </div>
-          <div class="col-md-4 mb-3">
-            <input type="number" name="max_price" class="form-control" placeholder="Max Price">
-          </div>
-          <button style="width:90%;" type="submit" class="container-fluid btn btn-primary">Search</button>
-        </div>
-        <hr>
-      </form>
-    </div>
-    <div class="container my-5 p-3 rdr2">
-      <header class="mb-4">
-          <h3>Products :</h3>
-      </header>
-      <div class="row" id="product-list">
-              @include('main.products_partial', ['product' => $products])
-      </div>
-
-      <div id="loadMoreBtnContainer" class="text-center mt-4">
-        @if($products->hasMorePages())
-          <button id="loadMoreBtn" class="btn btn-primary" data-page="{{ $products->currentPage() + 1 }}">Load More</button>
-        @else
-          <p>No more products to load</p>
-        @endif
-      </div>
-
-      <!-- Core theme JS -->
+  
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

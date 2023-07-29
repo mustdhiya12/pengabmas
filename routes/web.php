@@ -98,6 +98,9 @@ Route::put('/dashboard/view/produk/{id}', [UserController::class, 'penghapus_pes
 // Route view For function get_data_produk_main
 Route::get('/', [MainController::class, 'get_data_produk_main'])->name('main.home');
 
+
+Route::get('/shop', [MainController::class, 'get_data_produk_shop'])->name('main.shop');
+
 // Route view For function privacy policy
 Route::get('/pr', [MainController::class, 'pr'])->name('main.pr');
 
@@ -177,6 +180,9 @@ Route::put('/comment/{id}/edit', [MainController::class, 'editComment'])->name('
 Route::delete('/comment/{id}/delete', [MainController::class, 'deleteComment'])->name('comment.delete');
 
 //load product home
+Route::get('/load-more-products', [MainController::class, 'loadMoreProducts'])->name('load.more.products');
+
+
 Route::get('/load-more-products', [MainController::class, 'loadMoreProducts'])->name('load.more.products');
 
 

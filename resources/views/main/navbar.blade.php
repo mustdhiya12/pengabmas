@@ -31,10 +31,10 @@ $cookieValue = request()->cookie(rand());
 </head>
 
 <body>
-    <div class="body-wrapper">
+    <div class="body-wrapper" >
 
         <!-- HEADER AREA START (header-5) -->
-        <header class="ltn__header-area ltn__header-5 ltn__header-transparent gradient-color-4---">
+        <header class="ltn__header-area ltn__header-5 ltn__header-transparent gradient-color-4---" style="background-color: rgb(255, 255, 255);">
             <!-- ltn__header-top-area start -->
             <div class="ltn__header-top-area">
                 <div class="container">
@@ -101,7 +101,7 @@ $cookieValue = request()->cookie(rand());
             <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white sticky-active-into-mobile--- plr--9---">
                 <div class="container">
                     <div class="row">
-                        <div class="col " style="background-color: white; border-radius: 10px 0px 5px 0px; height: 60px;">
+                        <div class="col " >
                             <div class="site-logo-wrap">
                                 <div class="site-logo">
                                     <a href="{{ route('main.home') }}" rel="nofollow" alt="Logo">
@@ -122,6 +122,9 @@ $cookieValue = request()->cookie(rand());
                                                     <li><a href="{{ route('main.pr') }}">FAQ</a></li>
                                                     <li><a href="https://www.google.com/maps/place/Universitas+Muhammadiyah+Kalimantan+Timur+Samarinda/@-0.4749719,117.1388952,15z/data=!4m2!3m1!1s0x0:0x108077d433712165?sa=X&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhZEAA&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhnEAg">Google Map Locations</a></li>
                                                 </ul>
+                                            </li>
+                                            <li class="menu-icon">
+                                                <a href="{{ route('main.shop') }}">Shop</a>
                                             </li>
                                             <li><a href="{{ route('main.pr') }}">Contact</a></li>
                                         </ul>

@@ -30,7 +30,7 @@
                   @endif
                 @endforeach
                 </a>
-              </div>                      
+              </div>  
               <div class="media-body va-m">
                 <h2 class="media-heading">{{Auth::user()->name}}
                   <small> - Profile</small>
@@ -38,6 +38,7 @@
                 <p class="lead">Status yang akan di masukkan nanti nya</p>
                 <div class="media-links">
                 <div class="container">
+                      @if(!empty(Auth::user()) && Auth::user()->user_type == 'Penjual')
                         <div class=" row-cols-5">
                             @php
                             $links = explode('|', Auth::user()->link);
@@ -97,6 +98,7 @@
                                 @endif
                             @endforeach
                         </div>
+                        @endif
                     </div>
                 </div>
               </div>

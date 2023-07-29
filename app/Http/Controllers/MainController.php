@@ -335,7 +335,11 @@ class MainController extends Controller
         $products = Produk::paginate(8);
         return view('main.home', compact('products'));
     }
-
+    public function get_data_produk_shop()
+    {
+        $products = Produk::paginate(8);
+        return view('main.shop', compact('products'));
+    }
     public function loadMoreProducts(Request $request)
     {
         $perPage = 8;
