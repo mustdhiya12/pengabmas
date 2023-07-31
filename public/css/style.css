@@ -112,11 +112,11 @@ font-family: 'Roboto', sans-serif;
   /* Darken */
   --ltn__primary-color-3: #133236;
   /* Lighten */
-  --ltn__secondary-color: #80B500;
+  --ltn__secondary-color: #f7a13e;
   /* --ltn__secondary-color: #e53e29; */
-  --ltn__secondary-color-2: #699403;
+  --ltn__secondary-color-2: #e08926;
   /* Darken */
-  --ltn__secondary-color-3: #a2da1c;
+  --ltn__secondary-color-3: #ff8f0e;
   /* Lighten */
   --ltn__heading-color: #071c1f;
   --ltn__paragraph-color: #071c1f;
@@ -200,8 +200,8 @@ font-family: 'Roboto', sans-serif;
   --maroon: #800000;
   --yellow: #FFFF00;
   --olive: #808000;
-  --lime: #00FF00;
-  --green: #008000;
+  --lime: #f7a13e;
+  --green: #6b3901;
   --aqua: #00FFFF;
   --teal: #008080;
   --blue: #0000FF;
@@ -222,7 +222,7 @@ font-family: 'Roboto', sans-serif;
   --google-plus: #dd4b39;
   --instagram: #e4405f;
   --vk: #3b5998;
-  --wechat: #7bb32e;
+  --wechat: #ac6e27;
   --youtube: #CB2027;
   --email: #F89A1E; }
 

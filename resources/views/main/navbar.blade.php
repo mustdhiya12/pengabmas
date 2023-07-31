@@ -123,7 +123,7 @@ $cookieValue = request()->cookie(rand());
                                                     <li><a href="https://www.google.com/maps/place/Universitas+Muhammadiyah+Kalimantan+Timur+Samarinda/@-0.4749719,117.1388952,15z/data=!4m2!3m1!1s0x0:0x108077d433712165?sa=X&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhZEAA&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhnEAg">Google Map Locations</a></li>
                                                 </ul>
                                             </li>
-                                            <li class="menu-icon">
+                                            <li>
                                                 <a href="{{ route('main.shop') }}">Shop</a>
                                             </li>
                                             <li><a href="{{ route('main.pr') }}">Contact</a></li>

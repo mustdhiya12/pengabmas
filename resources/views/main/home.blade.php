@@ -235,20 +235,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="ltn__banner-item">
-                            <div class="ltn__banner-img">
-                                <a href="#"><img src="{{ asset('icon/4.jpg') }}" alt="Banner Image"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="ltn__banner-item">
-                            <div class="ltn__banner-img">
-                                <a href="#"><img src="{{ asset('icon/3.jpg') }}" alt="Banner Image"></a>
-                            </div>
-                        </div>
-                    </div>
+                
                 </div>
             </div>
         </div>
@@ -265,24 +252,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="ltn__banner-item">
-                                    <div class="ltn__banner-img">
-                                        <a href="#"><img src="{{ asset('icon/4.jpg') }}" alt="Banner Image"></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="ltn__banner-item">
-                                    <div class="ltn__banner-img">
-                                        <a href="#"><img src="{{ asset('icon/3.jpg') }}" alt="Banner Image"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -462,38 +432,73 @@
         <!-- TESTIMONIAL AREA END -->
 
         <!-- BLOG AREA START (blog-3) -->
+        @php
+        // Contoh inisialisasi array blog (ganti ini dengan data yang sesuai dari database atau sumber lainnya)
+        $blogs = [
+            [
+                'image' => 'img/blog/1.jpg',
+                'author' => 'Admin',
+                'category' => 'Services',
+                'title' => 'Common Engine Oil Problems and Solutions',
+                'date' => 'June 24, 2020',
+            ],
+            [
+                'image' => 'img/blog/1.jpg',
+                'author' => 'Admin',
+                'category' => 'Services',
+                'title' => 'Common Engine Oil Problems and Solutions',
+                'date' => 'June 24, 2020',
+            ],
+            [
+                'image' => 'img/blog/1.jpg',
+                'author' => 'Admin',
+                'category' => 'Services',
+                'title' => 'Common Engine Oil Problems and Solutions',
+                'date' => 'June 24, 2020',
+            ],
+            [
+                'image' => 'img/blog/1.jpg',
+                'author' => 'Admin',
+                'category' => 'Services',
+                'title' => 'Common Engine Oil Problems and Solutions',
+                'date' => 'June 24, 2020',
+            ],
+            // Tambahkan data blog lainnya di sini...
+        ];
+        @endphp
         <div class="ltn__blog-area pt-115 pb-70">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title-area ltn__section-title-2 text-center">
-                            <h1 class="section-title white-color---">Leatest Blog</h1>
+                            <h1 class="section-title white-color---">Latest Blog</h1>
                         </div>
                     </div>
                 </div>
-                <div class="row  ltn__blog-slider-one-active slick-arrow-1 ltn__blog-item-3-normal">
+                <div class="row ltn__blog-slider-one-active slick-arrow-1 ltn__blog-item-3-normal">
+                    @foreach($blogs as $blog)
                     <!-- Blog Item -->
                     <div class="col-lg-12">
                         <div class="ltn__blog-item ltn__blog-item-3">
                             <div class="ltn__blog-img">
-                                <a href="blog-details.html"><img src="img/blog/1.jpg" alt="#"></a>
+                                <a href="blog-details.html"><img src="{{ $blog['image'] }}" alt="#"></a>
                             </div>
                             <div class="ltn__blog-brief">
                                 <div class="ltn__blog-meta">
                                     <ul>
                                         <li class="ltn__blog-author">
-                                            <a href="#"><i class="far fa-user"></i>by: Admin</a>
+                                            <a href="#"><i class="far fa-user"></i>by: {{ $blog['author'] }}</a>
                                         </li>
                                         <li class="ltn__blog-tags">
-                                            <a href="#"><i class="fas fa-tags"></i>Services</a>
+                                            <a href="#"><i class="fas fa-tags"></i>{{ $blog['category'] }}</a>
                                         </li>
                                     </ul>
                                 </div>
-                                <h3 class="ltn__blog-title"><a href="blog-details.html">Common Engine Oil Problems and Solutions</a></h3>
+                                <h3 class="ltn__blog-title"><a href="blog-details.html">{{ $blog['title'] }}</a></h3>
                                 <div class="ltn__blog-meta-btn">
                                     <div class="ltn__blog-meta">
                                         <ul>
-                                            <li class="ltn__blog-date"><i class="far fa-calendar-alt"></i>June 24, 2020</li>
+                                            <li class="ltn__blog-date"><i class="far fa-calendar-alt"></i>{{ $blog['date'] }}</li>
                                         </ul>
                                     </div>
                                     <div class="ltn__blog-btn">
@@ -503,134 +508,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Blog Item -->
-                    <div class="col-lg-12">
-                        <div class="ltn__blog-item ltn__blog-item-3">
-                            <div class="ltn__blog-img">
-                                <a href="blog-details.html"><img src="img/blog/2.jpg" alt="#"></a>
-                            </div>
-                            <div class="ltn__blog-brief">
-                                <div class="ltn__blog-meta">
-                                    <ul>
-                                        <li class="ltn__blog-author">
-                                            <a href="#"><i class="far fa-user"></i>by: Admin</a>
-                                        </li>
-                                        <li class="ltn__blog-tags">
-                                            <a href="#"><i class="fas fa-tags"></i>Services</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3 class="ltn__blog-title"><a href="blog-details.html">How and when to replace brake rotors</a></h3>
-                                <div class="ltn__blog-meta-btn">
-                                    <div class="ltn__blog-meta">
-                                        <ul>
-                                            <li class="ltn__blog-date"><i class="far fa-calendar-alt"></i>July 23, 2020</li>
-                                        </ul>
-                                    </div>
-                                    <div class="ltn__blog-btn">
-                                        <a href="blog-details.html">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Blog Item -->
-                    <div class="col-lg-12">
-                        <div class="ltn__blog-item ltn__blog-item-3">
-                            <div class="ltn__blog-img">
-                                <a href="blog-details.html"><img src="img/blog/3.jpg" alt="#"></a>
-                            </div>
-                            <div class="ltn__blog-brief">
-                                <div class="ltn__blog-meta">
-                                    <ul>
-                                        <li class="ltn__blog-author">
-                                            <a href="#"><i class="far fa-user"></i>by: Admin</a>
-                                        </li>
-                                        <li class="ltn__blog-tags">
-                                            <a href="#"><i class="fas fa-tags"></i>Services</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3 class="ltn__blog-title"><a href="blog-details.html">Elenance, Servicing & Repairs</a></h3>
-                                <div class="ltn__blog-meta-btn">
-                                    <div class="ltn__blog-meta">
-                                        <ul>
-                                            <li class="ltn__blog-date"><i class="far fa-calendar-alt"></i>August 22, 2020</li>
-                                        </ul>
-                                    </div>
-                                    <div class="ltn__blog-btn">
-                                        <a href="blog-details.html">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Blog Item -->
-                    <div class="col-lg-12">
-                        <div class="ltn__blog-item ltn__blog-item-3">
-                            <div class="ltn__blog-img">
-                                <a href="blog-details.html"><img src="img/blog/4.jpg" alt="#"></a>
-                            </div>
-                            <div class="ltn__blog-brief">
-                                <div class="ltn__blog-meta">
-                                    <ul>
-                                        <li class="ltn__blog-author">
-                                            <a href="#"><i class="far fa-user"></i>by: Admin</a>
-                                        </li>
-                                        <li class="ltn__blog-tags">
-                                            <a href="#"><i class="fas fa-tags"></i>Services</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3 class="ltn__blog-title"><a href="blog-details.html">Healthiest Vegetables on Earth</a></h3>
-                                <div class="ltn__blog-meta-btn">
-                                    <div class="ltn__blog-meta">
-                                        <ul>
-                                            <li class="ltn__blog-date"><i class="far fa-calendar-alt"></i>June 24, 2020</li>
-                                        </ul>
-                                    </div>
-                                    <div class="ltn__blog-btn">
-                                        <a href="blog-details.html">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Blog Item -->
-                    <div class="col-lg-12">
-                        <div class="ltn__blog-item ltn__blog-item-3">
-                            <div class="ltn__blog-img">
-                                <a href="blog-details.html"><img src="img/blog/5.jpg" alt="#"></a>
-                            </div>
-                            <div class="ltn__blog-brief">
-                                <div class="ltn__blog-meta">
-                                    <ul>
-                                        <li class="ltn__blog-author">
-                                            <a href="#"><i class="far fa-user"></i>by: Admin</a>
-                                        </li>
-                                        <li class="ltn__blog-tags">
-                                            <a href="#"><i class="fas fa-tags"></i>Services</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3 class="ltn__blog-title"><a href="blog-details.html">How te Your Tires Last Longer</a></h3>
-                                <div class="ltn__blog-meta-btn">
-                                    <div class="ltn__blog-meta">
-                                        <ul>
-                                            <li class="ltn__blog-date"><i class="far fa-calendar-alt"></i>June 24, 2020</li>
-                                        </ul>
-                                    </div>
-                                    <div class="ltn__blog-btn">
-                                        <a href="blog-details.html">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                     <!--  -->
                 </div>
             </div>
         </div>
+        
         <!-- BLOG AREA END -->
 
         <!-- FEATURE AREA START ( Feature - 3) -->
@@ -639,56 +522,48 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="ltn__feature-item-box-wrap ltn__border-between-column white-bg">
+                            @php
+                                // Inisialisasi array fitur
+                                $features = [
+                                    [
+                                        'icon' => 'img/icons/icon-img/11.png',
+                                        'title' => 'Curated Products',
+                                        'description' => 'Provide Curated Products for all product over $100',
+                                    ],
+                                    [
+                                        'icon' => 'img/icons/icon-img/12.png',
+                                        'title' => 'Handmade',
+                                        'description' => 'We ensure the product quality that is our main goal',
+                                    ],
+                                    [
+                                        'icon' => 'img/icons/icon-img/13.png',
+                                        'title' => 'Natural Food',
+                                        'description' => 'Return product within 3 days for any product you buy',
+                                    ],
+                                    [
+                                        'icon' => 'img/icons/icon-img/14.png',
+                                        'title' => 'Free home delivery',
+                                        'description' => 'We ensure the product quality that you can trust easily',
+                                    ],
+                                ];
+                            @endphp
+
                             <div class="row">
+                                @foreach($features as $feature)
                                 <div class="col-xl-3 col-md-6 col-12">
                                     <div class="ltn__feature-item ltn__feature-item-8">
                                         <div class="ltn__feature-icon">
-                                            <img src="img/icons/icon-img/11.png" alt="#">
+                                            <img src="{{ $feature['icon'] }}" alt="#">
                                         </div>
                                         <div class="ltn__feature-info">
-                                            <h4>Curated Products</h4>
-                                            <p>Provide Curated Products for
-                                                all product over $100</p>
+                                            <h4>{{ $feature['title'] }}</h4>
+                                            <p>{{ $feature['description'] }}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-md-6 col-12">
-                                    <div class="ltn__feature-item ltn__feature-item-8">
-                                        <div class="ltn__feature-icon">
-                                            <img src="img/icons/icon-img/12.png" alt="#">
-                                        </div>
-                                        <div class="ltn__feature-info">
-                                            <h4>Handmade</h4>
-                                            <p>We ensure the product quality
-                                                that is our main goal</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6 col-12">
-                                    <div class="ltn__feature-item ltn__feature-item-8">
-                                        <div class="ltn__feature-icon">
-                                            <img src="img/icons/icon-img/13.png" alt="#">
-                                        </div>
-                                        <div class="ltn__feature-info">
-                                            <h4>Natural Food</h4>
-                                            <p>Return product within 3 days
-                                                for any product you buy</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6 col-12">
-                                    <div class="ltn__feature-item ltn__feature-item-8">
-                                        <div class="ltn__feature-icon">
-                                            <img src="img/icons/icon-img/14.png" alt="#">
-                                        </div>
-                                        <div class="ltn__feature-info">
-                                            <h4>Free home delivery</h4>
-                                            <p>We ensure the product quality
-                                                that you can trust easily</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
+
                         </div>
                     </div>
                 </div>
