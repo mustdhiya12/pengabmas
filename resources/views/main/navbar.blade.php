@@ -31,7 +31,7 @@ $cookieValue = request()->cookie(rand());
 </head>
 
 <body>
-    <div class="body-wrapper" >
+    <div class="body-wrapper">
 
         <!-- HEADER AREA START (header-5) -->
         <header class="ltn__header-area ltn__header-5 ltn__header-transparent gradient-color-4---" style="background-color: rgb(255, 255, 255);">
@@ -44,13 +44,13 @@ $cookieValue = request()->cookie(rand());
                                 <ul>
                                     <style>
                                         a {
-                                            text-decoration: none; 
+                                            text-decoration: none;
                                             color: darkgray;
                                         }
                                     </style>
                                     <li><a href="https://www.google.com/maps/place/Universitas+Muhammadiyah+Kalimantan+Timur+Samarinda/@-0.4749719,117.1388952,15z/data=!4m2!3m1!1s0x0:0x108077d433712165?sa=X&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhZEAA&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhnEAg">
-                                        <i class="icon-placeholder"></i>
-                                         Jl. Ir. H. Juanda No.15, Sidodadi, Kec. Samarinda Ulu, Kota Samarinda, Kalimantan Timur 75124
+                                            <i class="icon-placeholder"></i>
+                                            Jl. Ir. H. Juanda No.15, Sidodadi, Kec. Samarinda Ulu, Kota Samarinda, Kalimantan Timur 75124
                                         </a>
                                     </li>
                                     <li><a href="mailto:mustfauzan0@gmail.com?Subject=Flower%20greetings%20to%20you"><i class="icon-mail"></i> mustfauzan0@gmail.com</a></li>
@@ -98,10 +98,10 @@ $cookieValue = request()->cookie(rand());
             <!-- ltn__header-top-area end -->
 
             <!-- ltn__header-middle-area start -->
-            <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white sticky-active-into-mobile--- plr--9---">
+            <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white sticky-active-into-mobile--- plr--9--- lill">
                 <div class="container">
                     <div class="row">
-                        <div class="col " >
+                        <div class="col ">
                             <div class="site-logo-wrap">
                                 <div class="site-logo">
                                     <a href="{{ route('main.home') }}" rel="nofollow" alt="Logo">
@@ -141,9 +141,8 @@ $cookieValue = request()->cookie(rand());
                                         <ul>
                                             @if(Auth::id())
                                             <li><a href="{{ route('user.dashboard') }}" class="badge bg-white text-bg-light">
-                                                        <img src="{{ asset('icon/astronaut.png') }}" class="img-fluid rounded-circle"
-                                                            width="33.5" alt="user_comment">
-                                                        <u style="font-size: 15px;" class="ms-1">{{Auth::user()->username}}</u>
+                                                    <img src="{{ asset('icon/astronaut.png') }}" class="img-fluid rounded-circle" width="33.5" alt="user_comment">
+                                                    <u style="font-size: 15px;" class="ms-1">{{Auth::user()->username}}</u>
                                                 </a>
                                             </li>
                                             <li><a href="{{ route('user.dashboard') }}">My Account</a></li>
@@ -164,12 +163,13 @@ $cookieValue = request()->cookie(rand());
                                 <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle" href="{{ route('main.produk') }}">
                                     <i class="icon-shopping-cart"></i>
                                     <sup>{{$hitung}}</sup>
-                                </a>                            
+                                </a>
                             </div>
                             @endif
                             @endauth
                             <!-- mini-cart -->
                             <!-- Mobile Menu Button -->
+                            <!-- Tombol toggle untuk mobile menu -->
                             <div class="mobile-menu-toggle d-xl-none">
                                 <a href="#ltn__utilize-mobile-menu" class="ltn__utilize-toggle">
                                     <svg viewBox="0 0 800 600">
@@ -187,7 +187,73 @@ $cookieValue = request()->cookie(rand());
         </header>
         <!-- HEADER AREA END -->
 
-        
+        <!-- Utilize Mobile Menu Start -->
+        <div id="ltn__utilize-mobile-menu" class="ltn__utilize ltn__utilize-mobile-menu">
+            <div class="ltn__utilize-menu-inner ltn__scrollbar">
+                <div class="ltn__utilize-menu-head">
+                    <div class="site-logo">
+                        <a href="index.html"><img src="{{ asset('icon/Icon_unican.png') }}" alt="UNICAN"></a>
+                    </div>
+                    <button class="ltn__utilize-close">×</button>
+                </div>
+                <div class="ltn__utilize-menu">
+                    <ul>
+                        <li class="menu-icon">
+                            <a href="{{ route('main.home') }}">Home</a>
+                        </li>
+                        <li class="menu-icon"><a href="{{ route('main.pr') }}">About</a>
+                            <ul>
+                                <li><a href="{{ route('main.pr') }}">FAQ</a></li>
+                                <li><a href="https://www.google.com/maps/place/Universitas+Muhammadiyah+Kalimantan+Timur+Samarinda/@-0.4749719,117.1388952,15z/data=!4m2!3m1!1s0x0:0x108077d433712165?sa=X&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhZEAA&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhnEAg">Google Map Locations</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-icon">
+                            <a href="{{ route('main.shop') }}">Shop</a>
+                        </li>
+                        <li><a href="{{ route('main.pr') }}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="ltn__utilize-buttons ltn__utilize-b uttons-2">
+                    <ul>
+                        <li>
+                            <a href="account.html" title="My Account">
+                                <span class="utilize-btn-icon">
+                                    <i class="far fa-user"></i>
+                                </span>
+                                My Account
+                            </a>
+                        </li>
+                        <li>
+                            <a href="wishlist.html" title="Wishlist">
+                                <span class="utilize-btn-icon">
+                                    <i class="far fa-heart"></i>
+                                    <sup>3</sup>
+                                </span>
+                                Wishlist
+                            </a>
+                        </li>
+                        <li>
+                            <a href="cart.html" title="Shoping Cart">
+                                <span class="utilize-btn-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <sup>5</sup>
+                                </span>
+                                Shoping Cart
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ltn__social-media-2">
+                    <ul>
+                        <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Utilize Mobile Menu End -->
 
     </div>
     <!-- Body main wrapper end -->
@@ -207,6 +273,9 @@ $cookieValue = request()->cookie(rand());
     <script src="{{asset('js/plugins.js')}}"></script>
     <!-- Main JS -->
     <script src="{{asset('js/main.js')}}"></script>
+    
+
+
 </body>
 
 </html>

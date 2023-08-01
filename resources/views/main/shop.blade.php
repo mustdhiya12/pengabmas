@@ -9,16 +9,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Place favicon.png in the root directory -->
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
-    <!-- Font Icons css -->
-    <link rel="stylesheet" href="css/font-icons.css">
-    <!-- plugins css -->
-    <link rel="stylesheet" href="css/plugins.css">
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Responsive css -->
-    <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
@@ -106,7 +96,7 @@
                                     $produk_name = substr($produk_name, 0, $max_length) . '<span style="color: gray;">...</span>';
                                     }
                                     @endphp
-                                    <div class="col-xl-4 col-sm-6 col-6">
+                                    <div class="col-xl-3 col-sm-5 col-5">
                                         <div class="ltn__product-item ltn__product-item-3 text-center">
                                             <div class="product-img">
                                                 <a href="/produk/{{ $product->id }}">
