@@ -109,16 +109,19 @@
               <label for="registerPassword" class="form-label">Confirm Password</label>
               <input type="password" name="password_confirmation" id="password-confirm" class="form-control" required>
             </div>
-            <div class="mb-3">
-              <label for="registerPassword" class="form-label">User Type</label>
-              <select id="user_type" name="user_type" class="form-select" required>
-                <option disabled selected>Pilih Tipe User</option>
-                <option value="Penjual">Penjual</option>
-                <option value="Pembeli">Pembeli</option>
-              </select>
-            </div>
-            <div class="mb-3" id="links-container">
-              <div class="link-container">
+            <div class="mb-3 d-flex justify-content-between" id="user-type-and-links-container">
+  <!-- ... kode sebelumnya ... -->
+
+            <div class="mb-3 d-flex flex-column" id="user-type-and-links-container">
+              <div class="form-group">
+                <label for="registerPassword" class="form-label">User Type</label>
+                <select id="user_type" name="user_type" class="form-select" required>
+                  <option disabled selected>Pilih Tipe User</option>
+                  <option value="Penjual">Penjual</option>
+                  <option value="Pembeli">Pembeli</option>
+                </select>
+              </div>
+              <div class="form-group">
                 <label for="add-link" class="form-label">Add Link</label>
                 <input type="text" name="link[]" placeholder="Enter link" required class="form-control">
                 <div class="link-buttons">
@@ -127,6 +130,9 @@
                 </div>
               </div>
             </div>
+          </div>
+<!-- ... kode selanjutnya ... -->
+
             <div class="text-center mb-4">
               <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
             </div>
