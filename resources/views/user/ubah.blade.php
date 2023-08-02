@@ -120,9 +120,9 @@
                             <br>
                             <div class="form-group">
                                 <label for="harga">{{ __('Harga minimal:') }}</label>
-                                <input id="min_harga" placeholder="minimal price" type="number" class="form-control @error('min_harga') is-invalid @enderror" name="min_harga" value="{{ old('min_harga') }}" required autocomplete="min_harga">
+                                <input id="min_harga" placeholder="minimal price" type="number" class="form-control @error('min_harga') is-invalid @enderror" name="min_harga" value="{{ $polpot->min_price }}" required autocomplete="min_harga">
                                 <label for="harga">{{ __('Harga maximal:') }}</label>
-                                <input id="max_harga" placeholder="maximal price" type="number" class="form-control @error('max_harga') is-invalid @enderror" name="max_harga" value="{{ old('max_harga') }}" required autocomplete="max_harga">
+                                <input id="max_harga" placeholder="maximal price" type="number" class="form-control @error('max_harga') is-invalid @enderror" name="max_harga" value="{{ $polpot->max_price }}" required autocomplete="max_harga">
                                 @error('harga')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
