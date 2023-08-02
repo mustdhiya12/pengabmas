@@ -61,10 +61,11 @@ use App\Models\likes_pro;
                     <div class="small mb-1">PRODUCT ID: {{$mainpolopot->produk_id}}</div>
                     <hr>
                     <h1 class="display-5 fw-bolder">{{$mainpolopot->produk_name}}</h1>
-                    <div class="fs-5 mb-5">
+                    <div class="fs-5 mb-5 product-price">
                         <span>Rp.{{$mainpolopot->min_price}} - Rp.{{$mainpolopot->max_price}}</span>
                     </div>
                     <div class="fs-5 mb-5">
+                        <i class="far fa-user"></i>
                         <span>Penjual: {{$mainpolopot->produk_owner_nama}}</span>
                     </div>
                     <hr>

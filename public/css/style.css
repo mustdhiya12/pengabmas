@@ -12575,10 +12575,10 @@ input.cart-plus-minus-box {
   left: 0;
   background: var(--ltn__primary-color); }
 
-.btn-effect-3:hover {
-  color: var(--white); }
-  .btn-effect-3:hover::after {
-    width: 100%; }
+.btn-effect-3:hover::after {
+  color: var(--white); 
+  width: 100%;
+}
 
 .btn-effect-4:after {
   width: 0%;
@@ -12588,7 +12588,7 @@ input.cart-plus-minus-box {
   background: var(--ltn__secondary-color); }
 
 .btn-effect-4:hover {
-  color: var(--white); }
+  color: white; }
   .btn-effect-4:hover::after {
     width: 100%; }
 
