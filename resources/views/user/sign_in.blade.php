@@ -32,7 +32,7 @@
       }
     }
   </style>
-  
+
   @include('main/navbar')
 
   <div style="padding-top:150px;" class="container">
@@ -51,36 +51,39 @@
       <div class="container">
         <div class="row d-flex align-items-center justify-content-center h-100">
           <div class="col-md-8 col-lg-7 col-xl-6">
-            <img src="{{ asset('icon/mon.gif') }}" class="img-fluid" alt="Phone image">
+            <img src="{{ asset('icon/mon.gif') }}" class="img-fluid rounded-3 slide-title animated" alt="Phone image">
           </div>
-          <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+          <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 account-login-inner">
             <h2>Login</h2>
-            <form method="POST" action="{{ route('sign_in.action') }}">
+            <form method="POST" action="{{ route('sign_in.action') }}" class="ltn__form-box contact-form-box">
               @csrf
               <!-- Email input -->
               <div class="form-outline mb-4">
-                <input placeholder="username" required type="username" name="username" value="{{ old('username') }}" id="floatingInput" class="form-control form-control-lg" />
-
-                <label class="form-label" for="form1Example13">Email address</label>
+                <input type="text" name="username" placeholder="username/Email*" required type="username" name="username" value="{{ old('username') }}" id="floatingInput" class="form-control form-control-lg" />
               </div>
 
               <!-- Password input -->
               <div class="form-outline mb-4">
                 <input placeholder="password" required class="form-control form-control-lg" type="password" name="password" id="floatingPassword" />
-                <label class="form-label" for="form1Example23">Password</label>
               </div>
 
               <div class="d-flex justify-content-around align-items-center mb-4">
                 <!-- Checkbox -->
-                <div class="form-check">
+                <div class="form-check mt-20">
                   <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
                   <label class="form-check-label" for="form1Example3"> Remember me </label>
                 </div>
-                <a href="#!">Forgot password?</a>
+                <div class="go-to-btn mt-20">
+                  <a href="#"><small>FORGOTTEN YOUR PASSWORD?</small></a>
+                </div>
               </div>
 
               <!-- Submit button -->
-              <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+              <div class="btn-wrapper mt-0">
+                <button class="btn btn-transparent btn-effect-4 text-uppercase" type="submit">LOG-IN</button>
+                <a href="{{ route('sign_up.action') }}"><button class="btn btn-effect-3 text-uppercase">SIGN-UP</button></a>
+              </div>
+              
 
               <div class="divider d-flex align-items-center my-4">
                 <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>

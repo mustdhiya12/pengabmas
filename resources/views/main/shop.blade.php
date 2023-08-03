@@ -19,12 +19,14 @@
     <!-- Add your site or application content here -->
 
 <!-- Body main wrapper start -->
+    <div>
+        @include('main/navbar')
+    </div>
+<div class="ltn__utilize-overlay"></div>
 <div class="wrapper">
 
     <!-- HEADER AREA START (header-5) -->
-    @include('main/navbar')
-
-    <div class="ltn__utilize-overlay"></div>
+    
 
     <!-- BREADCRUMB AREA START -->
     <div class="ltn__breadcrumb-area ltn__breadcrumb-area-3 ltn__breadcrumb-color-white bg-overlay-theme-black-90 bg-image plr--9---" data-bg="{{ asset('icon/bg.png') }}">
@@ -528,13 +530,7 @@
         <!-- MODAL AREA END -->
 
 </div>
-<!-- Body main wrapper end -->
-
-    <!-- All JS Plugins -->
-    <script src="js/plugins.js"></script>
-    <!-- Main JS -->
-    <script src="js/main.js"></script>
-  
+<!-- Body main wrapper end -->  
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
