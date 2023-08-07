@@ -36,7 +36,7 @@
                                 <i class="fas fa-shopping-cart"></i>
                             </a>
                         </li>
-                        @if(Auth::user()->user_type == 'Pembeli')
+                        @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
                         <li>
                             <a href="#">
                                 <i class="far fa-heart"></i>
