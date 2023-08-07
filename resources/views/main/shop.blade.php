@@ -40,7 +40,7 @@
                         </div>
                         <div class="ltn__breadcrumb-list">
                             <ul>
-                                <li><a href="{{ route('main.home')}}">Home</a></li>
+                                <li><a class="pip" href="{{ route('main.home')}}">Home</a></li>
                                 <li>Shop</li>
                             </ul>
                         </div>
@@ -125,10 +125,13 @@
                                                                 <i class="fas fa-shopping-cart"></i>
                                                             </a>
                                                         </li>
+                                                        @if(Auth::user()->user_type == 'Pembeli')
                                                         <li>
                                                             <a href="#">
-                                                                <i class="far fa-heart"></i></a>
+                                                                <i class="far fa-heart"></i>
+                                                            </a>
                                                         </li>
+                                                        @endif
                                                     </ul>
                                                 </div>
                                             </div>
@@ -589,7 +592,7 @@
             loading = true;
 
             $.ajax({
-                url: "{{ route('load.more.products') }}",
+                url: "{{ route('load.more.products2') }}",
                 type: "GET",
                 data: {
                     page: page

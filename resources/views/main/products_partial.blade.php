@@ -36,10 +36,13 @@
                                 <i class="fas fa-shopping-cart"></i>
                             </a>
                         </li>
+                        @if(Auth::user()->user_type == 'Pembeli')
                         <li>
                             <a href="#">
-                                <i class="far fa-heart"></i></a>
+                                <i class="far fa-heart"></i>
+                            </a>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </div>

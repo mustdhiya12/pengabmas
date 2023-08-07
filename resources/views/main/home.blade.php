@@ -126,7 +126,7 @@
     <!-- SLIDER AREA END -->
 
     <!-- BANNER AREA START -->
-    <div class="ltn__banner-area mt-120 mt--90 d-none">
+    <!-- <div class="ltn__banner-area mt-120 mt--90 d-none">
         <div class="container">
             <div class="row ltn__custom-gutter--- justify-content-center">
                 <div class="col-lg-4 col-md-6">
@@ -140,9 +140,7 @@
             </div>
         </div>
     </div>
-    <!-- BANNER AREA END -->
 
-    <!-- BANNER AREA START -->
     <div class="ltn__banner-area mt-120">
         <div class="container">
             <div class="row ltn__custom-gutter--- justify-content-center">
@@ -156,7 +154,7 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- BANNER AREA END -->
     <div class="ltn__product-area ltn__product-gutter pt-115 pb-70">
         <div class="container" id="product-list">
@@ -207,10 +205,13 @@
                                             <i class="fas fa-shopping-cart"></i>
                                         </a>
                                     </li>
+                                    @if(Auth::user()->user_type == 'Pembeli')
                                     <li>
                                         <a href="#">
-                                            <i class="far fa-heart"></i></a>
+                                            <i class="far fa-heart"></i>
+                                        </a>
                                     </li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -881,7 +882,7 @@
                         page++;
 
                         if (!hasMorePages) {
-                            $("#loadMoreBtnContainer").html("<p>No more products to load</p>");
+                            $("#loadMoreBtnContainer").html("<button class='btn theme-btn-2 btn btn-effect-2 text-uppercase'><a href='{{ route('main.shop') }}'><p>Click Here for many interesting product</p><a></button>");
                         }
                     } else {
                         $("#loadMoreBtnContainer").html("<p>Error loading products</p>");
@@ -906,12 +907,10 @@
         function hideLoadMoreBtn() {
             // Sembunyikan tombol "Load More" jika tidak ada produk yang tersisa saat halaman dimuat
             if (!hasMorePages) {
-                $("#loadMoreBtnContainer").html("<p>No more products to load</p>");
+                $("#loadMoreBtnContainer").html("<button href='{{ route('main.shop') }}'><p>Click Here for many interesting product</p></button>");
             }
         }
     </script>
-
-
 
     </div>
     </section>

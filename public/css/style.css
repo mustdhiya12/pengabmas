@@ -1284,6 +1284,10 @@ ul {
   border-color: var(--border-color-4);
   color: var(--white) !important; }
 
+.pip:hover{
+  color: var(--border-color-4);
+}
+
 /* slick-arrow-4 */
 .slick-arrow-4 {
   margin: 0; }
