@@ -353,6 +353,20 @@ class MainController extends Controller
             'hasMore' => $products->hasMorePages()
         ]);
     }
+
+    public function loadMoreProducts2(Request $request)
+    {
+        $perPage = 8;
+        $page = $request->input('page', 1);
+        $products = Produk::paginate($perPage, ['*'], 'page', $page);
+
+        $html = View::make('main.products_partial2', compact('products'))->render();
+
+        return response()->json([
+            'html' => $html,
+            'hasMore' => $products->hasMorePages()
+        ]);
+    }
     // Run CronJob For transaksi_batal
     public function run()
     {

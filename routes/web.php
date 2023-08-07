@@ -183,7 +183,7 @@ Route::delete('/comment/{id}/delete', [MainController::class, 'deleteComment'])-
 Route::get('/load-more-products', [MainController::class, 'loadMoreProducts'])->name('load.more.products');
 
 
-Route::get('/load-more-products', [MainController::class, 'loadMoreProducts'])->name('load.more.products');
+Route::get('/load-more-products2', [MainController::class, 'loadMoreProducts2'])->name('load.more.products2');
 
 
 

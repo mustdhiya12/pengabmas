@@ -35,7 +35,7 @@
 
   @include('main/navbar')
 
-  <div style="padding-top:150px;" class="container">
+  <div style="padding-top:180px;" class="container">
     <div class="d-flex justify-content-center">
       @if(session('success'))
       <p class="alert alert-success">{{ session('success') }}</p>

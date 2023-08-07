@@ -48,12 +48,12 @@ $cookieValue = request()->cookie(rand());
                                             color: darkgray;
                                         }
                                     </style>
-                                    <li><a href="https://www.google.com/maps/place/Universitas+Muhammadiyah+Kalimantan+Timur+Samarinda/@-0.4749719,117.1388952,15z/data=!4m2!3m1!1s0x0:0x108077d433712165?sa=X&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhZEAA&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhnEAg">
+                                    <li><a class="pip" href="https://www.google.com/maps/place/Universitas+Muhammadiyah+Kalimantan+Timur+Samarinda/@-0.4749719,117.1388952,15z/data=!4m2!3m1!1s0x0:0x108077d433712165?sa=X&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhZEAA&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhnEAg">
                                             <i class="icon-placeholder"></i>
                                             Jl. Ir. H. Juanda No.15, Sidodadi, Kec. Samarinda Ulu, Kota Samarinda, Kalimantan Timur 75124
                                         </a>
                                     </li>
-                                    <li><a href="mailto:mustfauzan0@gmail.com?Subject=Flower%20greetings%20to%20you"><i class="icon-mail"></i> mustfauzan0@gmail.com</a></li>
+                                    <li><a class="pip" href="mailto:mustfauzan0@gmail.com?Subject=Flower%20greetings%20to%20you"><i class="icon-mail"></i> mustfauzan0@gmail.com</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -79,12 +79,12 @@ $cookieValue = request()->cookie(rand());
                                         <li>
                                             <!-- ltn__social-media -->
                                             <div class="ltn__social-media">
-                                                <ul>
-                                                    <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                                    <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                                <ul >
+                                                    <li><a href="#" title="Facebook"><i class="pip fab fa-facebook-f"></i></a></li>
+                                                    <li><a href="#" title="Twitter"><i class="pip fab fa-twitter"></i></a></li>
 
-                                                    <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
-                                                    <li><a href="#" title="Dribbble"><i class="fab fa-dribbble"></i></a></li>
+                                                    <li><a href="#" title="Instagram"><i class="pip fab fa-instagram"></i></a></li>
+                                                    <li><a href="#" title="Dribbble"><i class="pip fab fa-dribbble"></i></a></li>
                                                 </ul>
                                             </div>
                                         </li>
