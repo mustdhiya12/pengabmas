@@ -76,6 +76,7 @@
                                         display: flex;
                                         align-items: center;
                                         margin-bottom: 10px;
+                                        min-height: 100px;
                                     }
                                     .gambar-container input[type="file"] {
                                         flex: 1;
@@ -92,27 +93,50 @@
                                     .gambar-container .link-buttons a {
                                         margin-left: 5px;
                                     }
+
+
+
                                 </style>
-                                <label>Pilih Gambar Produk</label>
-                                <div class="gambar-container">
-                                    <input required type="file" class="form-control" name="gambar[]" accept="image/*">
-                                    <div class="link-buttons">
-                                        <a href="#" class="btn btn-outline-secondary" onclick="addgambar()">Add</a>
-                                        <a href="#" class="btn btn-outline-danger remove-link" onclick="removegambar(this)">Remove</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group mb-3" id="links-container">
-                                <label for="add-link" class="form-label">Add Link</label>
-                                <div class="link-container">
-                                    <div class="input-group">
-                                        <input type="text" name="link[]" placeholder="Enter link" required class="form-control link-input">
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-outline-secondary add-link" onclick="addLink()">Add</button>
-                                            <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this)">Remove</button>
+                                 <div class="form-group">
+                                <div id="gambar-container">
+                                    <div class="gambar-container mb-3">
+                                        <label for="gambar0">Pilih Gambar</label>
+                                        <input type="file" id="gambar0" class="form-control" name="gambar[]" accept="image/*">
+                                        <div class="mt-2 preview-wrapper" style="display: none;">
+                                            <img id="preview-img-0" class="preview-img" src="">
+                                        </div>
+                                        <div class="mt-2">
+                                            <button type="button" class="btn btn-outline-danger remove-image" onclick="removeImage(this)">Hapus</button>
+                                            <button type="button" class="btn btn-outline-secondary view-image" onclick="togglePreview(this, '0')">View</button>
                                         </div>
                                     </div>
                                 </div>
+                                <div>
+                                    <button type="button" class="btn btn-outline-primary add-image" onclick="addImage()">Tambah Gambar</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3" id="links-container">
+                                <label for="add-link" class="form-label">Add Link</label>
+                                @php
+                                $links = old('link', []);
+                                if (empty($links)) {
+                                    $links[] = '';
+                                }
+                                @endphp
+                                @foreach ($links as $index => $link)
+                                <div class="link-container">
+                                    <div class="input-group">
+                                        <input type="text" name="link[]" placeholder="Enter link" required class="form-control link-input" value="{{ $link }}">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-outline-secondary add-link" onclick="addLink()">Add</button>
+                                            @if ($index > 0)
+                                            <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this)">Remove</button>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
                             </div>
 
                             <style>
@@ -179,85 +203,109 @@
                             </div>
                         </form>
                         <script>
-                            function addgambar() {
-                                var linksContainer = document.querySelector('.gambar-container');
-                                
-                                var linkContainer = document.createElement('div');
-                                linkContainer.classList.add('gambar-container');
-                                
-                                var linkInput = document.createElement('input');
-                                linkInput.type = 'file';
-                                linkInput.classList.add('form-control');
-                                linkInput.name = 'gambar[]';
-                                linkInput.accept = 'image/*';
-                                linkInput.required = true;
-                                
-                                var linkButtons = document.createElement('div');
-                                linkButtons.classList.add('link-buttons');
-                                
-                                var removeButton = document.createElement('a');
-                                removeButton.textContent = 'Remove';
-                                removeButton.href = '#';
-                                removeButton.classList.add('btn', 'btn-outline-danger', 'remove-link');
-                                removeButton.addEventListener('click', function(event) {
-                                    event.preventDefault();
-                                    removegambar(linkContainer);
-                                });
-                                
-                                linkButtons.appendChild(removeButton);
-                                
-                                linkContainer.appendChild(linkInput);
-                                linkContainer.appendChild(linkButtons);
-                                
-                                linksContainer.parentNode.insertBefore(linkContainer, linksContainer.nextSibling);
-                            }
-                            
-                            function removegambar(linkContainer) {
-                                linkContainer.remove();
-                            }
+           function togglePreview(button, index) {
+    var container = button.parentElement.parentElement;
+    var input = container.querySelector('input[type="file"]');
+    var file = input.files[0];
+    var reader = new FileReader();
 
-                            function addLink() {
-                                var linksContainer = document.getElementById('links-container');
-                                
-                                var linkContainer = document.createElement('div');
-                                linkContainer.classList.add('link-container');
-                                
-                                var linkInput = document.createElement('input');
-                                linkInput.type = 'text';
-                                linkInput.classList.add('form-control', 'link-input');
-                                linkInput.name = 'link[]';
-                                linkInput.placeholder = 'Enter link';
-                                linkInput.required = true;
-                                
-                                var linkButtons = document.createElement('div');
-                                linkButtons.classList.add('link-buttons');
-                                
-                                var removeButton = document.createElement('a');
-                                removeButton.textContent = 'Remove';
-                                removeButton.href = '#';
-                                removeButton.classList.add('btn', 'btn-outline-danger', 'remove-link');
-                                removeButton.addEventListener('click', function(event) {
-                                    event.preventDefault();
-                                    removeLink(linkContainer);
-                                });
-                                
-                                linkButtons.appendChild(removeButton);
-                                
-                                linkContainer.appendChild(linkInput);
-                                linkContainer.appendChild(linkButtons);
-                                
-                                linksContainer.parentNode.insertBefore(linkContainer, linksContainer.nextSibling);
-                            }
-                            
-                            function removeLink(linkContainer) {
-                                linkContainer.remove();
-                            }
-                        </script>
-                    </div>
-                </div>
+    var previewWrapper = container.querySelector('.preview-wrapper');
+
+    if (button.classList.contains('close-preview')) {
+        // Close the preview
+        var previewImage = previewWrapper.querySelector('.preview-img');
+        previewImage.src = '';
+        previewWrapper.style.display = 'none';
+        button.innerText = 'View';
+        button.classList.remove('close-preview');
+    } else {
+        // Show the preview
+        reader.onload = function (e) {
+            var imgSrc = e.target.result;
+            var previewImage = previewWrapper.querySelector('.preview-img');
+            previewImage.src = imgSrc;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+            previewWrapper.style.display = 'block';
+            button.innerText = 'Close';
+            button.classList.add('close-preview');
+        } else {
+            alert("Tidak ada gambar yang dipilih.");
+        }
+    }
+}
+
+function addImage() {
+    var container = document.getElementById('gambar-container');
+    var newIndex = container.childElementCount;
+    var newContainer = document.createElement('div');
+    newContainer.classList.add('gambar-container', 'mb-3');
+    newContainer.innerHTML = `
+        <label for="gambar${newIndex}">Pilih Gambar</label>
+        <input type="file" id="gambar${newIndex}" class="form-control" name="gambar[]" accept="image/*">
+        <div class="preview-wrapper" style="display: none;">
+            <div class="mt-2">
+                <img class="preview-img" src="">
             </div>
         </div>
+        <div class="mt-2">
+            <button type="button" class="btn btn-outline-danger remove-image" onclick="removeImage(this)">Hapus</button>
+            <button type="button" class="btn btn-outline-secondary view-image" onclick="togglePreview(this, '${newIndex}')">View</button>
+        </div>
+    `;
+    container.appendChild(newContainer);
+}
+
+function removeImage(button) {
+    var container = button.parentElement.parentElement;
+    container.remove();
+}
+
+            function addLink() {
+                var linksContainer = document.getElementById('links-container');
+                
+                var linkContainer = document.createElement('div');
+                linkContainer.classList.add('link-container');
+                
+                var linkInput = document.createElement('input');
+                linkInput.type = 'text';
+                linkInput.classList.add('form-control', 'link-input');
+                linkInput.name = 'link[]';
+                linkInput.placeholder = 'Enter link';
+                linkInput.required = true;
+                
+                var linkButtons = document.createElement('div');
+                linkButtons.classList.add('link-buttons');
+                
+                var removeButton = document.createElement('a');
+                removeButton.textContent = 'Remove';
+                removeButton.href = '#';
+                removeButton.classList.add('btn', 'btn-outline-danger', 'remove-link');
+                removeButton.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    removeLink(linkContainer);
+                });
+                
+                linkButtons.appendChild(removeButton);
+                
+                linkContainer.appendChild(linkInput);
+                linkContainer.appendChild(linkButtons);
+                
+                linksContainer.parentNode.insertBefore(linkContainer, linksContainer.nextSibling);
+            }
+            
+            function removeLink(linkContainer) {
+                linkContainer.remove();
+            }
+
+        </script>
     </div>
+</div>
+</div>
+</div>
+</div>
 
 
 </body>

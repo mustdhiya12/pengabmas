@@ -354,7 +354,7 @@ $mang->save();
 
 // run function to add new produk for Penjual
 public function tambah_produk(Request $request)
-{
+{    
     $validated = $request->validate([
         'produk_id' => 'required',
         'judul' => 'required',
@@ -391,7 +391,7 @@ public function tambah_produk(Request $request)
         'produk_owner_nama' => $validated['produk_owner_nama'],
         'gambar' => implode("|",$images),
         'kuantitas' => $validated['kantitas'],
-        'link.*' => $linkString,
+        'link' => $linkString,
         // add fields to be inserted into the table
     ]);
 
@@ -503,35 +503,31 @@ public function rus(Request $request)
 {
     $polpot_change_main = Produk::findorfail($request->id);
 
-    $images=array();
+    $images = array();
     if ($request->hasFile('gambar')) {
-    if($files=$request->file('gambar')){
-        foreach($files as $file){
-            $name=$file->getClientOriginalName();
-            $file->move('gambar',$name);
-            $images[]=$name;
+        if ($files = $request->file('gambar')) {
+            foreach ($files as $file) {
+                $name = $file->getClientOriginalName();
+                $file->move('gambar', $name);
+                $images[] = $name;
+            }
         }
+
+        $polpot_change_main->gambar = implode("|", $images);
     }
 
     $polpot_change_main->produk_name = $request->judul;
     $polpot_change_main->produk_deskripsi = $request->deskripsi;
-    $polpot_change_main->gambar = implode("|",$images);
     $polpot_change_main->min_price = $request->min_harga;
     $polpot_change_main->max_price = $request->max_harga;
     $polpot_change_main->kuantitas = $request->kantitas;
 
-    $polpot_change_main->save();
-
-}else{
-    $polpot_change_main->produk_name = $request->judul;
-    $polpot_change_main->produk_deskripsi = $request->deskripsi;
-    $polpot_change_main->min_price = $request->min_harga;
-    $polpot_change_main->max_price = $request->max_harga;
-    $polpot_change_main->kuantitas = $request->kantitas;
+    if ($request->has('link')) {
+        $linkString = implode("|", $request->input('link'));
+        $polpot_change_main->link = $linkString;
+    }
 
     $polpot_change_main->save();
-
-}
 
     return redirect()->back()->with('success', 'Produk Berhasil Di Ubah');
 }
@@ -710,32 +706,7 @@ public function tambah_produk_api(Request $request)
 
     }
 
-    public function update_api(Request $request)
-    {
-        $user = null;
-        if ($request->header('api_key') ) {
-            $user = User::where('api_key', $request->header('api_key'))->where('username', $request->header('username') )->first();
-        }
-        if (!$user) {
-            return response()->json(['error' => 'Invalid API key'], 401);
-        }
-        $id = $request->header('produk_id');
-        $a43636236 = Produk::where('produk_id', $id)->where('produk_owner_id', $user->id)->first();
-        if (!$a43636236) {
-            return response()->json(['error' => 'Record not found'], 404);
-        }
-        
-    $a43636236->produk_name = $request->header('judul');
-    $a43636236->produk_deskripsi = $request->header('deskripsi');
-    $a43636236->min_price = $request->header('min_harga');
-    $a43636236->max_price = $request->header('max_harga');
-    $a43636236->kuantitas = $request->header('kantitas');
-
-    $a43636236->save();
-
-        return response()->json($a43636236, 201);
-    }
-
+    
     public function update_api_admin(Request $request)
     {
         $user = null;
@@ -751,12 +722,18 @@ public function tambah_produk_api(Request $request)
         if (!$a43636236) {
             return response()->json(['error' => 'Record not found'], 404);
         }
+        if (!$a43636236) {
+            $linkArray = explode(',', $linksHeader);
+            $product->link = implode('|', $linkArray);
+        }
         
     $a43636236->produk_name = $request->header('judul');
     $a43636236->produk_deskripsi = $request->header('deskripsi');
     $a43636236->min_price = $request->header('min_harga');
     $a43636236->max_price = $request->header('max_harga');
     $a43636236->kuantitas = $request->header('kantitas');
+    $a43636236->link= $request->header('link');
+    
 
     $a43636236->save();
 

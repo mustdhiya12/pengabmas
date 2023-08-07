@@ -80,19 +80,22 @@
                                 @enderror
                             </div>
                             <br>
-                            @php
-                                $gambarArray = explode('|', $polpot->gambar);
-                                $linkArray = explode('|', $polpot->link);
-                            @endphp
                             <div class="form-group">
                                 <div class="gambar-container" id="gambar-container">
+                                    @php
+                                        $gambarArray = explode('|', $polpot->gambar);
+                                    @endphp
                                     @foreach ($gambarArray as $index => $gambar)
-                                        <div class="gambar1-container">
+                                        <div class="gambar1-container mb-3">
                                             <label for="gambar{{ $index }}">Pilih Gambar</label>
                                             <input type="file" id="gambar{{ $index }}" class="form-control" name="gambar[]" accept="image/*">
-                                            <img id="preview-img-{{ $index }}" class="preview-img" src="{{ asset('gambar/' . $gambar) }}">
-                                            <button type="button" class="btn btn-outline-danger remove-image" onclick="removeImage(this)">Hapus</button>
-                                            <button type="button" class="btn btn-outline-secondary view-image" onclick="togglePreview(this, '{{ $index }}')">View</button>
+                                            <div class="mt-2">
+                                                <img id="preview-img-{{ $index }}" class="preview-img" src="{{ asset('gambar/' . $gambar) }}">
+                                            </div>
+                                            <div class="mt-2">
+                                                <button type="button" class="btn btn-outline-danger remove-image" onclick="removeImage(this)">Hapus</button>
+                                                <button type="button" class="btn btn-outline-secondary view-image" onclick="togglePreview(this, '{{ $index }}')">View</button>
+                                            </div>
                                         </div>
                                     @endforeach
                                 </div>
@@ -100,8 +103,12 @@
                                     <button type="button" class="btn btn-outline-primary add-image" onclick="addImage()">Tambah Gambar</button>
                                 </div>
                             </div>
+
                             <div class="form-group mb-3" id="links-container">
                                 <label for="add-link" class="form-label">Link Produk</label>
+                                @php
+                                    $linkArray = explode('|', $polpot->link);
+                                @endphp
                                 @foreach ($linkArray as $index => $link)
                                     <div class="link-container">
                                         <div class="input-group">
@@ -117,7 +124,6 @@
                                 @endforeach
                             </div>
 
-                            <br>
                             <div class="form-group">
                                 <label for="harga">{{ __('Harga minimal:') }}</label>
                                 <input id="min_harga" placeholder="minimal price" type="number" class="form-control @error('min_harga') is-invalid @enderror" name="min_harga" value="{{ $polpot->min_price }}" required autocomplete="min_harga">
@@ -142,7 +148,7 @@
                             <div class="form-group mb-0">
                                 <br>
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Tambah') }}
+                                    {{ __('Update Product') }}
                                 </button>
                             </div>
                         </form>
@@ -152,19 +158,17 @@
         </div>
         @endif
     </div>
-
     <script>
-        // ... (previous JavaScript code) ...
-
+        // Function to toggle image preview
         function togglePreview(button, index) {
-            var container = button.parentElement;
+            var container = button.parentElement.parentElement;
             var input = container.querySelector('input[type="file"]');
             var file = input.files[0];
             var reader = new FileReader();
 
             if (button.classList.contains('close-preview')) {
                 // Close the preview
-                var previewImage = document.getElementById(`preview-img-${index}`);
+                var previewImage = container.querySelector('.preview-img');
                 previewImage.src = '';
                 container.classList.remove('show-preview');
                 button.innerText = 'View';
@@ -173,7 +177,7 @@
                 // Show the preview
                 reader.onload = function (e) {
                     var imgSrc = e.target.result;
-                    var previewImage = document.getElementById(`preview-img-${index}`);
+                    var previewImage = container.querySelector('.preview-img');
                     previewImage.src = imgSrc;
                 };
 
@@ -187,9 +191,77 @@
                 }
             }
         }
+
+        // Function to remove the image container
+        function removeImage(button) {
+            var container = button.parentElement.parentElement;
+            var gallery = container.parentElement;
+            gallery.removeChild(container);
+        }
+
+        // Function to add a new image container
+        function addImage() {
+            var gallery = document.getElementById('gambar-container');
+            var index = gallery.querySelectorAll('.gambar1-container').length;
+
+            var newImageContainer = document.createElement('div');
+            newImageContainer.classList.add('gambar1-container', 'mb-3');
+            newImageContainer.innerHTML = `
+                <label for="gambar${index}">Pilih Gambar</label>
+                <input type="file" id="gambar${index}" class="form-control" name="gambar[]" accept="image/*">
+                <div class="mt-2">
+                    <img id="preview-img-${index}" class="preview-img" src="">
+                </div>
+                <div class="mt-2">
+                    <button type="button" class="btn btn-outline-danger remove-image" onclick="removeImage(this)">Hapus</button>
+                    <button type="button" class="btn btn-outline-secondary view-image" onclick="togglePreview(this, '${index}')">View</button>
+                </div>
+            `;
+
+            gallery.appendChild(newImageContainer);
+        }
+
+        // Function to add a new link container
+        function addLink() {
+            var linksContainer = document.getElementById('links-container');
+            
+            var linkContainer = document.createElement('div');
+            linkContainer.classList.add('link-container');
+            
+            var linkInput = document.createElement('input');
+            linkInput.type = 'text';
+            linkInput.classList.add('form-control', 'link-input');
+            linkInput.name = 'link[]';
+            linkInput.placeholder = 'Enter link';
+            linkInput.required = true;
+            
+            var linkButtons = document.createElement('div');
+            linkButtons.classList.add('link-buttons');
+            
+            var removeButton = document.createElement('a');
+            removeButton.textContent = 'Remove';
+            removeButton.href = '#';
+            removeButton.classList.add('btn', 'btn-outline-danger', 'remove-link');
+            removeButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                removeLink(linkContainer);
+            });
+            
+            linkButtons.appendChild(removeButton);
+            
+            linkContainer.appendChild(linkInput);
+            linkContainer.appendChild(linkButtons);
+            
+            linksContainer.parentNode.insertBefore(linkContainer, linksContainer.nextSibling);
+        }
+        
+        function removeLink(linkContainer) {
+            linkContainer.remove();
+        }
     </script>
 </body>
 </html>
+
 
 @endif
 @endif
