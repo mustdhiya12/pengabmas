@@ -71,9 +71,8 @@
                                     <div class="ltn__tab-menu-list mb-50">
                                         <div class="nav">
                                             <a class="active show" data-toggle="tab" href="#liton_tab_1_1">Dashboard <i class="fas fa-home"></i></a>
-                                            <a data-toggle="tab" href="#liton_tab_1_2">Orders <i class="fas fa-file-alt"></i></a>
-                                            <a data-toggle="tab" href="#liton_tab_1_3">Downloads <i class="fas fa-arrow-down"></i></a>
-                                            <a data-toggle="tab" href="#liton_tab_1_4">address <i class="fas fa-map-marker-alt"></i></a>
+                                            <a data-toggle="tab" href="#liton_tab_1_2">Produk <i class="fas fa-file-alt"></i></a>
+                                            <a data-toggle="tab" href="#liton_tab_1_3">Produk detail <i class="fas fa-plus"></i></a>
                                             <a data-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
                                             <a href="{{ route('logout') }}">Logout <i class="fas fa-sign-out-alt"></i></a>
                                         </div>
@@ -93,36 +92,32 @@
                                                     <table class="table">
                                                         <thead>
                                                             <tr>
-                                                                <th>Order</th>
-                                                                <th>Date</th>
-                                                                <th>Status</th>
-                                                                <th>Total</th>
-                                                                <th>Action</th>
+                                                              <div class="tab-block">
+                                                                <ul class="nav nav-tabs">
+                                                                  <li class="active">
+                                                                    <a href="#tab1" data-toggle="tab">Produk</a>
+                                                                  </li>
+                                                                </ul>
+                                                                <div class="tab-content p30" style="height: 500px;">
+                                                                <section>
+                                                                  <div style="padding:10px;" class="d-flex justify-content-center">
+                                                                    <div class="container">
+                                                                      @if(session('success'))
+                                                                      <div class="col">
+                                                                        <p class="alert alert-success">{{ session('success') }}</p>
+                                                                      </div>
+                                                                      @endif
+                                                                      <div class="row" >
+                                                                      @foreach($users as $product)
+                                                                            @include('main.products_partial2', ['products' => $users])
+                                                                      @endforeach
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </section>
+                                                              </div>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td>Jun 22, 2019</td>
-                                                                <td>Pending</td>
-                                                                <td>$3000</td>
-                                                                <td><a href="cart.html">View</a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>2</td>
-                                                                <td>Nov 22, 2019</td>
-                                                                <td>Approved</td>
-                                                                <td>$200</td>
-                                                                <td><a href="cart.html">View</a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>3</td>
-                                                                <td>Jan 12, 2020</td>
-                                                                <td>On Hold</td>
-                                                                <td>$990</td>
-                                                                <td><a href="cart.html">View</a></td>
-                                                            </tr>
-                                                        </tbody>
                                                     </table>
                                                 </div>
                                             </div>
@@ -133,58 +128,66 @@
                                                     <table class="table">
                                                         <thead>
                                                             <tr>
-                                                                <th>Product</th>
-                                                                <th>Date</th>
-                                                                <th>Expire</th>
-                                                                <th>Download</th>
+                                                              <div class="tab-block">
+                                                                <ul class="nav nav-tabs">
+                                                                  <li class="active">
+                                                                    <a href="#tab1" data-toggle="tab">Produk</a>
+                                                                  </li>
+                                                                </ul>
+                                                                <div class="tab-content p30" style="height: 500px;">
+                                                                <section>
+                                                                  <div style="padding:10px;" class="d-flex justify-content-center">
+                                                                    <div class="container">
+                                                                      @if(session('success'))
+                                                                      <div class="col">
+                                                                        <p class="alert alert-success">{{ session('success') }}</p>
+                                                                      </div>
+                                                                      @endif
+                                                                      <div class="row" >
+                                                                      @foreach($users as $product)
+                                                                        <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
+                                                                          <div class="card w-100 my-2 shadow-2-strong">
+                                                                            @foreach (explode('|',$product->gambar) as $key => $fruit)
+                                                                            @if($key === 0)
+                                                                            <img src="{{ asset('gambar/'.$fruit ) }}" class="card-img-top" style="aspect-ratio: 1 / 1" />
+                                                                            @endif
+                                                                            @endforeach
+                                                                            <div class="card-body d-flex flex-column">
+                                                                              <h5 class="card-title">{{$product->produk_name}}</h5>
+                                                                              <p class="card-text">Rp{{$product->produk_price}}</p>
+                                                                              <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                                                                                <span>
+                                                                                  <form method="POST" action="{{ route('admin.hapus', $product->id) }}">
+                                                                                    @csrf
+                                                                                    @method('PUT')
+                                                                                    <div class="d-flex flex-row">
+                                                                                      <div class="p-2">
+                                                                                        <a style="text-decoration: none;" href="{{route('user.view_edit') . '/' . $product->id }}">
+                                                                                          <button type="button" class="col-lg-12 bg-light text-secondary">Ubah</button>
+                                                                                        </a>
+                                                                                      </div>
+                                                                                      <div class="p-2">
+                                                                                        <button onclick="return confirm('!Peringatan!\nApakah anda yakin ingin menghapus produk ini?\nnama produk : {{ $product->produk_name }} ');" type="submit" class="col-lg-12 bg-light text-secondary">Hapus</button>
+                                                                                      </div>
+                                                                                    </div>
+                                                                                  </form>
+                                                                                </span>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                        </div>
+                                                                      @endforeach
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </section>
+                                                              </div>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td>Carsafe - Car Service PSD Template</td>
-                                                                <td>Nov 22, 2020</td>
-                                                                <td>Yes</td>
-                                                                <td><a href="#"><i class="far fa-arrow-to-bottom mr-1"></i> Download File</a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Carsafe - Car Service HTML Template</td>
-                                                                <td>Nov 10, 2020</td>
-                                                                <td>Yes</td>
-                                                                <td><a href="#"><i class="far fa-arrow-to-bottom mr-1"></i> Download File</a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Carsafe - Car Service WordPress Theme</td>
-                                                                <td>Nov 12, 2020</td>
-                                                                <td>Yes</td>
-                                                                <td><a href="#"><i class="far fa-arrow-to-bottom mr-1"></i> Download File</a></td>
-                                                            </tr>
+                                                          <td><button type="submit" class="col-lg-4"><a style="text-decoration: none;" href="{{{ route('user.tambah') }}}"><i class="fa fa-plus"></i>Benutzer hinzufügen</a></button></td>
                                                         </tbody>
                                                     </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="liton_tab_1_4">
-                                            <div class="ltn__myaccount-tab-content-inner">
-                                                <p>The following addresses will be used on the checkout page by default.</p>
-                                                <div class="row">
-                                                    <div class="col-md-6 col-12 learts-mb-30">
-                                                        <h4>Billing Address <small><a href="#">edit</a></small></h4>
-                                                        <address>
-                                                            <p><strong>Alex Tuntuni</strong></p>
-                                                            <p>1355 Market St, Suite 900 <br>
-                                                                San Francisco, CA 94103</p>
-                                                            <p>Mobile: (123) 456-7890</p>
-                                                        </address>
-                                                    </div>
-                                                    <div class="col-md-6 col-12 learts-mb-30">
-                                                        <h4>Shipping Address <small><a href="#">edit</a></small></h4>
-                                                        <address>
-                                                            <p><strong>Alex Tuntuni</strong></p>
-                                                            <p>1355 Market St, Suite 900 <br>
-                                                                San Francisco, CA 94103</p>
-                                                            <p>Mobile: (123) 456-7890</p>
-                                                        </address>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
