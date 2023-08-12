@@ -69,13 +69,10 @@
                                 @enderror
                             </div>
                             <br>
-
                             <div class="form-group">
                                 <style type="text/css">
                                     .gambar-container {
-                                        display: flex;
-                                        align-items: center;
-                                        margin-bottom: 10px;
+                                        margin-bottom: 50px;
                                         min-height: 100px;
                                     }
                                     .gambar-container input[type="file"] {
@@ -83,9 +80,9 @@
                                         margin-right: 10px;
                                     }
                                     .gambar-container .preview-img {
-                                        width: 100px;
-                                        height: 100px;
-                                        object-fit: cover;
+                                        width: 568px;
+                                        height: 568px;
+                                        object-fit: contain;
                                     }
                                     .gambar-container .link-buttons {
                                         display: flex;
@@ -93,9 +90,6 @@
                                     .gambar-container .link-buttons a {
                                         margin-left: 5px;
                                     }
-
-
-
                                 </style>
                                  <div class="form-group">
                                 <div id="gambar-container">
@@ -115,7 +109,6 @@
                                     <button type="button" class="btn btn-outline-primary add-image" onclick="addImage()">Tambah Gambar</button>
                                 </div>
                             </div>
-
                             <div class="form-group mb-3" id="links-container">
                                 <label for="add-link" class="form-label">Add Link</label>
                                 @php

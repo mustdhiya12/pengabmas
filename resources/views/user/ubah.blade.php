@@ -11,11 +11,33 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('home/css/styles.css') }}" rel="stylesheet" />
     <title>{{ Auth::user()->user_type }}</title>
+
+    <style>
+                                     .gambar-container {
+                                        margin-bottom: 50px;
+                                        min-height: 100px;
+                                    }
+                                    .gambar-container input[type="file"] {
+                                        flex: 1;
+                                        margin-right: 10px;
+                                    }
+                                    .gambar-container .preview-img {
+                                        width: 468px;
+                                        height: 468px;
+                                        object-fit: contain;
+                                    }
+                                    .gambar-container .link-buttons {
+                                        display: flex;
+                                    }
+                                    .gambar-container .link-buttons a {
+                                        margin-left: 5px;
+                                    }
+    </style>
 </head>
 <body>
     @include('main/navbar')
     <div style="margin-top: 150px;" class="container m-4 p-5"></div>
-    <div style="margin-top: 150px;" class="container m-4 p-5">
+    <div style="margin-top: 150px;" class="container">
         @if(Auth::id() && !empty(Auth::user()) && Auth::user()->user_type == 'Penjual')
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -45,54 +67,44 @@
                             </div>
                             <br>
                             <div class="form-group">
-                            <style type="text/css">
-                                    .gambar-container {
-                                        align-items: center;
-                                        margin-bottom: 10px;
-                                        min-height: 100px;
-                                    }
-                                    .gambar-container input[type="file"] {
-                                        flex: 1;
-                                        margin-right: 10px;
-                                    }
-                                    .gambar-container .preview-img {
-                                        width: 300px;
-                                        height: 200px;
-                                        object-fit: cover;
-                                    }
-                                    .gambar-container .link-buttons {
-                                        display: flex;
-                                    }
-                                    .gambar-container .link-buttons a {
-                                        margin-left: 5px;
-                                    }
+                                <div class="form-group">
+                                    <div id="gambar-container">
+                                    <div class="gambar-container mb-3">
+    <label for="gambar0">Pilih Gambar</label>
+    <input type="file" id="gambar0" class="form-control" name="gambar[]" accept="image/*" onchange="updateImagePreview(this, 0)">
+    <div class="mt-2 preview-wrapper" style="display: none;">
+        <img id="preview-img-0" class="preview-img" src="{{ $polpot->gambar[0] ? asset('storage/' . $polpot->gambar[0]) : '' }}">
+    </div>
+    <div class="mt-2">
+        <button type="button" class="btn btn-outline-danger remove-image" onclick="removeImage(this)">Hapus</button>
+        <button type="button" class="btn btn-outline-secondary view-image" onclick="togglePreview(this, '0')">View</button>
+    </div>
+</div>
 
+@php
+    $gambar = json_decode($polpot->gambar); // Ubah string JSON menjadi array
+@endphp
 
+@foreach ($gambar as $index => $image)
+<div class="gambar-container mb-3">
+    <label for="gambar{{ $index + 1 }}">Pilih Gambar</label>
+    <input type="file" id="gambar{{ $index + 1 }}" class="form-control" name="gambar[]" accept="image/*" onchange="updateImagePreview(this, {{ $index + 1 }})">
+    <div class="mt-2 preview-wrapper">
+        <img id="preview-img-{{ $index + 1 }}" class="preview-img" src="{{ $image ? asset('storage/' . $image) : '' }}">
+    </div>
+    <div class="mt-2">
+        <button type="button" class="btn btn-outline-danger remove-image" onclick="removeImage(this)">Hapus</button>
+        <button type="button" class="btn btn-outline-secondary view-image" onclick="togglePreview(this, '{{ $index + 1 }}')">View</button>
+    </div>
+</div>
+@endforeach
 
-                                </style>
-                                <div class="gambar-container" id="gambar-container">
-                                    @php
-                                        $gambarArray = explode('|', $polpot->gambar);
-                                    @endphp
-                                    @foreach ($gambarArray as $index => $gambar)
-                                        <div class="gambar1-container mb-3">
-                                            <label for="gambar{{ $index }}">Pilih Gambar</label>
-                                            <input type="file" id="gambar{{ $index }}" class="form-control" name="gambar[]" accept="image/*">
-                                            <div class="mt-2 preview-wrapper">
-                                                <img id="preview-img-{{ $index }}" class="preview-img" src="{{ asset('gambar/' . $gambar) }}">
-                                            </div>
-                                            <div class="mt-2">
-                                                <button type="button" class="btn btn-outline-danger remove-image" onclick="removeImage(this)">Hapus</button>
-                                                <button type="button" class="btn btn-outline-secondary view-image" onclick="togglePreview(this, '{{ $index }}')">View</button>
-                                            </div>
-                                        </div>
-                                    @endforeach
+<div class="mt-2">
+    <button type="button" class="btn btn-outline-primary add-image" onclick="addImage()">Tambah Gambar</button>
+</div>
+
                                 </div>
-                                <div>
-                                    <button type="button" class="btn btn-outline-primary add-image" onclick="addImage()">Tambah Gambar</button>
-                                </div>
-                            </div>
-
+                                
                             <div class="form-group mb-3" id="links-container">
                                 <label for="add-link" class="form-label">Link Produk</label>
                                 @php
@@ -148,70 +160,83 @@
         @endif
     </div>
     <script>
-        // Function to toggle image preview
-        function togglePreview(button, index) {
-            var container = button.parentElement.parentElement;
-            var input = container.querySelector('input[type="file"]');
-            var file = input.files[0];
-            var reader = new FileReader();
+      function togglePreview(button, index) {
+        var container = button.parentElement.parentElement;
+        var input = container.querySelector('input[type="file"]');
+        var file = input.files[0];
+        var reader = new FileReader();
 
-            if (button.classList.contains('close-preview')) {
-                // Close the preview
-                var previewImage = container.querySelector('.preview-img');
-                previewImage.src = '';
-                container.classList.remove('show-preview');
-                button.innerText = 'View';
-                button.classList.remove('close-preview');
+        var previewWrapper = container.querySelector('.preview-wrapper');
+        var previewImage = previewWrapper.querySelector('.preview-img');
+
+        if (button.classList.contains('close-preview')) {
+            // Close the preview
+            previewImage.src = '';
+            previewWrapper.style.display = 'none';
+            button.innerText = 'View';
+            button.classList.remove('close-preview');
+        } else {
+            // Show the preview
+            reader.onload = function (e) {
+                var imgSrc = e.target.result;
+                previewImage.src = imgSrc;
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+                previewWrapper.style.display = 'block';
+                button.innerText = 'Close';
+                button.classList.add('close-preview');
             } else {
-                // Show the preview
-                reader.onload = function (e) {
-                    var imgSrc = e.target.result;
-                    var previewImage = container.querySelector('.preview-img');
-                    previewImage.src = imgSrc;
-                };
-
-                if (file) {
-                    reader.readAsDataURL(file);
-                    container.classList.add('show-preview');
-                    button.innerText = 'Close';
-                    button.classList.add('close-preview');
-                } else {
-                    alert("Tidak ada gambar yang dipilih.");
-                }
+                alert("Tidak ada gambar yang dipilih.");
             }
         }
+    }
 
-        // Function to remove the image container
-        function removeImage(button) {
-            var container = button.parentElement.parentElement;
-            var gallery = container.parentElement;
-            gallery.removeChild(container);
+    function addImage() {
+        var container = document.getElementById('gambar-container');
+        var newIndex = container.childElementCount;
+        var newContainer = document.createElement('div');
+        newContainer.classList.add('gambar-container', 'mb-3');
+        newContainer.innerHTML = `
+            <label for="gambar${newIndex}">Pilih Gambar</label>
+            <input type="file" id="gambar${newIndex}" class="form-control" name="gambar[]" accept="image/*">
+            <div class="mt-2 preview-wrapper" style="display: none;">
+                <img id="preview-img-${newIndex}" class="preview-img" src="">
+            </div>
+            <div class="mt-2">
+                <button type="button" class="btn btn-outline-danger remove-image" onclick="removeImage(this)">Hapus</button>
+                <button type="button" class="btn btn-outline-secondary view-image" onclick="togglePreview(this, '${newIndex}')">View</button>
+            </div>
+        `;
+        container.appendChild(newContainer);
+    }
+
+    function removeImage(button) {
+        var container = button.parentElement.parentElement;
+        container.remove();
+    }
+    
+    // Function to update the existing preview when changing an image
+    function updateImagePreview(input, index) {
+        var previewWrapper = input.parentElement.querySelector('.preview-wrapper');
+        var previewImage = previewWrapper.querySelector('.preview-img');
+        var file = input.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var imgSrc = e.target.result;
+            previewImage.src = imgSrc;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+            previewWrapper.style.display = 'block';
+        } else {
+            previewImage.src = '';
+            previewWrapper.style.display = 'none';
         }
-
-        // Function to add a new image container
-        function addImage() {
-            var gallery = document.getElementById('gambar-container');
-            var index = gallery.childElementCount;
-
-            var newImageContainer = document.createElement('div');
-            newImageContainer.classList.add('gambar-container', 'mb-3');
-            newImageContainer.innerHTML = `
-                <label for="gambar${index}">Pilih Gambar</label>
-                <input type="file" id="gambar${index}" class="form-control" name="gambar[]" accept="image/*">
-                <div class="preview-wrapper" style="display: none;">
-                    <div class="mt-2">
-                        <img id="preview-img-${index}" class="preview-img" src="">
-                    </div>
-                </div>
-                <div class="mt-2">
-                    <button type="button" class="btn btn-outline-danger remove-image" onclick="removeImage(this)">Hapus</button>
-                    <button type="button" class="btn btn-outline-secondary view-image" onclick="togglePreview(this, '${index}')">View</button>
-                </div>
-            `;
-
-            gallery.appendChild(newImageContainer);
-        }
-
+    }
         // Function to add a new link container
         function addLink() {
             var linksContainer = document.getElementById('links-container');
