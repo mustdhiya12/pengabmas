@@ -69,42 +69,23 @@
                             <div class="form-group">
                                 <div class="form-group">
                                     <div id="gambar-container">
-                                    <div class="gambar-container mb-3">
-    <label for="gambar0">Pilih Gambar</label>
-    <input type="file" id="gambar0" class="form-control" name="gambar[]" accept="image/*" onchange="updateImagePreview(this, 0)">
-    <div class="mt-2 preview-wrapper" style="display: none;">
-        <img id="preview-img-0" class="preview-img" src="{{ $polpot->gambar[0] ? asset('storage/' . $polpot->gambar[0]) : '' }}">
-    </div>
-    <div class="mt-2">
-        <button type="button" class="btn btn-outline-danger remove-image" onclick="removeImage(this)">Hapus</button>
-        <button type="button" class="btn btn-outline-secondary view-image" onclick="togglePreview(this, '0')">View</button>
-    </div>
-</div>
-
-@php
-    $gambar = json_decode($polpot->gambar); // Ubah string JSON menjadi array
-@endphp
-
-@foreach ($gambar as $index => $image)
-<div class="gambar-container mb-3">
-    <label for="gambar{{ $index + 1 }}">Pilih Gambar</label>
-    <input type="file" id="gambar{{ $index + 1 }}" class="form-control" name="gambar[]" accept="image/*" onchange="updateImagePreview(this, {{ $index + 1 }})">
-    <div class="mt-2 preview-wrapper">
-        <img id="preview-img-{{ $index + 1 }}" class="preview-img" src="{{ $image ? asset('storage/' . $image) : '' }}">
-    </div>
-    <div class="mt-2">
-        <button type="button" class="btn btn-outline-danger remove-image" onclick="removeImage(this)">Hapus</button>
-        <button type="button" class="btn btn-outline-secondary view-image" onclick="togglePreview(this, '{{ $index + 1 }}')">View</button>
-    </div>
-</div>
-@endforeach
-
-<div class="mt-2">
-    <button type="button" class="btn btn-outline-primary add-image" onclick="addImage()">Tambah Gambar</button>
-</div>
-
+                                        <div class="gambar-container mb-3">
+                                            <label for="gambar0">Pilih Gambar</label>
+                                            <input type="file" id="gambar0" class="form-control" name="gambar[]" accept="image/*">
+                                            <div class="mt-2 preview-wrapper" style="display: none;">
+                                                <img id="preview-img-0" class="preview-img" src="">
+                                            </div>
+                                            <div class="mt-2">
+                                                <button type="button" class="btn btn-outline-danger remove-image" onclick="removeImage(this)">Hapus</button>
+                                                <button type="button" class="btn btn-outline-secondary view-image" onclick="togglePreview(this, '0')">View</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-outline-primary add-image" onclick="addImage()">Tambah Gambar</button>
+                                    </div>
                                 </div>
-                                
+                            </div>
                             <div class="form-group mb-3" id="links-container">
                                 <label for="add-link" class="form-label">Link Produk</label>
                                 @php
