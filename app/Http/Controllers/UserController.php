@@ -370,34 +370,14 @@ public function tambah_produk(Request $request)
         ]);
 
 
-        $images = array();
-
-        if ($files = $request->file('gambar')) {
-            foreach ($files as $file) {
-                $name = $file->getClientOriginalName();
-        
-                // Simpan gambar dalam folder 'gambar'
-                $file->move('gambar', $name);
-        
-                // Buat path lengkap menuju gambar yang diunggah
-                $imagePath = public_path('gambar') . '/' . $name;
-        
-                // Load gambar menggunakan Intervention Image
-                $image = Image::make($imagePath);
-        
-                // Auto resize gambar dengan lebar maksimum 800px dan tinggi yang sesuai
-                $image->resize(800, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                });
-        
-                // Simpan gambar yang sudah diresize
-                $image->save();
-        
-                // Tambahkan nama gambar ke dalam array
-                $images[] = $name;
-            }
+    $images=array();
+    if($files=$request->file('gambar')){
+        foreach($files as $file){
+            $name=$file->getClientOriginalName();
+            $file->move('gambar',$name);
+            $images[]=$name;
         }
+    }
     $links = $request->input('link');
     $linkString = implode("|", $links);
     

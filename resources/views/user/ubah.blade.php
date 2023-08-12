@@ -11,11 +11,47 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('home/css/styles.css') }}" rel="stylesheet" />
     <title>{{ Auth::user()->user_type }}</title>
+
+    <style>
+        /* Your styles here */
+
+        /* Lightbox2 Overlay */
+        .lightboxOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+        .lightboxOverlay.hidden {
+            display: none;
+        }
+        .lightboxImage {
+            display: block;
+            margin: 50px auto;
+            max-width: 100%;
+            max-height: calc(100vh - 100px);
+            border: 3px solid #fff;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+        .lightboxClose {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     @include('main/navbar')
     <div style="margin-top: 150px;" class="container m-4 p-5"></div>
-    <div style="margin-top: 150px;" class="container m-4 p-5">
+    <div style="margin-top: 150px;" class="container">
         @if(Auth::id() && !empty(Auth::user()) && Auth::user()->user_type == 'Penjual')
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -45,31 +81,6 @@
                             </div>
                             <br>
                             <div class="form-group">
-                            <style type="text/css">
-                                    .gambar-container {
-                                        align-items: center;
-                                        margin-bottom: 10px;
-                                        min-height: 100px;
-                                    }
-                                    .gambar-container input[type="file"] {
-                                        flex: 1;
-                                        margin-right: 10px;
-                                    }
-                                    .gambar-container .preview-img {
-                                        width: 300px;
-                                        height: 200px;
-                                        object-fit: cover;
-                                    }
-                                    .gambar-container .link-buttons {
-                                        display: flex;
-                                    }
-                                    .gambar-container .link-buttons a {
-                                        margin-left: 5px;
-                                    }
-
-
-
-                                </style>
                                 <div class="gambar-container" id="gambar-container">
                                     @php
                                         $gambarArray = explode('|', $polpot->gambar);
@@ -78,7 +89,7 @@
                                         <div class="gambar1-container mb-3">
                                             <label for="gambar{{ $index }}">Pilih Gambar</label>
                                             <input type="file" id="gambar{{ $index }}" class="form-control" name="gambar[]" accept="image/*">
-                                            <div class="mt-2 preview-wrapper">
+                                            <div class="mt-2">
                                                 <img id="preview-img-{{ $index }}" class="preview-img" src="{{ asset('gambar/' . $gambar) }}">
                                             </div>
                                             <div class="mt-2">
@@ -191,17 +202,15 @@
         // Function to add a new image container
         function addImage() {
             var gallery = document.getElementById('gambar-container');
-            var index = gallery.childElementCount;
+            var index = gallery.querySelectorAll('.gambar1-container').length;
 
             var newImageContainer = document.createElement('div');
-            newImageContainer.classList.add('gambar-container', 'mb-3');
+            newImageContainer.classList.add('gambar1-container', 'mb-3');
             newImageContainer.innerHTML = `
                 <label for="gambar${index}">Pilih Gambar</label>
                 <input type="file" id="gambar${index}" class="form-control" name="gambar[]" accept="image/*">
-                <div class="preview-wrapper" style="display: none;">
-                    <div class="mt-2">
-                        <img id="preview-img-${index}" class="preview-img" src="">
-                    </div>
+                <div class="mt-2">
+                    <img id="preview-img-${index}" class="preview-img" src="">
                 </div>
                 <div class="mt-2">
                     <button type="button" class="btn btn-outline-danger remove-image" onclick="removeImage(this)">Hapus</button>
