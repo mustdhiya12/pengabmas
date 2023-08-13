@@ -11,4 +11,22 @@ class Produk extends Model
     
     use HasFactory;
     protected $guarded = [];
+
+    public function gambarArray()
+    {
+        if ($this->gambar) {
+            return explode("|", $this->gambar);
+        }
+        return [];
+    }
+    public function removeGambar($imageName)
+{
+    $existingImages = $this->gambarArray();
+    $updatedImages = array_diff($existingImages, [$imageName]);
+    $this->gambar = implode('|', $updatedImages);
+    $this->save();
 }
+
+}
+
+

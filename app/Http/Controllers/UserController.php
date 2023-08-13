@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+
 
 class UserController extends Controller
 {
@@ -499,38 +501,63 @@ public function kelola_users_edit_run(Request $request)
 }
 
 // Run function to edit 'Penjual' produk for 'Penjual' Owner
-public function rus(Request $request)
+public function rus(Request $request, $id)
 {
-    $polpot_change_main = Produk::findorfail($request->id);
+    try {
+        $polpot_change_main = Produk::findOrFail($id);
 
-    $images = array();
-    if ($request->hasFile('gambar')) {
-        if ($files = $request->file('gambar')) {
-            foreach ($files as $file) {
+        // Menghapus gambar-gambar yang akan dihapus
+        $imagesToRemove = $request->input('images_to_remove', []);
+        foreach ($imagesToRemove as $imageName) {
+            $imagePath = public_path('gambar/' . $imageName);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+
+            // Hapus gambar dari array gambar pada model
+            $polpot_change_main->removeGambar($imageName);
+        }
+
+        // Menggabungkan gambar-gambar yang sudah ada dengan gambar-gambar baru
+        $mergedImages = $polpot_change_main->gambarArray(); // Inisialisasi dengan gambar yang sudah ada
+        if ($request->hasFile('gambar')) {
+            foreach ($request->file('gambar') as $file) {
                 $name = $file->getClientOriginalName();
-                $file->move('gambar', $name);
-                $images[] = $name;
+                $file->move('gambar/', $name);
+                $mergedImages[] = $name; // Tambahkan gambar baru ke dalam array mergedImages
             }
         }
 
-        $polpot_change_main->gambar = implode("|", $images);
+        // Update informasi produk lainnya
+        $polpot_change_main->produk_name = $request->judul;
+        $polpot_change_main->produk_deskripsi = $request->deskripsi;
+        $polpot_change_main->min_price = $request->min_harga;
+        $polpot_change_main->max_price = $request->max_harga;
+        $polpot_change_main->kuantitas = $request->kantitas;
+
+        // Save the links if they are present in the request
+        if ($request->has('link')) {
+            $linkString = implode("|", $request->input('link'));
+            $polpot_change_main->link = $linkString;
+        }
+        
+     
+
+        // Simpan gambar yang sudah digabungkan ke dalam kolom gambar
+        $polpot_change_main->gambar = implode('|', $mergedImages);
+
+        // Simpan perubahan ke database
+        $polpot_change_main->save();
+
+        return redirect()->route('user.ubah', $polpot_change_main->id)
+            ->with([
+                'polpot' => $polpot_change_main,
+            ])->with('success', 'Produk Berhasil Diubah');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Terjadi kesalahan saat mengubah produk.');
     }
-
-    $polpot_change_main->produk_name = $request->judul;
-    $polpot_change_main->produk_deskripsi = $request->deskripsi;
-    $polpot_change_main->min_price = $request->min_harga;
-    $polpot_change_main->max_price = $request->max_harga;
-    $polpot_change_main->kuantitas = $request->kantitas;
-
-    if ($request->has('link')) {
-        $linkString = implode("|", $request->input('link'));
-        $polpot_change_main->link = $linkString;
-    }
-
-    $polpot_change_main->save();
-
-    return redirect()->back()->with('success', 'Produk Berhasil Di Ubah');
 }
+
 
 // Run function to edit 'Penjual' produk for 'Admin'
 public function rus_adm(Request $request)
