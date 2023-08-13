@@ -623,7 +623,6 @@
         }
 
         $(document).ready(function() {
-            // Panggil fungsi ini saat halaman dimuat untuk menyembunyikan tombol jika diperlukan
             hideLoadMoreBtn();
 
             $("#loadMoreBtn").click(function() {
@@ -632,7 +631,6 @@
         });
 
         function hideLoadMoreBtn() {
-            // Sembunyikan tombol "Load More" jika tidak ada produk yang tersisa saat halaman dimuat
             if (!hasMorePages) {
                 $("#loadMoreBtnContainer").html("<p>No more products to load</p>");
             }
