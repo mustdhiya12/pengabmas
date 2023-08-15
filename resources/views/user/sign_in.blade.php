@@ -55,36 +55,36 @@
           </div>
           <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 account-login-inner" style="box-shadow: var(--ltn__box-shadow-4);">
             <h2>Login</h2>
-            <form method="POST" action="{{ route('sign_in.action') }}" class="ltn__form-box contact-form-box">
-              @csrf
-              <!-- Email input -->
-              <div class="form-outline mb-4">
-                <input type="text" name="username" placeholder="username/Email*" required type="username" name="username" value="{{ old('username') }}" id="floatingInput" class="form-control form-control-lg" />
-              </div>
-
-              <!-- Password input -->
-              <div class="form-outline mb-4">
-                <input placeholder="password" required class="form-control form-control-lg" type="password" name="password" id="floatingPassword" />
-              </div>
-
-              <div class="d-flex justify-content-around align-items-center mb-4">
-                <!-- Checkbox -->
-                <div class="form-check mt-20">
-                  <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-                  <label class="form-check-label" for="form1Example3"> Remember me </label>
+              <form method="POST" action="{{ route('sign_in.action') }}" class="ltn__form-box contact-form-box">
+                @csrf
+                <!-- Username/Email input -->
+                <div class="form-outline mb-4">
+                    <input type="text" name="identifier" placeholder="Username/Email*" required value="{{ old('identifier') }}" id="floatingInput" class="form-control form-control-lg" />
                 </div>
-                <div class="go-to-btn mt-20">
-                  <a href="#"><small>FORGOTTEN YOUR PASSWORD?</small></a>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <input placeholder="Password" required class="form-control form-control-lg" type="password" name="password" id="floatingPassword" />
                 </div>
-              </div>
-              <div class="btn-wrapper mt-0 mb-0">
-                <button class="btn btn-lg btn-block btn-transparent btn-effect-4 text-uppercase" type="submit"
-                  style="color: #000; background-color: #fff;" 
-                  onmouseover="this.style.color='#fff'; this.style.backgroundColor='#000';" 
-                  onmouseout="this.style.color='#000'; this.style.backgroundColor='#fff';">
-                  LOG-IN
-                </button>
-              </div>
+
+                <div class="d-flex justify-content-around align-items-center mb-4">
+                    <!-- Checkbox -->
+                    <div class="form-check mt-20">
+                        <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+                        <label class="form-check-label" for="form1Example3"> Remember me </label>
+                    </div>
+                    <div class="go-to-btn mt-20">
+                        <a href="#"><small>FORGOTTEN YOUR PASSWORD?</small></a>
+                    </div>
+                </div>
+                <div class="btn-wrapper mt-0 mb-0">
+                    <button class="btn btn-lg btn-block btn-transparent btn-effect-4 text-uppercase" type="submit"
+                        style="color: #000; background-color: #fff;" 
+                        onmouseover="this.style.color='#fff'; this.style.backgroundColor='#000';" 
+                        onmouseout="this.style.color='#000'; this.style.backgroundColor='#fff';">
+                        LOG-IN
+                    </button>
+                </div>
             </form>
             <!-- Submit button -->
             <div class="btn-wrapper mt-0">

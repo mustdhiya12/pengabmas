@@ -650,17 +650,30 @@ public function sign_up_action(Request $request)
 public function sign_in_action(Request $request)
     {
         $request->validate([
-            'username' => 'required',
+            'identifier' => 'required', 
             'password' => 'required',
         ]);
-        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+        
+        $credentials = [
+            'password' => $request->password,
+        ];
+        
+        // Cek apakah input adalah alamat email
+        if (filter_var($request->identifier, FILTER_VALIDATE_EMAIL)) {
+            $credentials['email'] = $request->identifier;
+        } else {
+            $credentials['username'] = $request->identifier;
+        }
+        
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/dashboard');
         }
-
+        
         return back()->withErrors([
             'password' => 'Wrong username or password',
         ]);
+        
     }
 
 public function login_api(Request $request)

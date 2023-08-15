@@ -514,54 +514,6 @@
                     </div>
 
                   </section>
-
-
-                @elseif(!empty(Auth::user()) && Auth::user()->user_type == 'Kurir')
-
-                  <section >
-                    <div style="padding:10px;" class="d-flex justify-content-center">
-                      <div class="container">
-                        <h3>Selamat Datang, {{Auth::user()->username}}</h3>
-                        <br>
-                        <div class="row">
-                          <a style="text-decoration: none;" href="{{{ route('job') }}}">
-                            <div style="margin-top: 10px;" class="col">
-                              <div class="card">
-                                <div class="card-body">
-                                  <h5 class="card-title">Lihat Orderan</h5>
-                                  <h6 class="card-subtitle mb-2 text-muted">Orderan User</h6>
-                                </div>
-                              </div>
-                            </div>
-                          </a>
-                          <a style="text-decoration: none;" href="{{{ route('job.aktif') }}}">
-                            <div style="margin-top: 10px;" class="col">
-                              <div class="card">
-                                <div class="card-body">
-                                  <h5 class="card-title">Lihat Job Orderan Aktif</h5>
-                                  <h6 class="card-subtitle mb-2 text-muted">Orderan Aktif</h6>
-                                </div>
-                              </div>
-                            </div>
-                          </a>
-                          <a style="text-decoration: none;" href="{{{ route('job.selesai') }}}">
-                            <div style="margin-top: 10px;" class="col">
-                              <div class="card">
-                                <div class="card-body">
-                                  <h5 class="card-title">Lihat Job Orderan Yang Selesai</h5>
-                                  <h6 class="card-subtitle mb-2 text-muted">Orderan Selesai</h6>
-                                </div>
-                              </div>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    </div>
-
-                  </section>
-
-
                 @elseif(!empty(Auth::user()) && Auth::user()->user_type == 'Admin')
 
                   <section >
