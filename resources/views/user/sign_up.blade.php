@@ -59,13 +59,13 @@
 <body>
   @include('main/navbar')
   
-  <section style="padding-left:5px;padding-right:5px;padding-top:125px;padding-bottom:50px;">
+  <section style="padding-left:5px;padding-right:5px;padding-top:185px;padding-bottom:50px; ">
     <div class="container">
       <div class="row d-flex align-items-center justify-content-center h-100">
-        <div class="col-md-8 col-lg-7 col-xl-6">
-          <img src="{{ asset('icon/mons.gif') }}" class="img-fluid" alt="Phone image">
-        </div>
-        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+          <div class="col-md-8 col-lg-7 col-xl-6" >
+            <img src="{{ asset('icon/mons.gif') }}" class="img-fluid" alt="Phone image" style="height: 100%; object-fit: cover;">
+          </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1" style="box-shadow: var(--ltn__box-shadow-4); padding-top:5px;">
           @if($errors->any())
             @foreach($errors->all() as $err)
             <div class="d-flex justify-content-center">
@@ -140,18 +140,16 @@
               </label>
             </div>
           </div>
-          </div>
-          <div class="form-group" id="links-container">
-          <label for="add-link" class="form-label">Add Link</label>
-          <div class="link-container">
-            <input type="text" name="link[]" placeholder="Enter link" required class="form-control mb-2">
-            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="addLink()">Add</button>
-          </div>
-        </div>
-        </div>
-          </div>
-            <div class="text-center mb-4">
-              <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
+<!-- ... kode selanjutnya ... -->
+            <div class="align-items-center btn-wrapper mt-0">
+              <a href="{{ route('sign_up.action') }}">
+                <button class="btn btn-lg btn-block btn-transparent btn-effect-3 text-uppercase" type="submit"
+                style="color: #fff; background-color: var(--ltn__secondary-color); border-radius: 10px;" 
+                onmouseover="this.style.color='var(--ltn__secondary-color)'; this.style.backgroundColor='#fff'; this.style.borderRadius='10px';" 
+                onmouseout="this.style.color='#fff'; this.style.backgroundColor='var(--ltn__secondary-color)'; this.style.borderRadius='10px';">
+                  {{ __('REGISTER') }}
+                </button>
+              </a>
             </div>
           </form>
           <div class="divider d-flex align-items-center my-4">

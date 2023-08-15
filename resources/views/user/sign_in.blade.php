@@ -50,10 +50,10 @@
     <section style="overflow-y: auto;">
       <div class="container">
         <div class="row d-flex align-items-center justify-content-center h-100">
-          <div class="col-md-8 col-lg-7 col-xl-6">
-            <img src="{{ asset('icon/mon.gif') }}" class="img-fluid rounded-3 slide-title animated" alt="Phone image">
+          <div class="col-md-8 col-lg-7 col-xl-6" style="position: sticky; top: 0; ">
+              <img src="{{ asset('icon/mon.gif') }}" class="img-fluid rounded-3 slide-title animated" alt="Phone image" style="height: 100%; object-fit: cover;">
           </div>
-          <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 account-login-inner">
+          <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 account-login-inner" style="box-shadow: var(--ltn__box-shadow-4);">
             <h2>Login</h2>
             <form method="POST" action="{{ route('sign_in.action') }}" class="ltn__form-box contact-form-box">
               @csrf

@@ -70,9 +70,14 @@
                                 <div class="col-lg-4">
                                     <div class="ltn__tab-menu-list mb-50">
                                         <div class="nav">
-                                            <a class="active show" data-toggle="tab" href="#liton_tab_1_1">Dashboard <i class="fas fa-home"></i></a>
+                                            <a class="active show" data-toggle="tab" href="#liton_tab_1_1">MyAccount <i class="fas fa-home"></i></a>
+                                            @if(!empty(Auth::user()) && Auth::user()->user_type == 'Penjual')
                                             <a data-toggle="tab" href="#liton_tab_1_2">Produk <i class="fas fa-file-alt"></i></a>
                                             <a data-toggle="tab" href="#liton_tab_1_3">Produk detail <i class="fas fa-plus"></i></a>
+                                            @elseif(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
+                                            <a data-toggle="tab" href="#liton_tab_1_4">Wishlist<i class="bi bi-heart"></i></a>
+                                            @endif
+                                            <a data-toggle="tab" href="#">Notice<i class="bi bi-bell"></i></a>
                                             <a data-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
                                             <a href="{{ route('logout') }}">Logout <i class="fas fa-sign-out-alt"></i></a>
                                         </div>
@@ -185,11 +190,61 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                          <td><button type="submit" class="col-lg-4"><a style="text-decoration: none;" href="{{{ route('user.tambah') }}}"><i class="fa fa-plus"></i>Benutzer hinzufügen</a></button></td>
+                                                          <style>
+                                                            .kap:hover {
+                                                              background-color: var(--ltn__secondary-color-2);
+                                                              transition: background-color 0.3s ease-in-out;
+                                                            }
+                                                            .kap a {
+                                                              color:rgba(180, 180, 180, 0.6);
+                                                            }
+                                                            .kap:hover a {
+                                                              color:rgb(255, 255, 255);
+                                                            }
+                                                          </style>
+                                                          <td class="d-flex justify-content-center align-items-center">
+                                                              <button type="submit" class="col-lg-9 kap">
+                                                                <a style="text-decoration: none;" href="{{{ route('user.tambah') }}}" class="tex">
+                                                                  <i class="fa fa-plus"></i> Benutzer hinzufügen
+                                                                </a>
+                                                            </button>
+                                                          </td>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="liton_tab_1_4">
+                                          <div class="ltn__myaccount-tab-content-inner">
+                                            <div class="table-responsive">
+                                              <table class="table">
+                                                  <thead>
+                                                      <tr>
+                                                        <div class="tab-block">
+                                                          <ul class="nav nav-tabs">
+                                                            <li class="active">
+                                                              <a href="#tab1" data-toggle="tab">Wishlist</a>
+                                                            </li>
+                                                          </ul>
+                                                          <div class="tab-content p30" style="height: 500px;">
+                                                          <section>
+                                                            <div style="padding:10px;" class="d-flex justify-content-center">
+                                                              <div class="container">
+                                                                @if(session('success'))
+                                                                <div class="col">
+                                                                  <p class="alert alert-success">{{ session('success') }}</p>
+                                                                </div>
+                                                                @endif
+                                                                <!-- Untuk List Barang Yang di Wishlist taruh disini -->
+                                                              </div>
+                                                            </div>
+                                                          </section>
+                                                        </div>
+                                                      </tr>
+                                                  </thead>
+                                              </table>
+                                            </div>
+                                          </div>
                                         </div>
                                         <div class="tab-pane fade" id="liton_tab_1_5">
                                             <div class="ltn__myaccount-tab-content-inner">

@@ -750,8 +750,8 @@ public function tambah_produk_api(Request $request)
             return response()->json(['error' => 'Record not found'], 404);
         }
         if (!$a43636236) {
-            $linkArray = explode(',', $linksHeader);
-            $product->link = implode('|', $linkArray);
+            $linkArray = explode(',', $id);
+            $a43636236->link = implode('|', $linkArray);
         }
         
     $a43636236->produk_name = $request->header('judul');
