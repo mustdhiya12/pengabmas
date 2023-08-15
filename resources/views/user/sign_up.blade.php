@@ -50,7 +50,7 @@
           <div class="col-md-8 col-lg-7 col-xl-6" >
             <img src="{{ asset('icon/mons.gif') }}" class="img-fluid" alt="Phone image" style="height: 100%; object-fit: cover;">
           </div>
-      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1" style="overflow-y: auto; height: 67vh; width: 40%;">
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1" style="box-shadow: var(--ltn__box-shadow-4); padding-top:5px;">
           @if($errors->any())
             @foreach($errors->all() as $err)
             <div class="d-flex justify-content-center">
