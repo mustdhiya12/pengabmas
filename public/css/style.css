@@ -11802,7 +11802,7 @@ input.cart-plus-minus-box {
     .ltn__tab-menu-list .nav a i {
       font-size: 14px; }
     .ltn__tab-menu-list .nav a.active {
-      background-color: var(--section-bg-2);
+      background-color: var(--ltn__secondary-color-2);
       color: var(--white); }
 
 .ltn__myaccount-tab-content-inner > p {
