@@ -69,19 +69,18 @@
         margin-top: 20px;
     }
 
-
     .image-buttons {
-        margin-top: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     }
     .link-container {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-}
+    }
 
     .link-input {
         flex: 1;
@@ -92,12 +91,12 @@
     }
 
     </style>
-            </head>
-            <body>
-            <body>
-            @include('main/navbar')
-    <div style="margin-top: 150px;" class="container m-4 p-5"></div>
-    <div style="margin-top: 150px;" class="container">
+        </head>
+        <body>
+        <body>
+        @include('main/navbar')
+        <div style="margin-top: 150px;" class="container m-4 p-5"></div>
+        <div style="margin-top: 150px;" class="container">
         @if(Auth::id() && !empty(Auth::user()) && Auth::user()->user_type == 'Penjual')
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -154,26 +153,23 @@
                             </div>
                             <button type="button" class="btn btn-outline-primary add-image" onclick="addImage()">Tambah Gambar</button>
                                 </div>
-                                </div>
                                 <div class="form-group mb-3" id="links-container">
-                            <label for="add-link" class="form-label">Link Produk</label>
+                                <label for="add-link" class="form-label">Link Produk</label>
                                 @php
                                     $linkArray = explode('|', $polpot->link);
                                 @endphp
-                                @foreach ($linkArray as $index => $link)
+                                @foreach ($linkArray as $link)
                                     <div class="link-container">
                                         <div class="input-group">
                                             <input type="text" name="link[]" placeholder="Enter link" required class="form-control link-input" value="{{ $link }}">
-                                            <button type="button" class="btn btn-outline-secondary add-link" onclick="addLink()">Add</button>
-                                            @if ($index > 0)
-                                                <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this)">Remove</button>
-                                            @endif
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-outline-secondary add-link" onclick="addLink()">Add</button>
+                                                <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this.parentElement.parentElement.parentElement)">Remove</button>
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach
                             </div>
-
-
                             <div class="form-group">
                                 <label for="harga">{{ __('Harga minimal:') }}</label>
                                 <input id="min_harga" placeholder="minimal price" type="number" class="form-control @error('min_harga') is-invalid @enderror" name="min_harga" value="{{ $polpot->min_price }}" required autocomplete="min_harga">
@@ -390,41 +386,53 @@ function removeImage(button, imageName) {
     }
         // Function to add a new link container
         function addLink() {
-            var linksContainer = document.getElementById('links-container');
-            
-            var linkContainer = document.createElement('div');
-            linkContainer.classList.add('link-container');
-            
-            var linkInput = document.createElement('input');
-            linkInput.type = 'text';
-            linkInput.classList.add('form-control', 'link-input');
-            linkInput.name = 'link[]';
-            linkInput.placeholder = 'Enter link';
-            linkInput.required = true;
-            
-            var linkButtons = document.createElement('div');
-            linkButtons.classList.add('link-buttons');
-            
-            var removeButton = document.createElement('a');
-            removeButton.textContent = 'Remove';
-            removeButton.href = '#';
-            removeButton.classList.add('btn', 'btn-outline-danger', 'remove-link');
-            removeButton.addEventListener('click', function(event) {
-                event.preventDefault();
-                removeLink(linkContainer);
-            });
-            
-            linkButtons.appendChild(removeButton);
-            
-            linkContainer.appendChild(linkInput);
-            linkContainer.appendChild(linkButtons);
-            
-            linksContainer.parentNode.insertBefore(linkContainer, linksContainer.nextSibling);
-        }
-        
-        function removeLink(linkContainer) {
-            linkContainer.remove();
-        }
+    var linksContainer = document.getElementById('links-container');
+    
+    var linkContainer = document.createElement('div');
+    linkContainer.classList.add('link-container');
+    
+    var linkInput = document.createElement('input');
+    linkInput.type = 'text';
+    linkInput.classList.add('form-control', 'link-input');
+    linkInput.name = 'link[]';
+    linkInput.placeholder = 'Enter link';
+    linkInput.required = true;
+    
+    var linkButtons = document.createElement('div');
+    linkButtons.classList.add('input-group-append');
+    
+    var addButton = document.createElement('button');
+    addButton.type = 'button';
+    addButton.classList.add('btn', 'btn-outline-secondary', 'add-link');
+    addButton.textContent = 'Add';
+    addButton.addEventListener('click', function() {
+        addLink();
+    });
+    
+    var removeButton = document.createElement('button');
+    removeButton.type = 'button';
+    removeButton.classList.add('btn', 'btn-outline-danger', 'remove-link');
+    removeButton.textContent = 'Remove';
+    removeButton.addEventListener('click', function() {
+        removeLink(linkContainer);
+    });
+    
+    linkButtons.appendChild(addButton);
+    if (linksContainer.children.length > 1) {
+        linkButtons.appendChild(removeButton);
+    }
+    
+    linkContainer.appendChild(linkInput);
+    linkContainer.appendChild(linkButtons);
+    
+    linksContainer.appendChild(linkContainer);
+}
+
+function removeLink(linkContainer) {
+    linkContainer.remove();
+}
+
+
 
 
 // Function to update the preview image when a new image is selected

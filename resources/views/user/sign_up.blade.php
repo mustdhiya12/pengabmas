@@ -24,20 +24,35 @@
     }
 
     .link-container {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
+    display: flex;
+    align-items: center;
+  }
 
-    .link-container input[type="text"] {
-      flex: 1;
-      margin-right: 10px;
-    }
+  .link-container input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+  }
 
-    .link-container button {
-      flex-shrink: 0;
-      padding: 6px 12px;
-    }
+  .link-container button {
+    flex-shrink: 0;
+  }
+
+  .form-check-input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+
+  .form-check-label {
+    margin-left: 10px;
+    font-size: 16px;
+  }
+  /* CSS untuk tombol grup */
+.btn-group-toggle .btn.active {
+  border-color: green !important;
+}
+
+
+
   </style>
 </head>
 
@@ -112,27 +127,29 @@
             <div class="mb-3 d-flex justify-content-between" id="user-type-and-links-container">
   <!-- ... kode sebelumnya ... -->
 
-            <div class="mb-3 d-flex flex-column" id="user-type-and-links-container">
-              <div class="form-group">
-                <label for="registerPassword" class="form-label">User Type</label>
-                <select id="user_type" name="user_type" class="form-select" required>
-                  <option disabled selected>Pilih Tipe User</option>
-                  <option value="Penjual">Penjual</option>
-                  <option value="Pembeli">Pembeli</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="add-link" class="form-label">Add Link</label>
-                <input type="text" name="link[]" placeholder="Enter link" required class="form-control">
-                <div class="link-buttons">
-                  <a href="#" class="btn btn-outline-secondary " onclick="addLink()">Add</a>
-                  <a href="#" class="btn btn-outline-danger" onclick="removeLink(this)">Remove</a>
-                </div>
-              </div>
+            <!-- ... (previous code) ... -->
+
+            <div class="form-group">
+            <label for="user_type" class="form-label">User Type</label>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-warning">
+                <input type="radio" name="user_type" value="Penjual" required> Penjual
+              </label>
+              <label class="btn btn-outline-primary">
+                <input type="radio" name="user_type" value="Pembeli" required> Pembeli
+              </label>
             </div>
           </div>
-<!-- ... kode selanjutnya ... -->
-
+          </div>
+          <div class="form-group" id="links-container">
+          <label for="add-link" class="form-label">Add Link</label>
+          <div class="link-container">
+            <input type="text" name="link[]" placeholder="Enter link" required class="form-control mb-2">
+            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="addLink()">Add</button>
+          </div>
+        </div>
+        </div>
+          </div>
             <div class="text-center mb-4">
               <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
             </div>

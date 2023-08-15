@@ -535,18 +535,17 @@ public function rus(Request $request, $id)
         $polpot_change_main->max_price = $request->max_harga;
         $polpot_change_main->kuantitas = $request->kantitas;
 
-        // Save the links if they are present in the request
         if ($request->has('link')) {
-            $linkString = implode("|", $request->input('link'));
+            $newLinks = $request->input('link');
+            $linkString = implode("|", $newLinks);
             $polpot_change_main->link = $linkString;
         }
         
-     
+        
+        
 
-        // Simpan gambar yang sudah digabungkan ke dalam kolom gambar
         $polpot_change_main->gambar = implode('|', $mergedImages);
 
-        // Simpan perubahan ke database
         $polpot_change_main->save();
 
         return redirect()->route('user.ubah', $polpot_change_main->id)
@@ -623,7 +622,7 @@ public function sign_up_action(Request $request)
         'email' => 'required|email|unique:users|max:255',
         'password' => 'required',
         'password_confirmation' => 'required|same:password',
-        'user_type' => 'required',
+        'user_type' => 'required|in:Penjual,Pembeli', // Memastikan hanya Penjual atau Pembeli
         'link.*' => 'url',
     ]);
 
@@ -637,7 +636,7 @@ public function sign_up_action(Request $request)
     $user->name = $request->input('name');
     $user->email = $request->input('email');
     $user->password = Hash::make($request->input('password'));
-    $user->user_type = $request->input('user_type');
+    $user->user_type = $request->input('user_type'); // Menggunakan nilai langsung dari radio button
     $user->api_key = $api_key;
     $user->link = $linkString;
 
@@ -645,6 +644,7 @@ public function sign_up_action(Request $request)
 
     return redirect()->route('user.sign_in')->with('success', 'You have successfully registered!');
 }
+
 
 // run function Sign In for Users(Penjual,Pembeli, and Kurir)
 public function sign_in_action(Request $request)
