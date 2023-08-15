@@ -77,32 +77,41 @@
                   <a href="#"><small>FORGOTTEN YOUR PASSWORD?</small></a>
                 </div>
               </div>
-
-              <!-- Submit button -->
-              <div class="btn-wrapper mt-0">
-                <button class="btn btn-transparent btn-effect-4 text-uppercase" type="submit">LOG-IN</button>
-                <a href="{{ route('sign_up.action') }}"><button class="btn btn-effect-3 text-uppercase">SIGN-UP</button></a>
+              <div class="btn-wrapper mt-0 mb-0">
+                <button class="btn btn-lg btn-block btn-transparent btn-effect-4 text-uppercase" type="submit"
+                  style="color: #000; background-color: #fff;" 
+                  onmouseover="this.style.color='#fff'; this.style.backgroundColor='#000';" 
+                  onmouseout="this.style.color='#000'; this.style.backgroundColor='#fff';">
+                  LOG-IN
+                </button>
               </div>
-              
-
-              <div class="divider d-flex align-items-center my-4">
-                <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
-              </div>
-
-              <button class="btn btn-lg btn-block btn-primary mb-3" style="background-color: rgb(221, 75, 57);" type="submit">
-                <i class="fab fa-google me-2"></i> Sign in with Google
-              </button>
-
-              <button class="btn btn-primary btn-lg btn-block mb-3" style="background-color: #3b5998" href="#!" role="button">
-                <i class="fab fa-facebook-f me-2"></i> Continue with Facebook
-              </button>
-
-              <button class="btn btn-primary btn-lg btn-block mb-3" style="background-color: #55acee" href="#!" role="button">
-                <i class="fab fa-twitter me-2"></i> Continue with Twitter
-              </button>
-
-
             </form>
+            <!-- Submit button -->
+            <div class="btn-wrapper mt-0">
+              <a href="{{ route('sign_up.action') }}">
+                <button class="btn btn-lg btn-block btn-transparent btn-effect-3 text-uppercase" 
+                style="color: #000; background-color: #fff; width: 80%;" 
+                onmouseover="this.style.color='#fff'; this.style.backgroundColor='#000';" 
+                onmouseout="this.style.color='#000'; this.style.backgroundColor='#fff';">
+                  REGISTER
+                </button>
+              </a>
+            </div>
+            <div class="divider d-flex align-items-center my-4">
+              <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+            </div>
+
+            <button class="btn btn-lg btn-block btn-primary mb-3" style="background-color: rgb(221, 75, 57);" type="submit">
+              <i class="fab fa-google me-2"></i> Sign in with Google
+            </button>
+
+            <button class="btn btn-primary btn-lg btn-block mb-3" style="background-color: #3b5998" href="#!" role="button">
+              <i class="fab fa-facebook-f me-2"></i> Continue with Facebook
+            </button>
+
+            <button class="btn btn-primary btn-lg btn-block mb-3" style="background-color: #55acee" href="#!" role="button">
+              <i class="fab fa-twitter me-2"></i> Continue with Twitter
+            </button>
           </div>
         </div>
       </div>

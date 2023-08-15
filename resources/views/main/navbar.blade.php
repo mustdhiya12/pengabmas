@@ -79,7 +79,7 @@ $cookieValue = request()->cookie(rand());
                                         <li>
                                             <!-- ltn__social-media -->
                                             <div class="ltn__social-media">
-                                                <ul >
+                                                <ul>
                                                     <li><a href="#" title="Facebook"><i class="pip fab fa-facebook-f"></i></a></li>
                                                     <li><a href="#" title="Twitter"><i class="pip fab fa-twitter"></i></a></li>
 
@@ -103,9 +103,48 @@ $cookieValue = request()->cookie(rand());
                     <div class="row">
                         <div class="col ">
                             <div class="site-logo-wrap">
+                                <style>
+                                .waviy {
+                                    position: relative;
+                                }
+
+                                .waviy span {
+                                    position: relative;
+                                    display: inline-block;
+                                    font-size: 40px;
+                                    color: black;
+                                    text-transform: uppercase;
+                                    animation: none;
+                                }
+
+                                .waviy:hover span {
+                                    color: var(--ltn__secondary-color);
+                                    animation: fadeInAndFlip 2s;
+                                    animation-delay: calc(0.1s * var(--i));
+                                }
+
+                                @keyframes fadeInAndFlip {
+                                    0% {
+                                        opacity: 0;
+                                    }
+                                    50%, 90%, 100% {
+                                        opacity: 1;
+                                        transform: rotateX(360deg);
+                                    }
+                                }
+                                </style>
+                                </head>
+                                <body>
                                 <div class="site-logo">
-                                    <a href="{{ route('main.home') }}" rel="nofollow" alt="Logo">
-                                        <img src="{{ asset('icon/Icon_unican.png') }}" alt="UNICAN" style="width: 55px;" class="navbar-brand logo rounded-3"> U N I C A
+                                    <a href="{{ route('main.home') }}" rel="nofollow" alt="Logo" class="btn-hover-effect">
+                                        <img src="{{ asset('icon/Icon_unican.png') }}" data-text="UNICA" alt="UNICAN" style="width: 55px;" class="navbar-brand logo rounded-3">
+                                        <div class="waviy">
+                                            <span style="--i:1">U </span>
+                                            <span style="--i:2">N </span>
+                                            <span style="--i:3">I </span>
+                                            <span style="--i:4">C </span>
+                                            <span style="--i:5">A </span>
+                                        </div>
                                     </a>
                                 </div>
                             </div>
@@ -115,7 +154,7 @@ $cookieValue = request()->cookie(rand());
                                 <nav>
                                     <div class="ltn__main-menu">
                                         <ul>
-                                            <li class="menu-icon"><a href="{{ route('main.home') }}">Home</a>
+                                            <li><a href="{{ route('main.home') }}">Home</a>
                                             </li>
                                             <li class="menu-icon"><a href="{{ route('main.pr') }}">About</a>
                                                 <ul>
@@ -273,10 +312,10 @@ $cookieValue = request()->cookie(rand());
     <script src="{{asset('js/plugins.js')}}"></script>
     <!-- Main JS -->
     <script src="{{asset('js/main.js')}}"></script>
-    
+
     <div class="ltn__utilize-overlay"></div>
-    
-    <div id="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu" >
+
+    <div id="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu">
         <div class="ltn__utilize-menu-inner ltn__scrollbar">
             <div class="ltn__utilize-menu-head">
                 <span class="ltn__utilize-menu-title">Cart</span>
