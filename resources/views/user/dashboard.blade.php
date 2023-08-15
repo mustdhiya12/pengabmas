@@ -196,7 +196,7 @@
                                                               transition: background-color 0.3s ease-in-out;
                                                             }
                                                             .kap a {
-                                                              color:rgba(180, 180, 180, 0.6);
+                                                              color:rgba(144, 144, 144, 0.534);
                                                             }
                                                             .kap:hover a {
                                                               color:rgb(255, 255, 255);
@@ -205,7 +205,7 @@
                                                           <td class="d-flex justify-content-center align-items-center">
                                                               <button type="submit" class="col-lg-9 kap">
                                                                 <a style="text-decoration: none;" href="{{{ route('user.tambah') }}}" class="tex">
-                                                                  <i class="fa fa-plus"></i> Benutzer hinzufügen
+                                                                  <i class="fa fa-plus"></i> Tambah Produk
                                                                 </a>
                                                             </button>
                                                           </td>
