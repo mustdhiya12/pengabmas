@@ -194,20 +194,27 @@
                                                             .kap:hover {
                                                               background-color: var(--ltn__secondary-color-2);
                                                               transition: background-color 0.3s ease-in-out;
-                                                            }
-                                                            .kap a {
-                                                              color:rgba(144, 144, 144, 0.534);
-                                                            }
-                                                            .kap:hover a {
                                                               color:rgb(255, 255, 255);
+                                                            }
+                                                            .kap {
+                                                              color:rgba(144, 144, 144, 0.534);
+                                                              padding: 5px 100px;
+                                                              display: inline-flex;
+                                                              justify-content: center;
+                                                              align-items: center;
+                                                              white-space: nowrap;
+                                                              text-align: center;
+                                                              border: none;
+                                                              border-radius: 5px;
+                                                              width: 100%;
                                                             }
                                                           </style>
                                                           <td class="d-flex justify-content-center align-items-center">
-                                                              <button type="submit" class="col-lg-9 kap">
-                                                                <a style="text-decoration: none;" href="{{{ route('user.tambah') }}}" class="tex">
-                                                                  <i class="fa fa-plus"></i> Tambah Produk
-                                                                </a>
-                                                            </button>
+                                                            <form action="{{ route('user.tambah') }}">
+                                                              <button type="submit" class="col-lg-10 kap">
+                                                                <i class="fa fa-plus"></i>  Tambah Produk
+                                                              </button>
+                                                            </form>
                                                           </td>
                                                         </tbody>
                                                     </table>
