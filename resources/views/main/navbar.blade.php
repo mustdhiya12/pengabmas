@@ -23,8 +23,6 @@ $cookieValue = request()->cookie(rand());
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="icon" type="image/x-icon" href="{{ asset('icon/Icon_unican.png') }}" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
@@ -233,7 +231,7 @@ $cookieValue = request()->cookie(rand());
                     <div class="site-logo">
                         <a href="index.html"><img src="{{ asset('icon/Icon_unican.png') }}" alt="UNICAN"></a>
                     </div>
-                    <button class="ltn__utilize-close">×</button>
+                    <button class="btn btn-outline-danger ltn__utilize-close">X</button>
                 </div>
                 <div class="ltn__utilize-menu">
                     <ul>

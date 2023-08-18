@@ -5228,15 +5228,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   position: relative;
   list-style: none; }
 
-.ltn__utilize-overlay {
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: none;
-  background-color: rgba(0, 0, 0, 0.5); }
+
 
 .ltn__utilize.ltn__utilize-open {
   -webkit-transform: translateX(0);
