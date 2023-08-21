@@ -162,44 +162,47 @@
                                                                                 <div class="product-price">
                                                                                   <h5 class="card-title">{{$product->produk_name}}</h5>
                                                                                   <hr>
-                                                                                  <p class="card-text" style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}} <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price * 2}}</s></p>
+                                                                                  @if ($product->min_price <= 999999)
+                                                                                      <p class="card-text" style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}} <br> <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price * 2}}</s></p>
+                                                                                  @else
+                                                                                    <p class="card-text" style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}} <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price * 2}}</s></p>
+                                                                                  @endif
                                                                                 </div>
-                                                                                <div class="card-footer d-flex align-items-end pt-1 px-0 pb-0 mt-auto">
-                                                                                  <span>
-                                                                                    <form method="POST" action="{{ route('admin.hapus', $product->id) }}">
-                                                                                      @csrf
-                                                                                      @method('PUT')
-                                                                                      <div class="d-flex flex-row">
-                                                                                        <style>
-                                                                                          .kin:hover {
-                                                                                            background-color: var(--ltn__secondary-color-2);
-                                                                                            transition: background-color 0.3s ease-in-out;
-                                                                                            color:rgb(255, 255, 255);
-                                                                                          }
-                                                                                          .kin {
-                                                                                            color:rgba(144, 144, 144, 0.534);
-                                                                                            padding: 5px 20px;
-                                                                                            display: inline-flex;
-                                                                                            justify-content: center;
-                                                                                            align-items: center;
-                                                                                            white-space: nowrap;
-                                                                                            text-align: center;
-                                                                                            border: none;
-                                                                                            border-radius: 5px;
-                                                                                          }
-                                                                                        </style>
-                                                                                        <div class="p-2">
-                                                                                          <a style="text-decoration: none;" href="{{route('user.view_edit') . '/' . $product->id }}">
-                                                                                            <button type="button" class="kin">Ubah</button>
-                                                                                          </a>
-                                                                                        </div>
-                                                                                        <div class="p-2">
-                                                                                          <button onclick="return confirm('!Peringatan!\nApakah anda yakin ingin menghapus produk ini?\nnama produk : {{ $product->produk_name }} ');" type="submit" class="kin">Hapus</button>
-                                                                                        </div>
+                                                                                <hr style="color: rgb(247, 161, 62); height: 1.5px;">
+                                                                                <span>
+                                                                                  <form method="POST" action="{{ route('admin.hapus', $product->id) }}">
+                                                                                    @csrf
+                                                                                    @method('PUT')
+                                                                                    <div class="d-flex flex-row">
+                                                                                      <style>
+                                                                                        .kin:hover {
+                                                                                          background-color: var(--ltn__secondary-color-2);
+                                                                                          transition: background-color 0.3s ease-in-out;
+                                                                                          color:rgb(255, 255, 255);
+                                                                                        }
+                                                                                        .kin {
+                                                                                          color:rgba(144, 144, 144, 0.534);
+                                                                                          padding: 5px 23px;
+                                                                                          display: inline-flex;
+                                                                                          justify-content: center;
+                                                                                          align-items: center;
+                                                                                          white-space: nowrap;
+                                                                                          text-align: center;
+                                                                                          border: none;
+                                                                                          border-radius: 5px;
+                                                                                        }
+                                                                                      </style>
+                                                                                      <div class="p-1">
+                                                                                        <a style="text-decoration: none;" href="{{route('user.view_edit') . '/' . $product->id }}">
+                                                                                          <button type="button" class="kin">Ubah</button>
+                                                                                        </a>
                                                                                       </div>
-                                                                                    </form>
-                                                                                  </span>
-                                                                                </div>
+                                                                                      <div class="p-1">
+                                                                                        <button onclick="return confirm('!Peringatan!\nApakah anda yakin ingin menghapus produk ini?\nnama produk : {{ $product->produk_name }} ');" type="submit" class="kin">Hapus</button>
+                                                                                      </div>
+                                                                                    </div>
+                                                                                  </form>
+                                                                                </span>
                                                                               </div>
                                                                             </div>
                                                                           </div>
@@ -222,6 +225,7 @@
                                                             .kap {
                                                               color:rgba(144, 144, 144, 0.534);
                                                               padding: 5px 100px;
+                                                              text-indent: 5px;
                                                               display: inline-flex;
                                                               justify-content: center;
                                                               align-items: center;
@@ -235,7 +239,7 @@
                                                           <td class="d-flex justify-content-center align-items-center">
                                                             <form action="{{ route('user.tambah') }}">
                                                               <button type="submit" class="col-lg-10 kap">
-                                                                <i class="fa fa-plus"></i>  Tambah Produk
+                                                                <i class="fa fa-plus"></i> Tambah Produk
                                                               </button>
                                                             </form>
                                                           </td>
