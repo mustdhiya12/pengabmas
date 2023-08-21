@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Cookie;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie as LaravelCookie;
 
 class TrackCookieMiddleware
 {
@@ -15,8 +15,17 @@ class TrackCookieMiddleware
         $cookieValue = $request->cookie($cookieName);
 
         if (!$cookieValue && !Auth::check()) {
-            $cookie = Cookie::create(['cookie_name' => $cookieName]);
-            $response = $next($request)->withCookie(cookie($cookieName, $cookie->id, 1440)); // Masa berlaku cookie: 1 hari
+            $failedLoginAttempts = session('failed_login_attempts', 0);
+            
+            if ($failedLoginAttempts >= 3) {
+                LaravelCookie::queue(LaravelCookie::forget($cookieName));
+                session(['failed_login_attempts' => 0]);
+            } else {
+                $failedLoginAttempts++;
+                session(['failed_login_attempts' => $failedLoginAttempts]);
+            }
+            
+            $response = $next($request);
         } else {
             $response = $next($request);
         }
