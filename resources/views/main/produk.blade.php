@@ -69,7 +69,35 @@ use App\Models\likes_pro;
                         <span>Penjual: {{$mainpolopot->produk_owner_nama}}</span>
                     </div>
                     <hr>
-                    <p class="lead">{{$mainpolopot->produk_deskripsi}}</p>
+                    <?php
+                    $produk_deskripsi = $mainpolopot->produk_deskripsi;
+                    $max_length = 200; // Jumlah karakter maksimal sebelum dipotong
+                    $short_description = substr($produk_deskripsi, 0, $max_length);
+                    $remaining_description = substr($produk_deskripsi, $max_length);
+                    ?>
+
+                    <div class="description-container">
+                        <p class="lead"><?= $short_description ?></p>
+
+                        <?php if (strlen($produk_deskripsi) > $max_length): ?>
+                            <div id="expand-description" style="display: none;">
+                                <p class="lead"><?= $produk_deskripsi ?></p>
+                            </div>
+                            <a id="expand-link" style="color: var(--border-color-4); cursor: pointer;">Baca Selanjutnya....</a>
+                        <?php endif; ?>
+                    </div>
+
+                    <script>
+                        const expandLink = document.getElementById("expand-link");
+                        const expandDescription = document.getElementById("expand-description");
+
+                        expandLink.addEventListener("click", function () {
+                            expandLink.style.display = "none";
+                            expandDescription.style.display = "block";
+                        });
+                    </script>
+
+                    <br>
                     <div class="container">
                         <div class="row-cols-3">
                             @php
