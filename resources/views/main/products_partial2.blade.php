@@ -11,7 +11,7 @@
             $produk_name = substr($produk_name, 0, $max_length) . '<span style="color: gray;">...</span>';
             }
             @endphp
-            <div class="col-xl-3 col-sm-5 col-5">
+            <div class="col-xl-3 col-sm-9 col-9 ">
                 <div class="ltn__product-item ltn__product-item-3 text-center">
                     <div class="product-img">
                         <a href="/produk/{{ $product->id }}">

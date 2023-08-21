@@ -23,7 +23,7 @@
     <div class="ltn__breadcrumb-area ltn__breadcrumb-area-2 ltn__breadcrumb-color-white bg-overlay-theme-black-80 bg-image" data-bg="{{ asset('icon/bg.png') }}">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-16">
                     <div class="ltn__breadcrumb-inner ltn__breadcrumb-inner-2 justify-content-between">
                         <div class="section-title-area ltn__section-title-2">
                           <div class="media-left">
