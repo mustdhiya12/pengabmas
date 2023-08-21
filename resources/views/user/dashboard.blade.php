@@ -71,13 +71,16 @@
                                     <div class="ltn__tab-menu-list mb-50">
                                         <div class="nav">
                                             <a class="active show" data-toggle="tab" href="#liton_tab_1_1">MyAccount <i class="fas fa-home"></i></a>
-                                            @if(!empty(Auth::user()) && Auth::user()->user_type == 'Penjual')
-                                            <a data-toggle="tab" href="#liton_tab_1_2">Produk <i class="fas fa-file-alt"></i></a>
-                                            <a data-toggle="tab" href="#liton_tab_1_3">Produk detail <i class="fas fa-plus"></i></a>
+                                            @if(!empty(Auth::user()) && Auth::user()->user_type == 'Penjual' || Auth::user()->user_type == 'Admin')
+                                            <a data-toggle="tab" href="#liton_tab_1_2">Product <i class="fas fa-file-alt"></i></a>
+                                            <a data-toggle="tab" href="#liton_tab_1_3">Product detail <i class="fas fa-plus"></i></a>
                                             @elseif(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
-                                            <a data-toggle="tab" href="#liton_tab_1_4">Wishlist<i class="bi bi-heart"></i></a>
+                                            <a data-toggle="tab" href="#liton_tab_1_4">Wishlist<i class="fas fa-heart"></i></a>
                                             @endif
-                                            <a data-toggle="tab" href="#">Notice <i class="bi bi-bell"></i></a>
+                                            @if(!empty(Auth::user()) && Auth::user()->user_type == 'Admin')
+                                            <a data-toggle="tab" href="#">User Management <i class="fas fa-user"></i></a>
+                                            @endif
+                                            <a data-toggle="tab" href="#">Notice <i class="fas fa-bell"></i></a>
                                             <a data-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
                                             <a href="{{ route('logout') }}">Logout <i class="fas fa-sign-out-alt"></i></a>
                                         </div>
