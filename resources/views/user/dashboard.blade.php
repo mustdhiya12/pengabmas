@@ -165,11 +165,7 @@
                                                                                 <div class="product-price">
                                                                                   <h5 class="card-title">{{$product->produk_name}}</h5>
                                                                                   <hr>
-                                                                                  @if ($product->min_price <= 999999)
-                                                                                      <p class="card-text" style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}} <br> <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price * 2}}</s></p>
-                                                                                  @else
-                                                                                    <p class="card-text" style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}} <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price * 2}}</s></p>
-                                                                                  @endif
+                                                                                  <p class="card-text" style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}} <br> <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price * 2}}</s></p>
                                                                                 </div>
                                                                                 <hr style="color: rgb(247, 161, 62); height: 1.5px;">
                                                                                 <span>
