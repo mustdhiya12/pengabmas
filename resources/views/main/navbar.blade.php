@@ -1,8 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
-@php
-$cookieValue = request()->cookie(rand());
-@endphp
+
 
 <head>
     <meta charset="utf-8">

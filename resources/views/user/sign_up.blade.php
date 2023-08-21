@@ -1,6 +1,4 @@
-@if(Auth::id())
 
-@else
 <!DOCTYPE html>
 <html>
 
