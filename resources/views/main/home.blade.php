@@ -234,9 +234,7 @@
         </div>
         <div id="loadMoreBtnContainer" class="btn-wrapper animated text-center mt-4">
             @if($products->hasMorePages())
-            <a id="loadMoreBtn" class="btn theme-btn-2 btn btn-effect-2 text-uppercase"
-                style="background-color: rgb(247, 161, 62);" data-page="{{ $products->currentPage() + 1 }}">Load
-                More</a>
+            <a id="loadMoreBtn" class="btn theme-btn-2 btn btn-effect-2 text-uppercase" style="background-color: rgb(247, 161, 62);" data-page="{{ $products->currentPage() + 1 }}">Load More</a>
             @else
             <p>No more products to load</p>
             @endif
