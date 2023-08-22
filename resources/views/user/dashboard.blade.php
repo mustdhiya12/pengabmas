@@ -153,6 +153,14 @@
                                                                       @endif
                                                                       <div class="row" >
                                                                       @foreach($users as $product)
+                                                                      @php
+                                                                      $produk_name = $product->produk_name;
+                                                                      $max_length = 30;
+                                                          
+                                                                      if (strlen($produk_name) > $max_length) {
+                                                                      $produk_name = substr($produk_name, 0, $max_length) . '<span style="color: gray;">...</span>';
+                                                                      }
+                                                                      @endphp
                                                                         <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
                                                                           <div class="card w-100 my-2 shadow-2-strong">
                                                                             @foreach (explode('|',$product->gambar) as $key => $fruit)

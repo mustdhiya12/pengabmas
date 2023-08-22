@@ -179,7 +179,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6">
                     <div class="ltn__product-item ltn__product-item-3 text-left">
                         <div class="product-img">
-                            <a href="/produk/{{ $product->id }}">
+                            <a href="/produk/{{ $product->id }}" style="display: block; text-decoration: none;">
                                 @foreach (explode('|', $product->gambar) as $key => $fruit)
                                 @if ($key === 0)
                                 <img src="{{ asset('gambar/'.$fruit) }}" class="card-img-top"
@@ -195,16 +195,6 @@
                             </div>
                             <div class="product-hover-action">
                                 <ul>
-                                    <li>
-                                        <a href="/produk/{{ $product->id }}">
-                                            <i class="far fa-eye"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/produk/{{ $product->id }}">
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </a>
-                                    </li>
                                     @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
                                     <li>
                                         <a href="#">
