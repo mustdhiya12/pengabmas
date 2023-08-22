@@ -8156,6 +8156,12 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   -webkit-box-shadow: var(--ltn__box-shadow-1);
   box-shadow: var(--ltn__box-shadow-1); }
 
+.preview-img {
+    width: 568px;
+    height: 568px;
+    object-fit: contain;
+}
+
 .ltn__feature-item-box-wrap-2 {
   display: -webkit-box;
   display: -ms-flexbox;

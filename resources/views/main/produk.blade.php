@@ -35,7 +35,7 @@ use App\Models\likes_pro;
                             <div class="carousel-inner">
                                 @foreach (explode('|',$mainpolopot->gambar) as $key => $fruit)
                                 <div class="carousel-item @if ($key == 0) active @endif">
-                                    <img src="{{ asset('gambar/'.$fruit) }}" class="d-block w-100">
+                                    <img src="{{ asset('gambar/'.$fruit) }}" class="d-block w-100 preview-img">
                                 </div>
                                 @endforeach
                             </div>
