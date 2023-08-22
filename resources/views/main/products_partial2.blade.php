@@ -38,7 +38,6 @@
                                 </ul>
                             </div>
                         </div>
-<<<<<<< Updated upstream
                     </div>
                     <div class="product-info">
                         
@@ -47,7 +46,6 @@
                         <div class="product-price">
                             <span style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}}</span><br>
                             <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price * 2}}</s>
-=======
                         <div class="product-info">
                             <div class="product-ratting">
                                 <ul>
@@ -66,7 +64,6 @@
                                 <span style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}}</span><br>
                                 <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price * 2}}</s>
                             </div>
->>>>>>> Stashed changes
                         </div>
                     </div>
                 </div>
