@@ -186,6 +186,18 @@ Route::get('/load-more-products', [MainController::class, 'loadMoreProducts'])->
 Route::get('/load-more-products2', [MainController::class, 'loadMoreProducts2'])->name('load.more.products2');
 
 
+// profile:
+Route::get('/profile_fauzan', function () {
+    return view('main.profile_fauzan');  
+})->name('main.fauzan');
+
+Route::get('/profile_pandu', function () {
+    return view('main.pandu');  
+})->name('main.pandu');
+
+Route::get('/profile_haikal', function () {
+    return view('main.haikal');  
+})->name('main.haikal');
 
 // Route Error
 Route::fallback(function(){
