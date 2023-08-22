@@ -117,7 +117,7 @@
                                                                       @endif
                                                                       <div class="row" >
                                                                       @foreach($users as $product)
-                                                                        @include('main.products_partial2', ['products' => $users])
+                                                                        @include('main.products_partial3', ['products' => $users])
                                                                       @endforeach
                                                                       </div>
                                                                     </div>
