@@ -12,7 +12,7 @@
     <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         <div class="ltn__product-item ltn__product-item-3 text-left">
             <div class="product-img">
-                <a href="/produk/{{ $product->id }}">
+                <a href="/produk/{{ $product->id }}" style="display: block; text-decoration: none;">
                     @foreach (explode('|', $product->gambar) as $key => $fruit)
                     @if ($key === 0)
                     <img src="{{ asset('gambar/'.$fruit) }}" class="card-img-top" style="aspect-ratio: 1 / 1" />
@@ -21,21 +21,12 @@
                 </a>
                 <div class="product-badge">
                     <ul>
-                        <li class="sale-badge" style="background-color: rgb(247, 161, 62);">-{{rand(1, 90)}}%</li>
+                        <li class="sale-badge" style="background-color: rgb(247, 161, 62);">-{{rand(1,
+                                        90)}}%</li>
                     </ul>
                 </div>
                 <div class="product-hover-action">
                     <ul>
-                        <li>
-                            <a href="/produk/{{ $product->id }}">
-                                <i class="far fa-eye"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/produk/{{ $product->id }}">
-                                <i class="fas fa-shopping-cart"></i>
-                            </a>
-                        </li>
                         @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
                         <li>
                             <a href="#">
@@ -62,9 +53,8 @@
                 <h2 class="product-title"><a href="/produk/{{ $product->id }}">{!! $produk_name !!}</a></h2>
                 <div class="product-price">
                     <span style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}}</span><br>
-                    @if ($product->discounted_price)
-                    <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price * 2}}</s>
-                    @endif
+                    <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price
+                                    * 2}}</s>
                 </div>
             </div>
         </div>
