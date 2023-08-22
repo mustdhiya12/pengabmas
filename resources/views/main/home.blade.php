@@ -864,7 +864,7 @@
                         page++;
 
                         if (!hasMorePages) {
-                            $("#loadMoreBtnContainer").html("<button class='btn theme-btn-2 btn btn-effect-2 text-uppercase'><a href='{{ route('main.shop') }}'><p>Click Here for many interesting product</p><a></button>");
+                            $("#loadMoreBtnContainer").html("<div class='btn-wrapper mt-0 mb-0'><a href=\"{{ route('main.shop') }}\" style='text-decoration: none;'><button class='btn btn-lg btn-block btn-transparent btn-effect-4 text-uppercase' style='color: #000; background-color: #fff;' onmouseover=\"this.style.color='#fff'; this.style.backgroundColor='#000';\" onmouseout=\"this.style.color='#000'; this.style.backgroundColor='#fff';\">Click Here for many interesting product</button></a></div>");
                         }
                     } else {
                         $("#loadMoreBtnContainer").html("<p>Error loading products</p>");
@@ -889,7 +889,7 @@
         function hideLoadMoreBtn() {
             // Sembunyikan tombol "Load More" jika tidak ada produk yang tersisa saat halaman dimuat
             if (!hasMorePages) {
-                $("#loadMoreBtnContainer").html("<button href='{{ route('main.shop') }}'><p>Click Here for many interesting product</p></button>");
+                $("#loadMoreBtnContainer").html("<div class='btn-wrapper mt-0 mb-0'><a href=\"{{ route('main.shop') }}\" style='text-decoration: none;'><button class='btn btn-lg btn-block btn-transparent btn-effect-4 text-uppercase' style='color: #000; background-color: #fff;' onmouseover=\"this.style.color='#fff'; this.style.backgroundColor='#000';\" onmouseout=\"this.style.color='#000'; this.style.backgroundColor='#fff';\">Click Here for many interesting product</button></a></div>");
             }
         }
     </script>

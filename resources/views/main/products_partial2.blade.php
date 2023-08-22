@@ -11,19 +11,40 @@
             $produk_name = substr($produk_name, 0, $max_length) . '<span style="color: gray;">...</span>';
             }
             @endphp
-            <div class="col-xl-4 col-sm-4 col-5">
+            <div class="col-xl-3 col-sm-5 col-5">
                 <div class="ltn__product-item ltn__product-item-3 text-center">
                     <div class="product-img">
-                        <a href="/produk/{{ $product->id }}" style="display: block; text-decoration: none;">
+                        <a href="/produk/{{ $product->id }}">
                             @foreach (explode('|', $product->gambar) as $key => $fruit)
-                                @if ($key === 0)
-                                    <img src="{{ asset('gambar/'.$fruit) }}" class="card-img-top" style="aspect-ratio: 1 / 1" />
-                                @endif
+                            @if ($key === 0)
+                            <img src="{{ asset('gambar/'.$fruit) }}" class="card-img-top" style="aspect-ratio: 1 / 1" />
+                            @endif
                             @endforeach
                         </a>
                         <div class="product-badge">
                             <ul>
                                 <li class="sale-badge" style="background-color: rgb(247, 161, 62);">-{{rand(1, 90)}}%</li>
+                            </ul>
+                        </div>
+                        <div class="product-hover-action">
+                            <ul>
+                                <li>
+                                    <a href="/produk/{{ $product->id }}">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/produk/{{ $product->id }}">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </a>
+                                </li>
+                                @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
+                                <li>
+                                    <a href="#">
+                                        <i class="far fa-heart"></i>
+                                    </a>
+                                </li>
+                                @endif
                             </ul>
                         </div>
                     </div>
