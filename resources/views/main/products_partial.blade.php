@@ -38,17 +38,6 @@
                 </div>
             </div>
             <div class="product-info">
-                <div class="product-ratting">
-                    <ul>
-                        <!-- Tambahkan logika untuk menampilkan bintang sesuai peringkat produk jika ada -->
-                        @for ($i = 0; $i < $product->rating; $i++)
-                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                            @endfor
-                            @for ($i = 0; $i < 5 - $product->rating; $i++)
-                                <li><a href="#"><i class="far fa-star"></i></a></li>
-                                @endfor
-                    </ul>
-                </div>
                 <hr>
                 <h2 class="product-title"><a href="/produk/{{ $product->id }}">{!! $produk_name !!}</a></h2>
                 <div class="product-price">

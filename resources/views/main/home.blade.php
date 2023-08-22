@@ -206,9 +206,8 @@
                             </div>
                         </div>
                         <div class="product-info">
-                            <div class="product-ratting">
+                            <!-- <div class="product-ratting">
                                 <ul>
-                                    <!-- Tambahkan logika untuk menampilkan bintang sesuai peringkat produk jika ada -->
                                     @for ($i = 0; $i < $product->rating; $i++)
                                         <li><a href="#"><i class="fas fa-star"></i></a></li>
                                         @endfor
@@ -216,7 +215,7 @@
                                             <li><a href="#"><i class="far fa-star"></i></a></li>
                                             @endfor
                                 </ul>
-                            </div>
+                            </div> -->
                             <hr>
                             <h2 class="product-title"><a href="/produk/{{ $product->id }}">{!! $produk_name !!}</a></h2>
                             <div class="product-price">
@@ -266,36 +265,36 @@
     $testimonials = [
     [
     'image' => "icon/pru.png",
-    'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-    dolore magna aliqua.',
+    'content' => 'Kontinuitas Layanan: Stabilitas aplikasi kita luar biasa. Penggunaan metode otomatisasi dan deployment yang 
+    terencana telah membantu memastikan bahwa layanan tetap tersedia dan berjalan lancar tanpa hambatan besar.',
     'name' => 'RUDIMAN, S.KOM., M.SC.',
     'title' => 'Concept Developer',
     ],
     [
     'image' => "icon/pru.png",
-    'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-    dolore magna aliqua.',
+    'content' => 'Skalabilitas yang Mumpuni: Saya senang melihat bagaimana tim DevOps berhasil mengatasi lonjakan lalu lintas yang besar tanpa adanya kendala. 
+    Kemampuan kalian untuk merancang lingkungan yang dapat diskalakan dengan cepat adalah aset berharga bagi keseluruhan bisnis.',
     'name' => 'ROFILDE HASUDUNGAN, S.Kom., M.Sc',
     'title' => 'DevOps Engineer',
     ],
     [
     'image' => "icon/pro.png",
-    'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-    dolore magna aliqua.',
+    'content' => 'Kerja Tim yang Solid: Kolaborasi yang harmonis antara tim DevOps dengan tim pengembang lainnya terlihat jelas dalam hasil akhir. 
+    Pemahaman kalian tentang kebutuhan pengembangan dan kemampuan untuk memenuhi permintaan dengan cepat sangat diapresiasi.',
     'name' => 'Muhammad Fauzan Nur Ilham',
     'title' => 'Software Developer/Programmer',
     ],
     [
     'image' => "icon/pri.png",
-    'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-    dolore magna aliqua.',
+    'content' => 'Peningkatan Berkelanjutan: Saya senang melihat kalian terus mencari cara untuk meningkatkan proses deployment dan efisiensi kerja. 
+    Inisiatif untuk menerapkan praktik CI/CD baru dan teknologi terbaru adalah contoh nyata dari komitmen kalian terhadap inovasi.',
     'name' => 'Muhammad Haikal Mahardika',
     'title' => 'Software Developer/Programmer',
     ],
     [
     'image' => "icon/pri.png",
-    'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-    dolore magna aliqua.',
+    'content' => 'Monitoring dan Analisis yang Canggih: Implementasi sistem monitoring dan analisis kalian memungkinkan kami untuk mengawasi kinerja aplikasi secara real-time. 
+    Ini memudahkan kami untuk mendeteksi potensi masalah dan mengambil tindakan pencegahan sebelum pengguna terpengaruh.',
     'name' => 'Pandu Wirayuda',
     'title' => 'Software Developer/Programmer',
     ],
@@ -370,7 +369,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title-area ltn__section-title-2 text-center">
-                        <h1 class="section-title white-color---">Latest Blog</h1>
+                        <h6 class="section-subtitle ltn__secondary-color">// Introduction</h6>
+                        <h1 class="section-title white-color---">Profile Blog<span>.</span></h1>
                     </div>
                 </div>
             </div>
