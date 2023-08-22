@@ -28,16 +28,6 @@
                         </div>
                         <div class="product-hover-action">
                             <ul>
-                                <li>
-                                    <a href="/produk/{{ $product->id }}">
-                                        <i class="far fa-eye"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/produk/{{ $product->id }}">
-                                        <i class="fas fa-shopping-cart"></i>
-                                    </a>
-                                </li>
                                 @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
                                 <li>
                                     <a href="#">
