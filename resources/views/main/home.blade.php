@@ -441,7 +441,7 @@
                         ],
                         [
                         'icon' => 'img/icons/icon-img/14.png',
-                        'title' => 'Daily Shopping Inspiration',
+                        'title' => 'Daily Inspiration',
                         'description' => 'Daily dose of shopping inspiration to elevate your retail experience.',
                         ],
                         ];
