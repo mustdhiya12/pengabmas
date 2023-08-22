@@ -355,31 +355,23 @@
     'image' => 'img/blog/1.jpg',
     'author' => 'Admin',
     'category' => 'Services',
-    'title' => 'Common Engine Oil Problems and Solutions',
-    'date' => 'June 24, 2020',
+    'title' => 'Profile Muhammad Fauzan Nur Ilham',
+    'date' => 'Agt 21, 2024',
     ],
     [
     'image' => 'img/blog/1.jpg',
     'author' => 'Admin',
     'category' => 'Services',
-    'title' => 'Common Engine Oil Problems and Solutions',
-    'date' => 'June 24, 2020',
+    'title' => 'Profile Pandu Wirayuda',
+    'date' => 'Agt 21, 2024',
     ],
     [
     'image' => 'img/blog/1.jpg',
     'author' => 'Admin',
     'category' => 'Services',
-    'title' => 'Common Engine Oil Problems and Solutions',
-    'date' => 'June 24, 2020',
+    'title' => 'Profile Muhammad Haikal Mahardika',
+    'date' => 'Agt 21, 2024',
     ],
-    [
-    'image' => 'img/blog/1.jpg',
-    'author' => 'Admin',
-    'category' => 'Services',
-    'title' => 'Common Engine Oil Problems and Solutions',
-    'date' => 'June 24, 2020',
-    ],
-    // Tambahkan data blog lainnya di sini...
     ];
     @endphp
     <div class="ltn__blog-area pt-115 pb-70">
@@ -445,22 +437,22 @@
                         [
                         'icon' => 'img/icons/icon-img/11.png',
                         'title' => 'Curated Products',
-                        'description' => 'Provide Curated Products for all product over $100',
+                        'description' => 'Curated products carefully selected to offer the best quality and variety',
                         ],
                         [
                         'icon' => 'img/icons/icon-img/12.png',
                         'title' => 'Handmade',
-                        'description' => 'We ensure the product quality that is our main goal',
+                        'description' => 'Unique handmade creations crafted with skill and passion.',
                         ],
                         [
                         'icon' => 'img/icons/icon-img/13.png',
-                        'title' => 'Natural Food',
-                        'description' => 'Return product within 3 days for any product you buy',
+                        'title' => 'High Quality',
+                        'description' => 'Exceptional products distinguished by their superior quality.',
                         ],
                         [
                         'icon' => 'img/icons/icon-img/14.png',
-                        'title' => 'Free home delivery',
-                        'description' => 'We ensure the product quality that you can trust easily',
+                        'title' => 'Daily Shopping Inspiration',
+                        'description' => 'Daily dose of shopping inspiration to elevate your retail experience.',
                         ],
                         ];
                         @endphp
@@ -855,7 +847,7 @@
     <script>
         var page = 2; // Mulai dari halaman 2, mengasumsikan halaman 1 sudah dimuat
         var loading = false;
-        var hasMorePages = {{ $products-> hasMorePages() ? 'true' : 'false' }};
+        var hasMorePages = {{ $products -> hasMorePages() ? 'true' : 'false' }};
 
         function loadMoreProducts() {
             if (loading || !hasMorePages) {
