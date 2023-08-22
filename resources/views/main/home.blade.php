@@ -342,25 +342,28 @@
     // Contoh inisialisasi array blog (ganti ini dengan data yang sesuai dari database atau sumber lainnya)
     $blogs = [
     [
-    'image' => 'img/blog/1.jpg',
+    'image' => 'picture/1.png',
     'author' => 'Admin',
-    'category' => 'Services',
+    'category' => 'DevOps Engineer',
     'title' => 'Profile Muhammad Fauzan Nur Ilham',
     'date' => 'Agt 21, 2024',
+    'route' => 'main.home' 
     ],
     [
-    'image' => 'img/blog/1.jpg',
+    'image' => 'picture/2.png',
     'author' => 'Admin',
-    'category' => 'Services',
+    'category' => 'Software Developer/Programmer',
     'title' => 'Profile Pandu Wirayuda',
     'date' => 'Agt 21, 2024',
+    'route' => 'main.home' 
     ],
     [
-    'image' => 'img/blog/1.jpg',
+    'image' => 'picture/3.png',
     'author' => 'Admin',
-    'category' => 'Services',
+    'category' => 'Software Developer/Programmer',
     'title' => 'Profile Muhammad Haikal Mahardika',
     'date' => 'Agt 21, 2024',
+    'route' => 'main.home' 
     ],
     ];
     @endphp
@@ -379,7 +382,7 @@
                 <div class="col-lg-12">
                     <div class="ltn__blog-item ltn__blog-item-3">
                         <div class="ltn__blog-img">
-                            <a href="blog-details.html"><img src="{{ $blog['image'] }}" alt="#"></a>
+                            <a href="{{ route($blog['route']) }}"><img src="{{ $blog['image'] }}" alt="#"></a>
                         </div>
                         <div class="ltn__blog-brief">
                             <div class="ltn__blog-meta">
@@ -392,7 +395,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <h3 class="ltn__blog-title"><a href="blog-details.html">{{ $blog['title'] }}</a></h3>
+                            <h3 class="ltn__blog-title"><a href="{{ route($blog['route']) }}">{{ $blog['title'] }}</a></h3>
                             <div class="ltn__blog-meta-btn">
                                 <div class="ltn__blog-meta">
                                     <ul>
@@ -401,7 +404,7 @@
                                     </ul>
                                 </div>
                                 <div class="ltn__blog-btn">
-                                    <a href="blog-details.html">Read more</a>
+                                    <a href="{{ route($blog['route']) }}">Read more</a>
                                 </div>
                             </div>
                         </div>
