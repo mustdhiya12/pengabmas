@@ -170,7 +170,7 @@
                 @foreach ($products as $product)
                 @php
                 $produk_name = $product->produk_name;
-                $max_length = 30;
+                $max_length = 23;
 
                 if (strlen($produk_name) > $max_length) {
                 $produk_name = substr($produk_name, 0, $max_length) . '<span style="color: gray;">...</span>';
