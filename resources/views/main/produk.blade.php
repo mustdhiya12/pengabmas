@@ -12,7 +12,13 @@ use App\Models\likes_pro;
     <meta name="author" content="" />
     <title>UNICA - {{$mainpolopot->produk_name}}</title>
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=649a41241b502e0012c3f3b9&product=inline-share-buttons' async='async'></script>
-    
+    <style>
+    .preview-img {
+        width: 568px;
+        height: 568px;
+        object-fit: contain;
+    }
+    </style>
 
 </head>
 
@@ -34,7 +40,7 @@ use App\Models\likes_pro;
                             </div>
                             <div class="carousel-inner">
                                 @foreach (explode('|',$mainpolopot->gambar) as $key => $fruit)
-                                <div class="carousel-item @if ($key == 0) active @endif">
+                                <div class="preview-img carousel-item @if ($key == 0) active @endif">
                                     <img src="{{ asset('gambar/'.$fruit) }}" class="d-block w-100 preview-img">
                                 </div>
                                 @endforeach
