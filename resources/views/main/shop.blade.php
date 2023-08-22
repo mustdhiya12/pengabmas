@@ -59,8 +59,8 @@
                     <div class="ltn__shop-options">
                         <ul>
                             <li>
-                                <div class="showing-product-number text-center">
-                                    <span>Showing {{ count($products) }} products :</span>
+                                <div class="showing-product-number text-right">
+                                    <span id="showing-product-count">Showing {{ count($products) }} results:</span>
                                 </div>
                             </li>
                         </ul>
@@ -592,10 +592,14 @@
                         if (!hasMorePages) {
                             $("#loadMoreBtnContainer").html("<p>No more products to load</p>");
                         }
+
+                        // Perbarui jumlah produk yang ditampilkan
+                        $("#showing-product-count").text("Showing " + $("#product-list .ltn__product-item").length + " results");
                     } else {
                         $("#loadMoreBtnContainer").html("<p>Error loading products</p>");
                     }
                 },
+
                 complete: function() {
                     loading = false;
                     $("#loadMoreBtn").html("Load More");
@@ -612,10 +616,11 @@
         });
 
         function hideLoadMoreBtn() {
-            if (!hasMorePages) {
-                $("#loadMoreBtnContainer").html("<p>No more products to load</p>");
+            if ($("#product-list .ltn__product-item").length === 0) {
+                $("#loadMoreBtnContainer").html("<p>No products available</p>");
             }
         }
+
     </script>
 </body>
 </html>
