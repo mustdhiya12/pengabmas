@@ -14,7 +14,7 @@
             <div class="col-xl-3 col-sm-5 col-5">
                 <div class="ltn__product-item ltn__product-item-3 text-center">
                     <div class="product-img">
-                        <a href="/produk/{{ $product->id }}">
+                        <a href="/produk/{{ $product->id }}" style="display: block;">
                             @foreach (explode('|', $product->gambar) as $key => $fruit)
                             @if ($key === 0)
                             <img src="{{ asset('gambar/'.$fruit) }}" class="card-img-top" style="aspect-ratio: 1 / 1" />
