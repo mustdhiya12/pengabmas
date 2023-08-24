@@ -33,7 +33,7 @@ Route::get('/dashboard', [MainController::class, 'get_data_produk_profile'], fun
 Route::get('/dashboard/admin/transaksi', [UserController::class, 'transaksi_main_admin_kelola'])->middleware('auth')->name('admin.transaksi');
 
 // Route veiw For function notices
-Route::get('/dashboard/noatices', [UserController::class, 'notices'])->middleware('auth')->name('dashboard.notices');
+Route::get('/dashboard/notices', [UserController::class, 'notices'])->middleware('auth')->name('dashboard.notices');
 
 // Route veiw For function poin_manual
 Route::get('/poin/manual', [UserController::class, 'poin_manual'])->middleware('auth')->name('poin.manual');
