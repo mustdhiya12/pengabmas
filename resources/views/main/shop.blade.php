@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Unica - Shop</title>
+    <title>Unica - Belanja</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,13 +35,13 @@
                 <div class="col-lg-12">
                     <div class="ltn__breadcrumb-inner ltn__breadcrumb-inner-2 justify-content-between">
                         <div class="section-title-area ltn__section-title-2">
-                            <h6 class="section-subtitle ltn__secondary-color">//  Welcome to our company</h6>
-                            <h1 class="section-title white-color">Shop</h1>
+                            <h6 class="section-subtitle ltn__secondary-color">//  Selamat Datang dihalaman</h6>
+                            <h1 class="section-title white-color">Belanja</h1>
                         </div>
                         <div class="ltn__breadcrumb-list">
                             <ul>
-                                <li><a class="pip" href="{{ route('main.home')}}">Home</a></li>
-                                <li>Shop</li>
+                                <li><a class="pip" href="{{ route('main.home')}}">Rumah</a></li>
+                                <li>Belanja</li>
                             </ul>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                         <ul>
                             <li>
                                 <div class="showing-product-number text-right">
-                                    <span id="showing-product-count">Showing {{ count($products) }} results:</span>
+                                    <span id="showing-product-count">Menampilkan {{ count($products) }} Hasil:</span>
                                 </div>
                             </li>
                         </ul>
@@ -148,23 +148,23 @@
                         $features = [
                         [
                         'icon' => 'img/icons/icon-img/11.png',
-                        'title' => 'Curated Products',
-                        'description' => 'Curated products carefully selected to offer the best quality and variety',
+                        'title' => 'Produk Terpilih',
+                        'description' => 'Produk terpilih yang dipilih dengan cermat untuk menawarkan kualitas dan variasi terbaik.',
                         ],
                         [
                         'icon' => 'img/icons/icon-img/12.png',
-                        'title' => 'Handmade',
-                        'description' => 'Unique handmade creations crafted with skill and passion.',
+                        'title' => 'Buatan Tangan',
+                        'description' => 'Kreasi unik buatan tangan yang dibuat dengan keterampilan dan semangat.',
                         ],
                         [
                         'icon' => 'img/icons/icon-img/13.png',
-                        'title' => 'High Quality',
-                        'description' => 'Exceptional products distinguished by their superior quality.',
+                        'title' => 'Kualitas Tinggi',
+                        'description' => 'Produk luar biasa yang dibedakan oleh kualitas unggulnya.',
                         ],
                         [
                         'icon' => 'img/icons/icon-img/14.png',
-                        'title' => 'Daily Inspiration',
-                        'description' => 'Daily dose of shopping inspiration to elevate your retail experience.',
+                        'title' => 'Inspirasi Harian',
+                        'description' => 'Dosis harian inspirasi berbelanja untuk meningkatkan pengalaman belanja Anda.',
                         ],
                         ];
                         @endphp
@@ -192,306 +192,117 @@
     </div>
     <!-- FEATURE AREA END -->
 
-
-        <!-- FOOTER AREA START -->
-        <footer class="ltn__footer-area  ">
-            <div class="footer-top-area  section-bg-1 plr--5">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-3 col-md-6 col-sm-6 col-12">
-                            <div class="footer-widget footer-about-widget">
-                                <div class="footer-logo">
-                                    <div class="site-logo">
+    <!-- FOOTER AREA START -->
+    <footer class="ltn__footer-area  ">
+        <div class="footer-top-area  section-bg-1 plr--5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-about-widget">
+                            <div class="footer-logo">
+                                <div class="site-logo">
                                     <h6 class="text-uppercase fw-bold mb-4">
                                         <a href="#">
-                                        <img src="{{ asset('icon/Icon_unican.png') }}" style="width: 32px; height: 32px; filter: grayscale(100%);">
-                                        <u style="color: grey; text-decoration: none;">
-                                            _U N I C A_
-                                        </u>
+                                            <img src="{{ asset('icon/Icon_unican.png') }}"
+                                                style="width: 32px; height: 32px; filter: grayscale(100%);">
+                                            <u style="color: grey; text-decoration: none;">
+                                                _U N I C A_
+                                            </u>
                                         </a>
                                     </h6>
-                                    </div>
-                                </div>
-                                <div class="footer-address">
-                                    <ul>
-                                        <li>
-                                            <div class="footer-address-icon">
-                                                <i class="icon-placeholder"></i>
-                                            </div>
-                                            <div class="footer-address-info">
-                                                <p>Jl. Ir. H. Juanda No.15, Sidodadi, Kec. Samarinda Ulu, Kota Samarinda, Kalimantan Timur 75124</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="footer-address-icon">
-                                                <i class="icon-call"></i>
-                                            </div>
-                                            <div class="footer-address-info">
-                                                <p><a href="tel:+6281254888102"> + 62 812 548 881 02</a></p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="footer-address-icon">
-                                                <i class="icon-mail"></i>
-                                            </div>
-                                            <div class="footer-address-info">
-                                                <p><a href="mailto:mustfauzan0@gmail.com">mustfauzan0@gmail.com</a></p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="ltn__social-media mt-20">
-                                    <ul>
-                                        <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
-                                        <li><a href="#" title="Youtube"><i class="fab fa-youtube"></i></a></li>
-                                    </ul>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-2 col-md-6 col-sm-6 col-12 offset-xl-4">
-                            <div class="footer-widget footer-menu-widget clearfix">
-                                <h4 class="footer-title">Company</h4>
-                                <div class="footer-menu">
-                                    <ul>
-                                        <li><a href="{{route('main.pr')}}">FAQ</a></li>
-                                        <li><a href="{{route('main.pr')}}">Contact us</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-xl-3 col-md-6 col-sm-12 col-12 ">
-                            <div class="footer-widget footer-newsletter-widget">
-                                <h4 class="footer-title">Contact we</h4>
-                                <p>contact us if there is a problem.</p>
-                                <div class="footer-newsletter">
-                                    <form action="#">
-                                        <input type="email" name="email" placeholder="Email*">
-                                        <div class="btn-wrapper">
-                                            <button class="theme-btn-1 btn" type="submit"><i class="fas fa-location-arrow"></i></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="ltn__copyright-area ltn__copyright-2 section-bg-2  ltn__border-top-2--- plr--5">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6 col-12">
-                            <div class="ltn__copyright-design clearfix">
-                                <p>All Rights Reserved @UNICA by Muhammad Fauzan Nur Ilham <span>2023</span></p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12 align-self-center">
-                            <div class="ltn__copyright-menu text-right">
+                            <div class="footer-address">
                                 <ul>
-                                    <li><a href="#">Terms & Conditions</a></li>
-                                    <li><a href="#">Claim</a></li>
-                                    <li><a href="{{ route('main.pr') }}">Privacy & Policy</a></li>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-placeholder"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p>Jl. Ir. H. Juanda No.15, Sidodadi, Kec. Samarinda Ulu, Kota Samarinda,
+                                                Kalimantan Timur 75124</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-call"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p><a href="tel:+6281254888102"> + 62 812 548 881 02</a></p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-mail"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p><a href="mailto:mustfauzan0@gmail.com">mustfauzan0@gmail.com</a></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="ltn__social-media mt-20">
+                                <ul>
+                                    <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="#" title="Youtube"><i class="fab fa-youtube"></i></a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </footer>
-        <!-- FOOTER AREA END -->
-        
-        <!-- MODAL AREA START (Quick View Modal) -->
-        <div class="ltn__modal-area ltn__quick-view-modal-area">
-            <div class="modal fade" id="quick_view_modal" tabindex="-1">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                <!-- <i class="fas fa-times"></i> -->
-                            </button>
+                    <div class="col-xl-2 col-md-6 col-sm-6 col-12 offset-xl-4">
+                        <div class="footer-widget footer-menu-widget clearfix">
+                            <h4 class="footer-title">Pusat Perusahaan</h4>
+                            <div class="footer-menu">
+                                <ul>
+                                    <li><a href="{{route('main.pr')}}">FAQ</a></li>
+                                    <li><a href="{{route('main.pr')}}">Hubungi kami</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            <div class="ltn__quick-view-modal-inner">
-                                <div class="modal-product-item">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-12">
-                                            <div class="modal-product-img">
-                                                <img src="img/product/4.png" alt="#">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="modal-product-info">
-                                                <div class="product-ratting">
-                                                    <ul>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                        <li class="review-total"> <a href="#"> ( 95 Reviews )</a></li>
-                                                    </ul>
-                                                </div>
-                                                <h3>Vegetables Juices</h3>
-                                                <div class="product-price">
-                                                    <span>$149.00</span>
-                                                    <del>$165.00</del>
-                                                </div>
-                                                <div class="modal-product-meta ltn__product-details-menu-1">
-                                                    <ul>
-                                                        <li>
-                                                            <strong>Categories:</strong>
-                                                            <span>
-                                                                <a href="#">Parts</a>
-                                                                <a href="#">Car</a>
-                                                                <a href="#">Seat</a>
-                                                                <a href="#">Cover</a>
-                                                            </span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="ltn__product-details-menu-2">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="cart-plus-minus">
-                                                                <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" class="theme-btn-1 btn btn-effect-1" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
-                                                                <i class="fas fa-shopping-cart"></i>
-                                                                <span>ADD TO CART</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="ltn__product-details-menu-3">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#" class="" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                                <i class="far fa-heart"></i>
-                                                                <span>Add to Wishlist</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" class="" title="Compare" data-toggle="modal" data-target="#quick_view_modal">
-                                                                <i class="fas fa-exchange-alt"></i>
-                                                                <span>Compare</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <hr>
-                                                <div class="ltn__social-media">
-                                                    <ul>
-                                                        <li>Share:</li>
-                                                        <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                                        <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                                        <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
-                                                        <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                    </div>
 
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+                    <div class="col-xl-3 col-md-6 col-sm-12 col-12 ">
+                        <div class="footer-widget footer-newsletter-widget">
+                            <h4 class="footer-title">Hubungi kami</h4>
+                            <p>Hubungi kami jika ada sebuah masalah.</p>
+                            <div class="footer-newsletter">
+                                <form action="#">
+                                    <input type="email" name="email" placeholder="Email*">
+                                    <div class="btn-wrapper">
+                                        <button class="theme-btn-1 btn" type="submit"><i
+                                                class="fas fa-location-arrow"></i></button>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- MODAL AREA END -->
-
-        <!-- MODAL AREA START (Add To Cart Modal) -->
-        <div class="ltn__modal-area ltn__add-to-cart-modal-area">
-            <div class="modal fade" id="add_to_cart_modal" tabindex="-1">
-                <div class="modal-dialog modal-md" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+        <div class="ltn__copyright-area ltn__copyright-2 section-bg-2  ltn__border-top-2--- plr--5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="ltn__copyright-design clearfix">
+                            <p>Semua Hak Dilindungi Undang-Undang @UNICA oleh Muhammad Fauzan Nur Ilham <span>2023</span></p>
                         </div>
-                        <div class="modal-body">
-                            <div class="ltn__quick-view-modal-inner">
-                                <div class="modal-product-item">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="modal-product-img">
-                                                <img src="img/product/1.png" alt="#">
-                                            </div>
-                                            <div class="modal-product-info">
-                                                <h5><a href="product-details.html">Vegetables Juices</a></h5>
-                                                <p class="added-cart"><i class="fa fa-check-circle"></i> Successfully added to your Cart</p>
-                                                <div class="btn-wrapper">
-                                                    <a href="cart.html" class="theme-btn-1 btn btn-effect-1">View Cart</a>
-                                                    <a href="checkout.html" class="theme-btn-2 btn btn-effect-2">Checkout</a>
-                                                </div>
-                                            </div>
-                                            <!-- additional-info -->
-                                            <div class="additional-info d-none---">
-                                                <p>We want to give you <b>10% discount</b> for your first order, <br> Use (LoveBroccoli) discount code at checkout</p>
-                                                <div class="payment-method">
-                                                    <img src="img/icons/payment.png" alt="#">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-md-6 col-12 align-self-center">
+                        <div class="ltn__copyright-menu text-right">
+                            <ul>
+                                <li><a href="#">Syarat & Ketentuan</a></li>
+                                <li><a href="#">Tuntutan</a></li>
+                                <li><a href="{{ route('main.pr') }}">Kebijakan Privasi</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- MODAL AREA END -->
-
-        <!-- MODAL AREA START (Wishlist Modal) -->
-        <div class="ltn__modal-area ltn__add-to-cart-modal-area">
-            <div class="modal fade" id="liton_wishlist_modal" tabindex="-1">
-                <div class="modal-dialog modal-md" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="ltn__quick-view-modal-inner">
-                                <div class="modal-product-item">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="modal-product-img">
-                                                <img src="img/product/7.png" alt="#">
-                                            </div>
-                                            <div class="modal-product-info">
-                                                <h5><a href="product-details.html">Vegetables Juices</a></h5>
-                                                <p class="added-cart"><i class="fa fa-check-circle"></i> Successfully added to your Wishlist</p>
-                                                <div class="btn-wrapper">
-                                                    <a href="wishlist.html" class="theme-btn-1 btn btn-effect-1">View Wishlist</a>
-                                                </div>
-                                            </div>
-                                            <!-- additional-info -->
-                                            <div class="additional-info d-none">
-                                                <p>We want to give you <b>10% discount</b> for your first order, <br> Use discount code at checkout</p>
-                                                <div class="payment-method">
-                                                    <img src="img/icons/payment.png" alt="#">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- MODAL AREA END -->
+    </footer>
+    <!-- FOOTER AREA END -->
 
 </div>
 <!-- Body main wrapper end -->  
