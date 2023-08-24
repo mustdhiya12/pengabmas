@@ -13,6 +13,7 @@
             max-width: 400px;
             margin: 0 auto;
         }
+
         @media (max-width: 768px) {
             body {
                 overflow-y: auto;
@@ -33,7 +34,7 @@
     <div>
         @include('main/navbar')
     </div>
-    
+
     <!-- Utilize Cart Menu Start -->
 
 
@@ -42,6 +43,39 @@
     <!-- SLIDER AREA START (slider-3) -->
     <div class="ltn__slider-area ltn__slider-3  section-bg-1" style="padding-top:150px;">
         <div class="ltn__slide-one-active slick-slide-arrow-1 slick-slide-dots-1">
+            
+            <!-- ltn__slide-item -->
+            <div class="ltn__slide-item ltn__slide-item-3-normal">
+                <div class="ltn__slide-item-inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 align-self-center">
+                                <div class="slide-item-info">
+                                    <div class="slide-item-img ltn__slide-animation">
+                                <!-- VIDEO AREA START -->
+                                <script src="https://apis.google.com/js/api.js"></script>
+                                <div class="ltn__video-popup-area ltn__video-popup-margin">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div id="videoThumbnailDiv1" style="border-radius: 5px;" class="ltn__video-bg-img ltn__video-popup-height-600 bg-overlay-black-10-- bg-image">
+                                                    <a class="ltn__video-icon-2 ltn__video-icon-2-border" href="https://www.youtube.com/embed/Qrku0qImWyo?si=AV836sJsFFCsB7nR" data-rel="lightcase:myCollection">
+                                                        <i class="fa fa-play"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- VIDEO AREA END -->
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- ltn__slide-item -->
             <div class="ltn__slide-item ltn__slide-item-2 ltn__slide-item-3">
                 <div class="ltn__slide-item-inner">
@@ -50,15 +84,8 @@
                             <div class="col-lg-12 align-self-center">
                                 <div class="slide-item-info">
                                     <div class="slide-item-info-inner ltn__slide-animation">
-                                        <div class="slide-video mb-50 d-none">
-                                            <a class="ltn__video-icon-2 ltn__video-icon-2-border"
-                                                href="https://www.youtube.com/embed/u0Fok3DzxWQ"
-                                                data-rel="lightcase:myCollection">
-                                                <i class="fa fa-play"></i>
-                                            </a>
-                                        </div>
-                                        <h6 class="slide-sub-title animated"><img
-                                                src="{{ asset('icon/Icon_unican.png') }}" style="width: 35px;" alt="#">
+                                        
+                                        <h6 class="slide-sub-title animated"><img src="{{ asset('icon/Icon_unican.png') }}" style="width: 35px;" alt="#">
                                             100% Produk Berkualitas</h6>
                                         <h1 class="slide-title animated ">Menghubungkan Keunggulan, <br> Membuka Peluang.</h1>
                                         <div class="slide-brief animated d-none">
@@ -89,8 +116,7 @@
                             <div class="col-lg-12 align-self-center">
                                 <div class="slide-item-info">
                                     <div class="slide-item-info-inner ltn__slide-animation">
-                                        <h6 class="slide-sub-title animated"><img
-                                                src="{{ asset('icon/Icon_unican.png') }}" style="width: 35px;" alt="#">
+                                        <h6 class="slide-sub-title animated"><img src="{{ asset('icon/Icon_unican.png') }}" style="width: 35px;" alt="#">
                                             100% Produk Berkualitas</h6>
                                         <h1 class="slide-title animated ">Menghubungkan Keunggulan, <br> Membuka Peluang.</h1>
                                         <div class="slide-brief animated">
@@ -98,8 +124,7 @@
                                         </div>
                                         <div class="btn-wrapper animated">
                                             <a href="#pro" class="theme-btn-1 btn btn-effect-1 text-uppercase">Jelajahi Produk</a>
-                                            <a href="{{ route('main.pr') }}"
-                                                class="btn btn-transparent btn-effect-3 text-uppercase">PELAJARI LEBIH LANJUT</a>
+                                            <a href="{{ route('main.pr') }}" class="btn btn-transparent btn-effect-3 text-uppercase">PELAJARI LEBIH LANJUT</a>
                                         </div>
                                     </div>
                                 </div>
@@ -176,8 +201,7 @@
                             <a href="/produk/{{ $product->id }}" style="display: block; text-decoration: none;">
                                 @foreach (explode('|', $product->gambar) as $key => $fruit)
                                 @if ($key === 0)
-                                <img src="{{ asset('gambar/'.$fruit) }}" class="card-img-top"
-                                    style="aspect-ratio: 1 / 1" />
+                                <img src="{{ asset('gambar/'.$fruit) }}" class="card-img-top" style="aspect-ratio: 1 / 1" />
                                 @endif
                                 @endforeach
                             </a>
@@ -214,8 +238,7 @@
                             <h2 class="product-title"><a href="/produk/{{ $product->id }}">{!! $produk_name !!}</a></h2>
                             <div class="product-price">
                                 <span style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}}</span><br>
-                                <s
-                                    style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price
+                                <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price
                                     * 2}}</s>
                             </div>
                         </div>
@@ -240,10 +263,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div id="videoThumbnailDiv" style="border-radius: 5px;"
-                        class="ltn__video-bg-img ltn__video-popup-height-600 bg-overlay-black-10-- bg-image">
-                        <a class="ltn__video-icon-2 ltn__video-icon-2-border"
-                            href="https://www.youtube.com/embed/1A7scJbKfvY" data-rel="lightcase:myCollection">
+                    <div id="videoThumbnailDiv" style="border-radius: 5px;" class="ltn__video-bg-img ltn__video-popup-height-600 bg-overlay-black-10-- bg-image">
+                        <a class="ltn__video-icon-2 ltn__video-icon-2-border" href="https://www.youtube.com/embed/1A7scJbKfvY" data-rel="lightcase:myCollection">
                             <i class="fa fa-play"></i>
                         </a>
                     </div>
@@ -259,35 +280,35 @@
     $testimonials = [
     [
     'image' => "icon/pru.png",
-    'content' => 'Kontinuitas Layanan: Stabilitas aplikasi kita luar biasa. Penggunaan metode otomatisasi dan deployment yang 
+    'content' => 'Kontinuitas Layanan: Stabilitas aplikasi kita luar biasa. Penggunaan metode otomatisasi dan deployment yang
     terencana telah membantu memastikan bahwa layanan tetap tersedia dan berjalan lancar tanpa hambatan besar.',
     'name' => 'RUDIMAN, S.KOM., M.SC.',
     'title' => 'Concept Developer',
     ],
     [
     'image' => "icon/pru.png",
-    'content' => 'Skalabilitas yang Mumpuni: Saya senang melihat bagaimana tim DevOps berhasil mengatasi lonjakan lalu lintas yang besar tanpa adanya kendala. 
+    'content' => 'Skalabilitas yang Mumpuni: Saya senang melihat bagaimana tim DevOps berhasil mengatasi lonjakan lalu lintas yang besar tanpa adanya kendala.
     Kemampuan kalian untuk merancang lingkungan yang dapat diskalakan dengan cepat adalah aset berharga bagi keseluruhan bisnis.',
     'name' => 'ROFILDE HASUDUNGAN, S.Kom., M.Sc',
     'title' => 'DevOps Engineer',
     ],
     [
     'image' => "icon/pro.png",
-    'content' => 'Kerja Tim yang Solid: Kolaborasi yang harmonis antara tim DevOps dengan tim pengembang lainnya terlihat jelas dalam hasil akhir. 
+    'content' => 'Kerja Tim yang Solid: Kolaborasi yang harmonis antara tim DevOps dengan tim pengembang lainnya terlihat jelas dalam hasil akhir.
     Pemahaman kalian tentang kebutuhan pengembangan dan kemampuan untuk memenuhi permintaan dengan cepat sangat diapresiasi.',
     'name' => 'Muhammad Fauzan Nur Ilham',
     'title' => 'Software Developer/Programmer',
     ],
     [
     'image' => "icon/pri.png",
-    'content' => 'Peningkatan Berkelanjutan: Saya senang melihat kalian terus mencari cara untuk meningkatkan proses deployment dan efisiensi kerja. 
+    'content' => 'Peningkatan Berkelanjutan: Saya senang melihat kalian terus mencari cara untuk meningkatkan proses deployment dan efisiensi kerja.
     Inisiatif untuk menerapkan praktik CI/CD baru dan teknologi terbaru adalah contoh nyata dari komitmen kalian terhadap inovasi.',
     'name' => 'Muhammad Haikal Mahardika',
     'title' => 'Software Developer/Programmer',
     ],
     [
     'image' => "icon/pri.png",
-    'content' => 'Monitoring dan Analisis yang Canggih: Implementasi sistem monitoring dan analisis kalian memungkinkan kami untuk mengawasi kinerja aplikasi secara real-time. 
+    'content' => 'Monitoring dan Analisis yang Canggih: Implementasi sistem monitoring dan analisis kalian memungkinkan kami untuk mengawasi kinerja aplikasi secara real-time.
     Ini memudahkan kami untuk mendeteksi potensi masalah dan mengambil tindakan pencegahan sebelum pengguna terpengaruh.',
     'name' => 'Pandu Wirayuda',
     'title' => 'Software Developer/Programmer',
@@ -338,7 +359,7 @@
     'category' => 'DevOps Engineer',
     'title' => 'Profile Muhammad Fauzan Nur Ilham',
     'date' => 'Agt 21, 2024',
-    'route' => 'main.home' 
+    'route' => 'main.home'
     ],
     [
     'image' => 'picture/2.png',
@@ -346,7 +367,7 @@
     'category' => 'Software Developer/Programmer',
     'title' => 'Profile Pandu Wirayuda',
     'date' => 'Agt 21, 2024',
-    'route' => 'main.home' 
+    'route' => 'main.home'
     ],
     [
     'image' => 'picture/3.png',
@@ -354,7 +375,7 @@
     'category' => 'Software Developer/Programmer',
     'title' => 'Profile Muhammad Haikal Mahardika',
     'date' => 'Agt 21, 2024',
-    'route' => 'main.home' 
+    'route' => 'main.home'
     ],
     ];
     @endphp
@@ -476,8 +497,7 @@
                                 <div class="site-logo">
                                     <h6 class="text-uppercase fw-bold mb-4">
                                         <a href="#">
-                                            <img src="{{ asset('icon/Icon_unican.png') }}"
-                                                style="width: 32px; height: 32px; filter: grayscale(100%);">
+                                            <img src="{{ asset('icon/Icon_unican.png') }}" style="width: 32px; height: 32px; filter: grayscale(100%);">
                                             <u style="color: grey; text-decoration: none;">
                                                 _U N I C A_
                                             </u>
@@ -544,8 +564,7 @@
                                 <form action="#">
                                     <input type="email" name="email" placeholder="Email*">
                                     <div class="btn-wrapper">
-                                        <button class="theme-btn-1 btn" type="submit"><i
-                                                class="fas fa-location-arrow"></i></button>
+                                        <button class="theme-btn-1 btn" type="submit"><i class="fas fa-location-arrow"></i></button>
                                     </div>
                                 </form>
                             </div>
@@ -577,34 +596,35 @@
     </footer>
     <!-- FOOTER AREA END -->
 
-    
+
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // Replace 'YOUR_YOUTUBE_API_KEY' with your actual YouTube Data API key
-        var apiKey = 'AIzaSyCTwzcu-TPGQQlFMXWSby9xpAA7YpKvod8';
-        var videoId = '1A7scJbKfvY'; // Replace with the YouTube video ID
+    // Replace 'YOUR_YOUTUBE_API_KEY' with your actual YouTube Data API key
+    var apiKey = 'AIzaSyCTwzcu-TPGQQlFMXWSby9xpAA7YpKvod8';
+    var videoId = '1A7scJbKfvY'; // Replace with the YouTube video ID
+    var vidId = 'Qrku0qImWyo';
 
-        function fetchVideoDetailsAndSetThumbnail() {
-            // URL endpoint API
-            var apiUrl = 'https://www.googleapis.com/youtube/v3/videos';
+    function fetchVideoDetailsAndSetThumbnails() {
+        // URL endpoint API
+        var apiUrl = 'https://www.googleapis.com/youtube/v3/videos';
 
-            // Parameter permintaan
-            var params = {
-                part: 'snippet',
-                id: videoId,
-                key: apiKey
-            };
+        // Parameter permintaan
+        var params = {
+            part: 'snippet',
+            key: apiKey
+        };
+        var videoIds = [videoId, vidId];
 
-            // Permintaan GET ke YouTube Data API v3 menggunakan fetch()
-            fetch(apiUrl + '?' + $.param(params))
+        // Permintaan GET ke YouTube Data API v3 menggunakan fetch() untuk setiap video ID
+        videoIds.forEach(id => {
+            fetch(apiUrl + '?' + new URLSearchParams({...params, id: id}))
                 .then(response => response.json())
                 .then(data => {
                     if (data.items.length > 0) {
@@ -612,22 +632,34 @@
                         var thumbnailUrl = videoDetails.thumbnails.high.url;
 
                         var videoThumbnailDiv = document.getElementById('videoThumbnailDiv');
-                        videoThumbnailDiv.style.backgroundImage = 'url(' + thumbnailUrl + ')';
+                        var videoThumbnailDiv1 = document.getElementById('videoThumbnailDiv1');
+                        
+                        if (id === videoId) {
+                            videoThumbnailDiv.style.backgroundImage = 'url(' + thumbnailUrl + ')';
+                        } else if (id === vidId) {
+                            videoThumbnailDiv1.style.backgroundImage = 'url(' + thumbnailUrl + ')';
+                        }
                     }
                 })
                 .catch(error => {
                     console.error('Kesalahan mengambil detail video:', error);
                 });
-        }
+        });
+    }
 
-        fetchVideoDetailsAndSetThumbnail();
-    </script>
+    fetchVideoDetailsAndSetThumbnails();
+</script>
+
 
 
     <script>
         var page = 2; // Mulai dari halaman 2, mengasumsikan halaman 1 sudah dimuat
         var loading = false;
-        var hasMorePages = {{ $products -> hasMorePages() ? 'true' : 'false' }};
+        var hasMorePages = {
+            {
+                $products - > hasMorePages() ? 'true' : 'false'
+            }
+        };
 
         function loadMoreProducts() {
             if (loading || !hasMorePages) {
@@ -642,10 +674,10 @@
                 data: {
                     page: page
                 },
-                beforeSend: function () {
+                beforeSend: function() {
                     $("#loadMoreBtn").html("Sedang Memuat...");
                 },
-                success: function (response) {
+                success: function(response) {
                     var html = response.html;
                     hasMorePages = response.hasMore;
 
@@ -660,18 +692,18 @@
                         $("#loadMoreBtnContainer").html("<p>Kesalahan saat memuat produk, silahkan refresh halaman</p>");
                     }
                 },
-                complete: function () {
+                complete: function() {
                     loading = false;
                     $("#loadMoreBtn").html("Tampilkan lebih banyak");
                 }
             });
         }
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             // Panggil fungsi ini saat halaman dimuat untuk menyembunyikan tombol jika diperlukan
             hideLoadMoreBtn();
 
-            $("#loadMoreBtn").click(function () {
+            $("#loadMoreBtn").click(function() {
                 loadMoreProducts();
             });
         });
