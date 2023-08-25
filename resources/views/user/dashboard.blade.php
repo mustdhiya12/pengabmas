@@ -144,7 +144,7 @@
                       @if(!empty(Auth::user()) && Auth::user()->user_type == 'Admin')
                       <a data-toggle="tab" href="#">User Management <i class="fas fa-user"></i></a>
                       @endif
-                      <a data-toggle="tab" href="#">Notice <i class="fas fa-bell"></i></a>
+                      <!-- <a data-toggle="tab" href="#">Notice <i class="fas fa-bell"></i></a> -->
                       <a data-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
                       <a href="{{ route('logout') }}">Logout <i class="fas fa-sign-out-alt"></i></a>
                     </div>
@@ -181,7 +181,7 @@
                                           @endif
                                           <div class="row">
                                             @foreach($users as $product)
-                                            @include('main.products_partial2', ['products' => $users])
+                                            @include('main.products_partial3', ['products' => $users])
                                             @endforeach
                                           </div>
                                         </div>
@@ -246,7 +246,7 @@
 
                                                             .kin {
                                                               color: rgba(144, 144, 144, 0.534);
-                                                              padding: 5px 23px;
+                                                              padding: 5px 13px;
                                                               display: inline-flex;
                                                               justify-content: center;
                                                               align-items: center;
