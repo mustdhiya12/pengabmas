@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login</title>
+  <title>Unica - Masuk</title>
   <style>
     .form-container {
       max-width: 400px;
@@ -54,7 +54,7 @@
               <img src="{{ asset('icon/mon.gif') }}" class="img-fluid rounded-3 slide-title animated" alt="Phone image" style="height: 100%; object-fit: cover;">
           </div>
           <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 account-login-inner" style="box-shadow: var(--ltn__box-shadow-4);">
-            <h2>Login</h2>
+            <h2>Masuk Akun</h2>
               <form method="POST" action="{{ route('sign_in.action') }}" class="ltn__form-box contact-form-box">
                 @csrf
                 <!-- Username/Email input -->
@@ -71,10 +71,10 @@
                     <!-- Checkbox -->
                     <div class="form-check mt-20">
                         <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-                        <label class="form-check-label" for="form1Example3"> Remember me </label>
+                        <label class="form-check-label" for="form1Example3"> Ingat akun saya </label>
                     </div>
                     <div class="go-to-btn mt-20">
-                        <a href="#"><small>FORGOTTEN YOUR PASSWORD?</small></a>
+                        <a href="#"><small>Lupa sandi?...</small></a>
                     </div>
                 </div>
                 <div class="btn-wrapper mt-0 mb-0">
@@ -82,7 +82,7 @@
                         style="color: #000; background-color: #fff;" 
                         onmouseover="this.style.color='#fff'; this.style.backgroundColor='#000';" 
                         onmouseout="this.style.color='#000'; this.style.backgroundColor='#fff';">
-                        LOG-IN
+                        Submit
                     </button>
                 </div>
             </form>
@@ -93,24 +93,24 @@
                 style="color: #000; background-color: #fff; width: 80%;" 
                 onmouseover="this.style.color='#fff'; this.style.backgroundColor='#000';" 
                 onmouseout="this.style.color='#000'; this.style.backgroundColor='#fff';">
-                  REGISTER
+                  Daftar Akun
                 </button>
               </a>
             </div>
             <div class="divider d-flex align-items-center my-4">
-              <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+              <p class="text-center fw-bold mx-3 mb-0 text-muted">Atau:</p>
             </div>
 
             <button class="btn btn-lg btn-block btn-primary mb-3" style="background-color: rgb(221, 75, 57);" type="submit">
-              <i class="fab fa-google me-2"></i> Sign in with Google
+              <i class="fab fa-google me-2"></i> Masuk melalui Google
             </button>
 
             <button class="btn btn-primary btn-lg btn-block mb-3" style="background-color: #3b5998" href="#!" role="button">
-              <i class="fab fa-facebook-f me-2"></i> Continue with Facebook
+              <i class="fab fa-facebook-f me-2"></i> Masuk melalui Facebook
             </button>
 
             <button class="btn btn-primary btn-lg btn-block mb-3" style="background-color: #55acee" href="#!" role="button">
-              <i class="fab fa-twitter me-2"></i> Continue with Twitter
+              <i class="fab fa-twitter me-2"></i> Masuk melalui Twitter
             </button>
           </div>
         </div>
