@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sign up</title>
+  <title>Unica - Daftar</title>
 
   <style>
     .form-container {
@@ -72,7 +72,7 @@
           @endforeach
           @endif
 
-          <h2>Register</h2>
+          <h2>Daftar Akun</h2>
           <form method="POST" action="{{ route('sign_up.action') }}">
             @csrf
             <div class="mb-3">
