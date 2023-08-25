@@ -67,7 +67,7 @@
                   <p class="text-danger"><b>Announcement: </b>Link tidak tersedia</p>
                   @else
                   @if (strpos($link, 'bhinneka') !== false)
-                  <a href="{{ $link }}" class="btn btn-bhineka mt-4 col-sm-3" style="color: white; background-color: #092c52;">
+                  <a href="{{ $link }}" class="btn btn-bhineka mt-4 col-sm-2" style="color: white; background-color: #092c52;">
                     <img src="{{ asset('icon/bhi.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Bhinneka
                   </a>
                   @elseif (strpos($link, 'tokopedia') !== false)
