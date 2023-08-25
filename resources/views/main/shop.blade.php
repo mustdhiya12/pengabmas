@@ -110,8 +110,8 @@
                                                 <hr>
                                                     <h2 class="product-title"><a href="/produk/{{ $product->id }}">{!! $produk_name !!}</a></h2>
                                                 <div class="product-price">
-                                                    <span style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}}</span><br>
-                                                        <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price * 2}}</s>
+                                                    <span style="color: rgb(247, 161, 62);"> Rp.{{ number_format($product->min_price, 0, ',', '.') }}</span><br>
+                                                    <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;"> Rp.{{ number_format($product->min_price * 2, 0, ',', '.') }}</s>
                                                 </div>
                                             </div>
                                         </div>
@@ -124,9 +124,9 @@
                     </div>
                     <div id="loadMoreBtnContainer" class="btn-wrapper animated text-center mt-4">
                         @if($products->hasMorePages())
-                        <a id="loadMoreBtn" class="btn theme-btn-2 btn btn-effect-2 text-uppercase" style="background-color: rgb(247, 161, 62);" data-page="{{ $products->currentPage() + 1 }}">Load More</a>
+                        <a id="loadMoreBtn" class="btn theme-btn-2 btn btn-effect-2 text-uppercase" style="background-color: rgb(247, 161, 62);" data-page="{{ $products->currentPage() + 1 }}">Muat lebih</a>
                         @else
-                        <p>No more products to load</p>
+                        <p>Tidak ada lagi produk yang akan dimuat</p>
                         @endif
                     </div>
                     <hr>
@@ -314,42 +314,6 @@
     </script>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        // Replace 'YOUR_YOUTUBE_API_KEY' with your actual YouTube Data API key
-        var apiKey = 'AIzaSyCTwzcu-TPGQQlFMXWSby9xpAA7YpKvod8';
-        var videoId = '1A7scJbKfvY'; // Replace with the YouTube video ID
-
-        function fetchVideoDetailsAndSetThumbnail() {
-            // URL endpoint API
-            var apiUrl = 'https://www.googleapis.com/youtube/v3/videos';
-
-            // Parameter permintaan
-            var params = {
-                part: 'snippet',
-                id: videoId,
-                key: apiKey
-            };
-
-            // Permintaan GET ke YouTube Data API v3 menggunakan fetch()
-            fetch(apiUrl + '?' + $.param(params))
-                .then(response => response.json())
-                .then(data => {
-                    if (data.items.length > 0) {
-                        var videoDetails = data.items[0].snippet;
-                        var thumbnailUrl = videoDetails.thumbnails.high.url;
-
-                        var videoThumbnailDiv = document.getElementById('videoThumbnailDiv');
-                        videoThumbnailDiv.style.backgroundImage = 'url(' + thumbnailUrl + ')';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching video details:', error);
-                });
-        }
-
-        fetchVideoDetailsAndSetThumbnail();
-    </script>
-
 
     <script>
         var page = 2; // Mulai dari halaman 2, mengasumsikan halaman 1 sudah dimuat
@@ -370,7 +334,7 @@
                     page: page
                 },
                 beforeSend: function() {
-                    $("#loadMoreBtn").html("Loading...");
+                    $("#loadMoreBtn").html("Sedang Memuat...");
                 },
                 success: function(response) {
                     var html = response.html;
@@ -381,7 +345,7 @@
                         page++;
 
                         if (!hasMorePages) {
-                            $("#loadMoreBtnContainer").html("<p>No more products to load</p>");
+                            $("#loadMoreBtnContainer").html("<p>Tidak ada lagi produk yang akan dimuat</p>");
                         }
 
                         // Perbarui jumlah produk yang ditampilkan
@@ -393,7 +357,7 @@
 
                 complete: function() {
                     loading = false;
-                    $("#loadMoreBtn").html("Load More");
+                    $("#loadMoreBtn").html("Muat lebih");
                 }
             });
         }
@@ -408,7 +372,7 @@
 
         function hideLoadMoreBtn() {
             if ($("#product-list .ltn__product-item").length === 0) {
-                $("#loadMoreBtnContainer").html("<p>No products available</p>");
+                $("#loadMoreBtnContainer").html("<p>Tidak ada lagi produk yang akan dimuat</p>");
             }
         }
 

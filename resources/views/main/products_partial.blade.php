@@ -41,9 +41,8 @@
                 <hr>
                 <h2 class="product-title"><a href="/produk/{{ $product->id }}">{!! $produk_name !!}</a></h2>
                 <div class="product-price">
-                    <span style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}}</span><br>
-                    <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price
-                                    * 2}}</s>
+                    <span style="color: rgb(247, 161, 62);"> Rp.{{ number_format($product->min_price, 0, ',', '.') }}</span><br>
+                    <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;"> Rp.{{ number_format($product->min_price * 2, 0, ',', '.') }}</s>
                 </div>
             </div>
         </div>

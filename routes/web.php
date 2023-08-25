@@ -192,12 +192,19 @@ Route::get('/profile_fauzan', function () {
 })->name('main.fauzan');
 
 Route::get('/profile_pandu', function () {
-    return view('main.pandu');  
+    return view('main.profile_pandu');  
 })->name('main.pandu');
 
 Route::get('/profile_haikal', function () {
-    return view('main.haikal');  
+    return view('main.profile_haikal');  
 })->name('main.haikal');
+
+
+// Contact us
+Route::get('/contact_us', function () {
+    return view('main.contact');  
+})->name('main.contact');
+
 
 // Route Error
 Route::fallback(function(){
