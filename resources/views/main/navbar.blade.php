@@ -150,18 +150,18 @@
                                 <nav>
                                     <div class="ltn__main-menu">
                                         <ul>
-                                            <li><a href="{{ route('main.home') }}">Home</a>
+                                            <li><a href="{{ route('main.home') }}">Beranda</a>
                                             </li>
-                                            <li class="menu-icon"><a href="{{ route('main.pr') }}">About</a>
+                                            <li class="menu-icon"><a href="#">Tentang kami</a>
                                                 <ul>
-                                                    <li><a href="{{ route('main.pr') }}">FAQ</a></li>
+                                                    <li><a href="{{ route('main.pr') }}">Privasi & Kebijakan</a></li>
                                                     <li><a href="https://www.google.com/maps/place/Universitas+Muhammadiyah+Kalimantan+Timur+Samarinda/@-0.4749719,117.1388952,15z/data=!4m2!3m1!1s0x0:0x108077d433712165?sa=X&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhZEAA&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhnEAg">Google Map Locations</a></li>
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="{{ route('main.shop') }}">Shop</a>
+                                                <a href="{{ route('main.shop') }}">Toko</a>
                                             </li>
-                                            <li><a href="{{ route('main.pr') }}">Contact</a></li>
+                                            <li><a href="{{ route('main.contact') }}">Kontak kami</a></li>
                                         </ul>
                                     </div>
                                 </nav>
@@ -180,12 +180,12 @@
                                                     <u style="font-size: 15px;" class="ms-1">{{Auth::user()->username}}</u>
                                                 </a>
                                             </li>
-                                            <li><a href="{{ route('user.dashboard') }}">My Account</a></li>
-                                            <li><a href="{{ route('main.produk') }}">Wishlist</a></li>
-                                            <li><a href="{{ route('logout') }}">Log-out</a></li>
+                                            <li><a href="{{ route('user.dashboard') }}">Akun saya</a></li>
+                                            <li><a href="{{ route('main.produk') }}">Privasi & Kebijakan</a></li>
+                                            <li><a href="{{ route('logout') }}">Keluar Akun</a></li>
                                             @else
-                                            <li><a href="/client/login">Sign In</a></li>
-                                            <li><a href="{{ route('user.sign_up') }}">Register</a></li>
+                                            <li><a href="/client/login">Masuk Akun</a></li>
+                                            <li><a href="{{ route('user.sign_up') }}">Daftar Akun</a></li>
                                             @endif
                                         </ul>
                                     </li>
@@ -234,18 +234,18 @@
                 <div class="ltn__utilize-menu">
                     <ul>
                         <li class="menu-icon">
-                            <a href="{{ route('main.home') }}">Home</a>
+                            <a href="{{ route('main.home') }}">Beranda</a>
                         </li>
-                        <li class="menu-icon"><a href="{{ route('main.pr') }}">About</a>
+                        <li class="menu-icon"><a href="{{ route('main.pr') }}">Tentang kami</a>
                             <ul>
                                 <li><a href="{{ route('main.pr') }}">FAQ</a></li>
-                                <li><a href="https://www.google.com/maps/place/Universitas+Muhammadiyah+Kalimantan+Timur+Samarinda/@-0.4749719,117.1388952,15z/data=!4m2!3m1!1s0x0:0x108077d433712165?sa=X&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhZEAA&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhnEAg">Google Map Locations</a></li>
+                                <li><a href="https://www.google.com/maps/place/Universitas+Muhammadiyah+Kalimantan+Timur+Samarinda/@-0.4749719,117.1388952,15z/data=!4m2!3m1!1s0x0:0x108077d433712165?sa=X&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhZEAA&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhnEAg">Lokasi kami</a></li>
                             </ul>
                         </li>
                         <li class="menu-icon">
-                            <a href="{{ route('main.shop') }}">Shop</a>
+                            <a href="{{ route('main.shop') }}">Toko</a>
                         </li>
-                        <li><a href="{{ route('main.pr') }}">Contact</a></li>
+                        <li><a href="{{ route('main.contact') }}">Kontak kami</a></li>
                     </ul>
                 </div>
                 <div class="ltn__utilize-buttons ltn__utilize-b uttons-2">
@@ -255,26 +255,21 @@
                                 <span class="utilize-btn-icon">
                                     <i class="far fa-user"></i>
                                 </span>
-                                My Account
+                                Akun saya
                             </a>
                         </li>
                         <li>
-                            <a href="#" title="Wishlist">
+                        @Auth
+                            @if(Auth::user()->user_type == 'Pembeli')
+                            <a href="{{ route('main.produk') }}" title="Wishlist">
                                 <span class="utilize-btn-icon">
-                                    <i class="far fa-heart"></i>
-                                    <sup>3</sup>
+                                    <i class="icon-shopping-cart"></i>
+                                    <sup>{{$hitung}}</sup>
                                 </span>
-                                Wishlist
+                                Daftar keinginan
                             </a>
-                        </li>
-                        <li>
-                            <a href="#" title="Shoping Cart">
-                                <span class="utilize-btn-icon">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    <sup>5</sup>
-                                </span>
-                                Shoping Cart
-                            </a>
+                            @endif
+                            @endauth
                         </li>
                     </ul>
                 </div>
@@ -365,9 +360,7 @@
                 </div>
                 <div class="btn-wrapper">
                     <a href="#" class="theme-btn-1 btn btn-effect-1">View Cart</a>
-                    <a href="#" class="theme-btn-2 btn btn-effect-2">Checkout</a>
                 </div>
-                <p>Free Shipping on All Orders Over $100!</p>
             </div>
         </div>
     </div>

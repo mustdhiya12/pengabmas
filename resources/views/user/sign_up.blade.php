@@ -77,7 +77,7 @@
             @csrf
             <div class="mb-3">
               <div class="form-group">
-                <label for="username">Username</label>
+                <label for="username">Nama Akun</label>
                 @error('username')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -88,7 +88,7 @@
             </div>
             <div class="mb-3">
               <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name">Nama Lengkap</label>
                 @error('name')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -103,21 +103,21 @@
                 <strong>{{ $message }}</strong>
               </span>
               @enderror
-              <label for="registerEmail" class="form-label">Email address</label>
+              <label for="registerEmail" class="form-label">Alamat Email</label>
               <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
             </div>
             <div class="mb-3">
-              <label for="password">Password</label>
+              <label for="password"></label>
               @error('password')
               <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
               </span>
               @enderror
-              <label for="registerPassword" class="form-label">Password</label>
+              <label for="registerPassword" class="form-label">Kata Sandi</label>
               <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" required>
             </div>
             <div class="mb-3">
-              <label for="registerPassword" class="form-label">Confirm Password</label>
+              <label for="registerPassword" class="form-label">Konfirmasi Kata Sandi</label>
               <input type="password" name="password_confirmation" id="password-confirm" class="form-control" required>
             </div>
             <div class="mb-3 d-flex justify-content-between" id="user-type-and-links-container">
@@ -126,7 +126,7 @@
               <!-- ... (previous code) ... -->
 
               <div class="form-group">
-                <label for="user_type" class="form-label">User Type</label>
+                <label for="user_type" class="form-label">Tipe User : </label>
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                   <label class="btn btn-outline-warning">
                     <input type="radio" name="user_type" value="Penjual" required> Penjual
@@ -139,31 +139,31 @@
               <!-- ... kode selanjutnya ... -->
             </div>
             <div class="form-group" id="links-container">
-              <label for="add-link" class="form-label">Add Link</label>
+              <label for="add-link" class="form-label">Tambah link</label>
               <div class="link-container">
                 <input type="text" name="link[]" placeholder="Enter link" required class="form-control mb-2">
-                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="addLink()">Add</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="addLink()">Tambah</button>
               </div>
             </div>
             <div class="align-items-center btn-wrapper mt-0">
               <a href="{{ route('sign_up.action') }}">
                 <button class="btn btn-lg btn-block btn-transparent btn-effect-3 text-uppercase" type="submit" style="color: #fff; background-color: var(--ltn__secondary-color); border-radius: 10px;" onmouseover="this.style.color='var(--ltn__secondary-color)'; this.style.backgroundColor='#fff'; this.style.borderRadius='10px';" onmouseout="this.style.color='#fff'; this.style.backgroundColor='var(--ltn__secondary-color)'; this.style.borderRadius='10px';">
-                  {{ __('REGISTER') }}
+                  Daftar Akun
                 </button>
               </a>
             </div>
           </form>
           <div class="divider d-flex align-items-center my-4">
-            <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+            <p class="text-center fw-bold mx-3 mb-0 text-muted">Atau:</p>
           </div>
           <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: rgb(221, 75, 57);" type="submit">
-            <i class="fab fa-google me-2"></i> Sign in with Google
+            <i class="fab fa-google me-2"></i> Masuk Lewat Google
           </button>
           <button class="btn btn-primary btn-lg btn-block mb-2" style="background-color: #3b5998" href="#!" role="button">
-            <i class="fab fa-facebook-f me-2"></i> Continue with Facebook
+            <i class="fab fa-facebook-f me-2"></i> Masuk Lewat Facebook
           </button>
           <button class="btn btn-primary btn-lg btn-block mb-2" style="background-color: #55acee" href="#!" role="button">
-            <i class="fab fa-twitter me-2"></i> Continue with Twitter
+            <i class="fab fa-twitter me-2"></i> Masuk Lewat Twitter
           </button>
         </div>
       </div>
@@ -183,7 +183,7 @@
           linkButtons.classList.add('link-buttons');
 
           var removeButton = document.createElement('a');
-          removeButton.textContent = 'Remove';
+          removeButton.textContent = 'Hapus';
           removeButton.href = '#';
           removeButton.classList.add('btn', 'btn-outline-danger', 'remove-link');
           removeButton.addEventListener('click', function(event) {
@@ -226,4 +226,3 @@
 </body>
 
 </html>
-@endif
