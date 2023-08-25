@@ -5228,6 +5228,12 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   position: relative;
   list-style: none; }
 
+.profile-picture {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%; 
+    object-fit: cover; 
+}
 
 
 .ltn__utilize.ltn__utilize-open {

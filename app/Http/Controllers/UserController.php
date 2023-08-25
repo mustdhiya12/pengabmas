@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 use App\Models\User;
+use App\Models\Profile;
 use App\Models\Produk;
 use App\Models\pesanan_users;
 use App\Models\transaksi_users;
@@ -808,6 +809,58 @@ return response()->json($mang, 201);
        return view('eror.404');
     }
 }
+
+
+
+
+public function updateAccount(Request $request)
+{
+    $user = Auth::user();
+
+    if ($request->isMethod('post')) {
+        $this->validate($request, [
+            'username' => 'nullable|max:255|unique:users,username,' . $user->id,
+            'name' => 'required|max:255',
+            'email' => 'nullable|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|confirmed',
+            'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'link.*' => 'nullable|url',
+            'status' => 'nullable|string',
+        ]);
+
+        $user->username = $request->input('username');
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+
+        if ($request->has('password')) {
+            $user->password = Hash::make($request->input('password'));
+        }
+        if ($request->hasFile('profile_picture')) {
+            $profilePicture = $request->file('profile_picture');
+            $picturePath = $profilePicture->store('', 'public_profile_pictures');
+        
+            // Update profile picture path in the existing user record
+            $user->profile = $picturePath; // Update the profile column with the picture path
+        }
+        
+        $user->status = $request->input('status');
+        
+        if ($request->has('link')) {
+            $newLinks = $request->input('link');
+            $linkString = implode("|", $newLinks);
+            $user->link = $linkString;
+        }
+
+
+        $user->save();
+
+        return back()->with('success', 'Account updated successfully!');
+    } else {
+        return view('user.dashboard', compact('user'));
+    }
+}
+
+
 
 
 public function peninjauan_pengembalian_api(Request $request){

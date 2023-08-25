@@ -185,7 +185,10 @@ Route::get('/load-more-products', [MainController::class, 'loadMoreProducts'])->
 
 Route::get('/load-more-products2', [MainController::class, 'loadMoreProducts2'])->name('load.more.products2');
 
+ // Edit Account
 
+Route::get('/edit-account', [UserController::class, 'updateAccount'])->name('edit_account_form');
+Route::post('/edit-account', [UserController::class, 'updateAccount'])->name('edit_account');
 
 // Route Error
 Route::fallback(function(){
