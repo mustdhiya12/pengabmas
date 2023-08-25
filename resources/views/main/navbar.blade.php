@@ -227,7 +227,7 @@
             <div class="ltn__utilize-menu-inner ltn__scrollbar">
                 <div class="ltn__utilize-menu-head">
                     <div class="site-logo">
-                        <a href="index.html"><img src="{{ asset('icon/Icon_unican.png') }}" alt="UNICAN"></a>
+                        <a href="#"><img src="{{ asset('icon/Icon_unican.png') }}" alt="UNICAN"></a>
                     </div>
                     <button class="btn btn-outline-danger ltn__utilize-close">X</button>
                 </div>
@@ -251,7 +251,7 @@
                 <div class="ltn__utilize-buttons ltn__utilize-b uttons-2">
                     <ul>
                         <li>
-                            <a href="account.html" title="My Account">
+                            <a href="#" title="My Account">
                                 <span class="utilize-btn-icon">
                                     <i class="far fa-user"></i>
                                 </span>
@@ -259,7 +259,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="wishlist.html" title="Wishlist">
+                            <a href="#" title="Wishlist">
                                 <span class="utilize-btn-icon">
                                     <i class="far fa-heart"></i>
                                     <sup>3</sup>
@@ -268,7 +268,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="cart.html" title="Shoping Cart">
+                            <a href="#" title="Shoping Cart">
                                 <span class="utilize-btn-icon">
                                     <i class="fas fa-shopping-cart"></i>
                                     <sup>5</sup>
@@ -364,8 +364,8 @@
                     <h5>Subtotal: <span>$310.00</span></h5>
                 </div>
                 <div class="btn-wrapper">
-                    <a href="cart.html" class="theme-btn-1 btn btn-effect-1">View Cart</a>
-                    <a href="cart.html" class="theme-btn-2 btn btn-effect-2">Checkout</a>
+                    <a href="#" class="theme-btn-1 btn btn-effect-1">View Cart</a>
+                    <a href="#" class="theme-btn-2 btn btn-effect-2">Checkout</a>
                 </div>
                 <p>Free Shipping on All Orders Over $100!</p>
             </div>

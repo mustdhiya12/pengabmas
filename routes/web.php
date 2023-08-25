@@ -33,7 +33,7 @@ Route::get('/dashboard', [MainController::class, 'get_data_produk_profile'], fun
 Route::get('/dashboard/admin/transaksi', [UserController::class, 'transaksi_main_admin_kelola'])->middleware('auth')->name('admin.transaksi');
 
 // Route veiw For function notices
-Route::get('/dashboard/noatices', [UserController::class, 'notices'])->middleware('auth')->name('dashboard.notices');
+Route::get('/dashboard/notices', [UserController::class, 'notices'])->middleware('auth')->name('dashboard.notices');
 
 // Route veiw For function poin_manual
 Route::get('/poin/manual', [UserController::class, 'poin_manual'])->middleware('auth')->name('poin.manual');
@@ -189,6 +189,25 @@ Route::get('/load-more-products2', [MainController::class, 'loadMoreProducts2'])
 
 Route::get('/edit-account', [UserController::class, 'updateAccount'])->name('edit_account_form');
 Route::post('/edit-account', [UserController::class, 'updateAccount'])->name('edit_account');
+// profile:
+Route::get('/profile_fauzan', function () {
+    return view('main.profile_fauzan');  
+})->name('main.fauzan');
+
+Route::get('/profile_pandu', function () {
+    return view('main.profile_pandu');  
+})->name('main.pandu');
+
+Route::get('/profile_haikal', function () {
+    return view('main.profile_haikal');  
+})->name('main.haikal');
+
+
+// Contact us
+Route::get('/contact_us', function () {
+    return view('main.contact');  
+})->name('main.contact');
+
 
 // Route Error
 Route::fallback(function(){

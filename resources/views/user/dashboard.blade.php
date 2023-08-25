@@ -319,46 +319,43 @@
                     </div>
                 </div>
                         <div class="row mb-50">
-            <div class="col-md-40">
-                <label>Status:</label>
-                <textarea name="status" rows="4">{{ isset($user->status) ? $user->status : Auth::user()->status }}</textarea>
-            </div>
-        </div>
-        @php
-    if(isset($user)) {
-        $linkArray = explode('|', $user->link);
-    }
-@endphp
+                                      <div class="col-md-40">
+                                          <label>Status:</label>
+                                          <textarea name="status" rows="4">{{ isset($user->status) ? $user->status : Auth::user()->status }}</textarea>
+                                      </div>
+                                  </div>
+                                  <div class="row mb-50">
+                              <div class="col-md-6">
+                                  <label>Add Link:</label>
+                                  <input type="url" id="newLink" placeholder="Enter Link URL">
+                                  <button type="button" class="btn theme-btn-2 btn-effect-2 text-uppercase" onclick="addLink()">Add Link</button>
+                              </div>
+                          </div>
 
-<div class="row mb-50">
-    <div class="col-md-6">
-        <label>Add Link:</label>
-        <input type="url" id="newLink" placeholder="Enter Link URL">
-        <button type="button" class="btn theme-btn-2 btn-effect-2 text-uppercase" onclick="addLink()">Add Link</button>
-    </div>
-</div>
-
-<div class="row mb-50">
-    <div class="col-md-6">
-        <label>Edit Links:</label>
-        <div id="linkContainer">
-            @isset($linkArray)
-                @foreach ($linkArray as $link)
-                    <div class="link-container">
-                        <div class="input-group">
-                            <input type="text" name="link[]" placeholder="Enter link" required class="form-control link-input" value="{{ $link }}">
-                            <div class="input-group-append">
-                                <button type="button" class="btn btn-outline-secondary add-link" onclick="addLink()">Add</button>
-                                <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this.parentElement.parentElement.parentElement)">Remove</button>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            @endisset
-        </div>
-    </div>
-</div>
-
+                          <div class="row mb-50">
+                              <div class="col-md-6">
+                                  <label>Edit Links:</label>
+                                  <div id="linkContainer">
+                                  @php
+                                if(isset($user)) {
+                                    $linkArray = explode('|', $user->link);
+                                }
+                                      @endphp
+                                      @endphp
+                                      @foreach ($linkArray as $link)
+                                          <div class="link-container">
+                                              <div class="input-group">
+                                                  <input type="text" name="link[]" placeholder="Enter link" required class="form-control link-input" value="{{ $link }}">
+                                                  <div class="input-group-append">
+                                                      <button type="button" class="btn btn-outline-secondary add-link" onclick="addLink()">Add</button>
+                                                      <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this.parentElement.parentElement.parentElement)">Remove</button>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      @endforeach
+                                  </div>
+                              </div>
+                          </div>
                               <fieldset>
                                   <legend>Password change</legend>
                                   <div class="row">

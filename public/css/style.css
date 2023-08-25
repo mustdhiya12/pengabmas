@@ -8151,7 +8151,8 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   .ltn__feature-item-8 .ltn__feature-icon {
     margin-right: 20px;
     font-size: 40px;
-    width: 50px; }
+    width: 50px;
+    color: var(--border-color-4);  }
   .ltn__feature-item-8 .ltn__feature-info h4 {
     margin-bottom: 5px; }
   .ltn__feature-item-8 .ltn__feature-info p {
@@ -8160,6 +8161,12 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 .ltn__feature-item-box-wrap {
   -webkit-box-shadow: var(--ltn__box-shadow-1);
   box-shadow: var(--ltn__box-shadow-1); }
+
+.preview-img {
+    width: 568px;
+    height: 568px;
+    object-fit: contain;
+}
 
 .ltn__feature-item-box-wrap-2 {
   display: -webkit-box;
