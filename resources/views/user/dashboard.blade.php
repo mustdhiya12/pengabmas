@@ -56,6 +56,26 @@
             </div>
           </div>
           <div class="container">
+            <style>
+              @keyframes zoomIn {
+                  from {
+                      transform: scale(1);
+                  }
+                  to {
+                      transform: scale(1.05);
+                  }
+              }
+
+              /* Terapkan animasi pada elemen saat di-hover */
+              .zoom-in {
+                  transition: transform 0.3s ease-in-out;
+              }
+
+              .zoom-in:hover {
+                  animation: zoomIn 0.3s ease-in-out;
+                  transform: scale(1.05);
+              }
+            </style>
                 @if(!empty(Auth::user()) && Auth::user()->user_type == 'Penjual')
                 <div class="row row-cols-6">
                   @php
@@ -91,15 +111,15 @@
                     <img src="{{ asset('icon/blibli.png') }}" alt="Shopee" style="width: 23px; height: 23px; background-color: white; border-radius: 10px;"> Blibli.com
                   </a>
                   @elseif (strpos($link, 'me') !== false)
-                  <a href="{{ $link }}" class="btn btn-whatsapp mt-2 col-sm-3" style="color: white; background-color: #0cc243;">
+                  <a href="{{ $link }}" class="btn btn-whatsapp mt-2 col-sm-3 zoom-in" style="color: white; background-color: #0cc243;">
                     <i class="bi bi-whatsapp me-1"></i> Whatsapp
                   </a>
                   @elseif (strpos($link, 'instagram') !== false)
-                  <a href="{{ $link }}" class="btn btn-whatsapp mt-2 col-sm-3" style="color: white; background-color: #ff2e42;">
+                  <a href="{{ $link }}" class="btn btn-whatsapp mt-2 col-sm-3 zoom-in" style="color: white; background-color: #ff2e42;">
                     <i class="bi bi-instagram"></i> instagram
                   </a>
                   @elseif (strpos($link, 'facebook') !== false)
-                  <a href="{{ $link }}" class="btn btn-whatsapp mt-2 col-sm-3" style="color: white; background-color: #0d8cf1;">
+                  <a href="{{ $link }}" class="btn btn-whatsapp mt-2 col-sm-3 zoom-in" style="color: white; background-color: #0d8cf1;">
                     <i class="bi bi-facebook"></i> facebook
                   </a>
                   @else
@@ -246,7 +266,7 @@
 
                                                             .kin {
                                                               color: rgba(144, 144, 144, 0.534);
-                                                              padding: 5px 13px;
+                                                              padding: 5px 23px;
                                                               display: inline-flex;
                                                               justify-content: center;
                                                               align-items: center;
@@ -353,6 +373,78 @@
                       </div>
                     </div>
                     <div class="tab-pane fade" id="liton_tab_1_5">
+                      <style>
+                        .containerss {
+                            max-width: 960px;
+                            margin: 30px auto;
+                            padding: 20px;
+                        }
+                        .avatar-upload {
+                            position: relative;
+                            max-width: 100px;
+                            margin: 10px auto;
+                        }
+
+                        .avatar-edit {
+                            position: absolute;
+                            right: 67px;
+                            z-index: 1;
+                            top: 10px;
+                        }
+
+                        .avatar-edit input {
+                            display: none;
+                        }
+
+                        .avatar-edit label {
+                            display: inline-block;
+                            width: 30px;
+                            height: 30px;
+                            margin-bottom: 0;
+                            border-radius: 100%;
+                            background: #FFFFFF;
+                            border: 1px solid transparent;
+                            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+                            cursor: pointer;
+                            font-weight: normal;
+                            transition: all .2s ease-in-out;
+                        }
+
+                        .avatar-edit label:hover {
+                            background: #f1f1f1;
+                            border-color: #d6d6d6;
+                        }
+
+                        .avatar-edit label:after {
+                            content: "\f040";
+                            font-family: 'FontAwesome';
+                            color: #757575;
+                            position: absolute;
+                            top: 5px;
+                            left: 0;
+                            right: 0;
+                            text-align: center;
+                            margin: auto;
+                        }
+
+                          .avatar-preview {
+                              right: 120px;
+                              width: 150px;
+                              height: 150px;
+                              position: relative;
+                              border-radius: 100%;
+                              border: 6px solid #F8F8F8;
+                              box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+                              > div {
+                                  width: 100%;
+                                  height: 100%;
+                                  border-radius: 100%;
+                                  background-size: cover;
+                                  background-repeat: no-repeat;
+                                  background-position: center;
+                              }
+                          }
+                      </style>
                       <div class="ltn__myaccount-tab-content-inner">
                         <p>Welcome, {{ Auth::user()->name }} <small> - Profile</small></p>
                         <div class="ltn__form-box">
@@ -373,14 +465,17 @@
                               </div>
                               <div class="col-md-6">
                                 <label>Profile Picture:</label>
-                                <input type="file" name="profile_picture" id="profilePicture">
-                                @isset($user)
-                                @if ($user->profile)
-                                <img id="profile-picture" src="{{ asset($user->profile) }}" alt="Profile Picture" style="max-width: 200px; margin-top: 10px;">
-                                @else
-                                <img id="profile-picture" src="{{ asset('picture/astronaut.png') }}" alt="Default Profile Picture" style="max-width: 200px; margin-top: 10px;">
-                                @endif
-                                @endisset
+                                <div class="container">
+                                  <div class="avatar-upload">
+                                    <div class="avatar-edit">
+                                      <input id="imageUpload" type="file" name="profile_picture" accept=".png, .jpg, .jpeg">
+                                      <label for="imageUpload"></label>
+                                    </div>
+                                    <div class="avatar-preview">
+                                      <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);"></div>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                             <div class="row mb-50">
@@ -496,6 +591,21 @@
                     function removeLink(linkContainer) {
                       linkContainer.remove();
                     }
+
+                    function readURL(input) {
+                      if (input.files && input.files[0]) {
+                          var reader = new FileReader();
+                          reader.onload = function(e) {
+                              $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                              $('#imagePreview').hide();
+                              $('#imagePreview').fadeIn(650);
+                          }
+                          reader.readAsDataURL(input.files[0]);
+                      }
+                  }
+                  $("#imageUpload").change(function() {
+                      readURL(this);
+                  });
                   </script>
                 </div>
               </div>
