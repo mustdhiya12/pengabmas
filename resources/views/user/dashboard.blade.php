@@ -57,7 +57,7 @@
           </div>
           <div class="container">
                 @if(!empty(Auth::user()) && Auth::user()->user_type == 'Penjual')
-                <div class=" row-cols-5">
+                <div class="row row-cols-6">
                   @php
                   $links = explode('|', Auth::user()->link);
                   @endphp
@@ -67,39 +67,39 @@
                   <p class="text-danger"><b>Announcement: </b>Link tidak tersedia</p>
                   @else
                   @if (strpos($link, 'bhinneka') !== false)
-                  <a href="{{ $link }}" class="btn btn-bhineka mt-4 col-sm-5" style="color: white; background-color: #092c52;">
+                  <a href="{{ $link }}" class="btn btn-bhineka mt-4 col-sm-3" style="color: white; background-color: #092c52;">
                     <img src="{{ asset('icon/bhi.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Bhinneka
                   </a>
                   @elseif (strpos($link, 'tokopedia') !== false)
-                  <a href="{{ $link }}" class="btn btn-tokopedia mt-4 col-sm-5" style="color: white; background-color: #03ac0e;">
+                  <a href="{{ $link }}" class="btn btn-tokopedia mt-4 col-sm-3" style="color: white; background-color: #03ac0e;">
                     <img src="{{ asset('icon/tokped.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Tokopedia
                   </a>
                   @elseif (strpos($link, 'shopee') !== false)
-                  <a href="{{ $link }}" class="btn btn-shopee mt-4 col-sm-5" style="color: white; background-color: #f7452e;">
+                  <a href="{{ $link }}" class="btn btn-shopee mt-4 col-sm-3" style="color: white; background-color: #f7452e;">
                     <img src="{{ asset('icon/sho.png') }}" alt="Shopee" style="width: 23px; height: 23px; filter: brightness(10.5) saturate(0%);"> Shopee
                   </a>
                   @elseif (strpos($link, 'bukalapak') !== false)
-                  <a href="{{ $link }}" class="btn btn-bukalapak mt-4 col-sm-5" style="color: white; background-color: #e31e52;">
+                  <a href="{{ $link }}" class="btn btn-bukalapak mt-4 col-sm-3" style="color: white; background-color: #e31e52;">
                     <img src="{{ asset('icon/buka.png') }}" alt="Shopee" style="width: 23px; height: 23px; filter: brightness(10.5) saturate(0%);"> Bukalapak
                   </a>
                   @elseif (strpos($link, 'lazada') !== false)
-                  <a href="{{ $link }}" class="btn btn-lazada mt-4 col-sm-5" style="color: white; background-color: #11146e;">
+                  <a href="{{ $link }}" class="btn btn-lazada mt-4 col-sm-3" style="color: white; background-color: #11146e;">
                     <img src="{{ asset('icon/laz.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Lazada
                   </a>
                   @elseif (strpos($link, 'blibli') !== false)
-                  <a href="{{ $link }}" class="btn btn-blibli mt-4 col-sm-5" style="color: white; background-color: #0095da;">
+                  <a href="{{ $link }}" class="btn btn-blibli mt-4 col-sm-3" style="color: white; background-color: #0095da;">
                     <img src="{{ asset('icon/blibli.png') }}" alt="Shopee" style="width: 23px; height: 23px; background-color: white; border-radius: 10px;"> Blibli.com
                   </a>
                   @elseif (strpos($link, 'me') !== false)
-                  <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-5" style="color: white; background-color: #0cc243;">
+                  <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-3" style="color: white; background-color: #0cc243;">
                     <i class="bi bi-whatsapp me-1"></i> Whatsapp
                   </a>
                   @elseif (strpos($link, 'instagram') !== false)
-                  <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-5" style="color: white; background-color: #ff2e42;">
+                  <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-3" style="color: white; background-color: #ff2e42;">
                     <i class="bi bi-instagram"></i> instagram
                   </a>
                   @elseif (strpos($link, 'facebook') !== false)
-                  <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-5" style="color: white; background-color: #0d8cf1;">
+                  <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-3" style="color: white; background-color: #0d8cf1;">
                     <i class="bi bi-facebook"></i> facebook
                   </a>
                   @else
@@ -109,7 +109,7 @@
                   $domainName = explode('.', $domain)[1];
                   $domainName = preg_replace('/^www\.|^ww\./', '', $domainName);
                   @endphp
-                  <a href="{{ $link }}" class="btn btn-otherlink mt-4 col-sm-5" style="color: white; background-color: #8c7e00;">
+                  <a href="{{ $link }}" class="btn btn-otherlink mt-4 col-sm-3" style="color: white; background-color: #8c7e00;">
                     <i class="bi bi-cart3 me-1"></i>{{ $domainName }}
                   </a>
                   @endif
@@ -274,162 +274,244 @@
                                             @endforeach
                                           </div>
                                         </div>
-                                        <div class="tab-pane fade" id="liton_tab_1_5">
-                                          <div class="ltn__myaccount-tab-content-inner">
-                                              <p>Welcome, {{ Auth::user()->name }} <small> - Profile</small></p>
-                                              <div class="ltn__form-box">
-                                                  <form action="{{ route('edit_account') }}" method="post" enctype="multipart/form-data">
-                                                      @csrf
-                                                    <div class="row mb-50">
-                                                          <div class="col-md-6">
-                                                              <label>Username:</label>
-                                                              <input type="text" name="username" value="{{ isset($user->username) ? $user->username : Auth::user()->username }}">
-                                                          </div>
-                                                          <div class="col-md-6">
-                                                              <label>Name:</label>
-                                                              <input type="text" name="name" value="{{ isset($user->name) ? $user->name : Auth::user()->name }}">
-                                                          </div>
-                                                          <div class="col-md-6">
-                                                              <label>Email:</label>
-                                                              <input type="email" name="email" value="{{ isset($user->email) ? $user->email : Auth::user()->email }}">
-                                                          </div>
-                                                          <div class="col-md-6">
-                                                              <label>Profile Picture:</label>
-                                                              <input type="file" name="profile_picture" id="profilePicture">
-                                                              @isset($user)
-                                                                  @if ($user->profile)
-                                                                      <img id="profile-picture" src="{{ asset($user->profile) }}" alt="Profile Picture" style="max-width: 200px; margin-top: 10px;">
-                                                                  @else
-                                                                      <img id="profile-picture" src="{{ asset('picture/astronaut.png') }}" alt="Default Profile Picture" style="max-width: 200px; margin-top: 10px;">
-                                                                  @endif
-                                                              @endisset
-                                                          </div>
-                                                      </div>
-                                                              <div class="row mb-50">
-                                                                            <div class="col-md-40">
-                                                                                <label>Status:</label>
-                                                                                <textarea name="status" rows="4">{{ isset($user->status) ? $user->status : Auth::user()->status }}</textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                        </div>
-                                      <div class="row mb-50">
-                                          <div class="col-md-6">
-                                              <label>Add Link:</label>
-                                              <input type="url" id="newLink" placeholder="Enter Link URL">
-                                              <button type="button" class="btn theme-btn-2 btn-effect-2 text-uppercase" onclick="addLink()">Add Link</button>
-                                          </div>
                                       </div>
+                                    </section>
+                                  </div>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <style>
+                                .kap:hover {
+                                  background-color: var(--ltn__secondary-color-2);
+                                  transition: background-color 0.3s ease-in-out;
+                                  color: rgb(255, 255, 255);
+                                }
 
-                                      <div class="row mb-50">
-                                          <div class="col-md-6">
-                                              <label>Edit Links:</label>
-                                              <div id="linkContainer">
-                                                  @php
-                                                  if(isset($user)) {
-                                                      $linkArray = explode('|', $user->link);
-                                                  }
-                                                  @endphp
+                                .kap {
+                                  color: rgba(144, 144, 144, 0.534);
+                                  padding: 5px 100px;
+                                  text-indent: 5px;
+                                  display: inline-flex;
+                                  justify-content: center;
+                                  align-items: center;
+                                  white-space: nowrap;
+                                  text-align: center;
+                                  border: none;
+                                  border-radius: 5px;
+                                  width: 100%;
+                                }
 
-                                                  @isset($linkArray)
-                                                      @foreach ($linkArray as $link)
-                                                          <div class="link-container">
-                                                              <div class="input-group">
-                                                                  <input type="text" name="link[]" placeholder="Enter link" required class="form-control link-input" value="{{ $link }}">
-                                                                  <div class="input-group-append">
-                                                                      <button type="button" class="btn btn-outline-secondary add-link" onclick="addLink()">Add</button>
-                                                                      <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this.parentElement.parentElement.parentElement)">Remove</button>
-                                                                  </div>
-                                                              </div>
-                                                          </div>
-                                                      @endforeach
-                                                  @endisset
-                                              </div>
+                                .profile-picture {
+                                  width: 128px;
+                                  height: 128px;
+                                  border-radius: 50%;
+                                  object-fit: cover;
+                                }
+                              </style>
+                              <td class="d-flex justify-content-center align-items-center">
+                                <form action="{{ route('user.tambah') }}">
+                                  <button type="submit" class="col-lg-10 kap">
+                                    <i class="fa fa-plus"></i> Tambah Produk
+                                  </button>
+                                </form>
+                              </td>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="liton_tab_1_4">
+                      <div class="ltn__myaccount-tab-content-inner">
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <div class="tab-block">
+                                  <ul class="nav nav-tabs">
+                                    <li class="active">
+                                      <a href="#tab1" data-toggle="tab">Wishlist</a>
+                                    </li>
+                                  </ul>
+                                  <div class="tab-content p30" style="height: 500px;">
+                                    <section>
+                                      <div style="padding:10px;" class="d-flex justify-content-center">
+                                        <div class="container">
+                                          @if(session('success'))
+                                          <div class="col">
+                                            <p class="alert alert-success">{{ session('success') }}</p>
                                           </div>
+                                          @endif
+                                          <!-- Untuk List Barang Yang di Wishlist taruh disini -->
+                                        </div>
                                       </div>
+                                    </section>
+                                  </div>
+                              </tr>
+                            </thead>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="liton_tab_1_5">
+                      <div class="ltn__myaccount-tab-content-inner">
+                        <p>Welcome, {{ Auth::user()->name }} <small> - Profile</small></p>
+                        <div class="ltn__form-box">
+                          <form action="{{ route('edit_account') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row mb-50">
+                              <div class="col-md-6">
+                                <label>Username:</label>
+                                <input type="text" name="username" value="{{ isset($user->username) ? $user->username : Auth::user()->username }}">
+                              </div>
+                              <div class="col-md-6">
+                                <label>Name:</label>
+                                <input type="text" name="name" value="{{ isset($user->name) ? $user->name : Auth::user()->name }}">
+                              </div>
+                              <div class="col-md-6">
+                                <label>Email:</label>
+                                <input type="email" name="email" value="{{ isset($user->email) ? $user->email : Auth::user()->email }}">
+                              </div>
+                              <div class="col-md-6">
+                                <label>Profile Picture:</label>
+                                <input type="file" name="profile_picture" id="profilePicture">
+                                @isset($user)
+                                @if ($user->profile)
+                                <img id="profile-picture" src="{{ asset($user->profile) }}" alt="Profile Picture" style="max-width: 200px; margin-top: 10px;">
+                                @else
+                                <img id="profile-picture" src="{{ asset('picture/astronaut.png') }}" alt="Default Profile Picture" style="max-width: 200px; margin-top: 10px;">
+                                @endif
+                                @endisset
+                              </div>
+                            </div>
+                            <div class="row mb-50">
+                              <div class="col-md-40">
+                                <label>Status:</label>
+                                <textarea name="status" rows="4">{{ isset($user->status) ? $user->status : Auth::user()->status }}</textarea>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row mb-50">
+                          <div class="col-md-6">
+                            <label>Add Link:</label>
+                            <input type="url" id="newLink" placeholder="Enter Link URL">
+                            <button type="button" class="btn theme-btn-2 btn-effect-2 text-uppercase" onclick="addLink()">Add Link</button>
+                          </div>
+                        </div>
 
-                                                                    <fieldset>
-                                                                        <legend>Password change</legend>
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <label>Current password (leave blank to leave unchanged):</label>
-                                                                                <input type="password" name="current_password">
-                                                                                <label>New password (leave blank to leave unchanged):</label>
-                                                                                <input type="password" name="new_password">
-                                                                                <label>Confirm new password:</label>
-                                                                                <input type="password" name="new_password_confirmation">
-                                                                            </div>
-                                                                        </div>
-                                                                    </fieldset>
-                                                                    <div class="btn-wrapper">
-                                                                        <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Save Changes</button>
-                                                                    </div>
-                                                                    </form>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                        <div class="row mb-50">
+                          <div class="col-md-6">
+                            <label>Edit Links:</label>
+                            <div id="linkContainer">
+                              @php
+                              if(isset($user)) {
+                              $linkArray = explode('|', $user->link);
+                              }
+                              @endphp
 
-                                                                    <script>
-                                                                        function addLink() {
-                                              var linkContainer = document.createElement('div');
-                                              linkContainer.classList.add('link-container');
+                              @isset($linkArray)
+                              @foreach ($linkArray as $link)
+                              <div class="link-container">
+                                <div class="input-group">
+                                  <input type="text" name="link[]" placeholder="Enter link" required class="form-control link-input" value="{{ $link }}">
+                                  <div class="input-group-append">
+                                    <button type="button" class="btn btn-outline-secondary add-link" onclick="addLink()">Add</button>
+                                    <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this.parentElement.parentElement.parentElement)">Remove</button>
+                                  </div>
+                                </div>
+                              </div>
+                              @endforeach
+                              @endisset
+                            </div>
+                          </div>
+                        </div>
 
-                                              var inputGroup = document.createElement('div');
-                                              inputGroup.classList.add('input-group');
+                        <fieldset>
+                          <legend>Password change</legend>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <label>Current password (leave blank to leave unchanged):</label>
+                              <input type="password" name="current_password">
+                              <label>New password (leave blank to leave unchanged):</label>
+                              <input type="password" name="new_password">
+                              <label>Confirm new password:</label>
+                              <input type="password" name="new_password_confirmation">
+                            </div>
+                          </div>
+                        </fieldset>
+                        <div class="btn-wrapper">
+                          <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Save Changes</button>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
 
-                                              var linkInput = document.createElement('input');
-                                              linkInput.type = 'text';
-                                              linkInput.classList.add('form-control', 'link-input');
-                                              linkInput.name = 'link[]';
-                                              linkInput.placeholder = 'Enter link';
-                                              linkInput.required = true;
+                  <script>
+                    function addLink() {
+                      var linkContainer = document.createElement('div');
+                      linkContainer.classList.add('link-container');
 
-                                              var inputGroupAppend = document.createElement('div');
-                                              inputGroupAppend.classList.add('input-group-append');
+                      var inputGroup = document.createElement('div');
+                      inputGroup.classList.add('input-group');
 
-                                              var addButton = document.createElement('button');
-                                              addButton.type = 'button';
-                                              addButton.classList.add('btn', 'btn-outline-secondary', 'add-link');
-                                              addButton.textContent = 'Add';
-                                              addButton.addEventListener('click', function() {
-                                                  addLink();
-                                              });
+                      var linkInput = document.createElement('input');
+                      linkInput.type = 'text';
+                      linkInput.classList.add('form-control', 'link-input');
+                      linkInput.name = 'link[]';
+                      linkInput.placeholder = 'Enter link';
+                      linkInput.required = true;
 
-                                              var removeButton = document.createElement('button');
-                                              removeButton.type = 'button';
-                                              removeButton.classList.add('btn', 'btn-outline-danger', 'remove-link');
-                                              removeButton.textContent = 'Remove';
-                                              removeButton.addEventListener('click', function() {
-                                                  removeLink(linkContainer);
-                                              });
+                      var inputGroupAppend = document.createElement('div');
+                      inputGroupAppend.classList.add('input-group-append');
 
-                                              inputGroupAppend.appendChild(addButton);
-                                              if (document.querySelectorAll('.link-container').length > 1) {
-                                                  inputGroupAppend.appendChild(removeButton);
-                                              }
+                      var addButton = document.createElement('button');
+                      addButton.type = 'button';
+                      addButton.classList.add('btn', 'btn-outline-secondary', 'add-link');
+                      addButton.textContent = 'Add';
+                      addButton.addEventListener('click', function() {
+                        addLink();
+                      });
 
-                                              inputGroup.appendChild(linkInput);
-                                              inputGroup.appendChild(inputGroupAppend);
+                      var removeButton = document.createElement('button');
+                      removeButton.type = 'button';
+                      removeButton.classList.add('btn', 'btn-outline-danger', 'remove-link');
+                      removeButton.textContent = 'Remove';
+                      removeButton.addEventListener('click', function() {
+                        removeLink(linkContainer);
+                      });
 
-                                              linkContainer.appendChild(inputGroup);
+                      inputGroupAppend.appendChild(addButton);
+                      if (document.querySelectorAll('.link-container').length > 1) {
+                        inputGroupAppend.appendChild(removeButton);
+                      }
 
-                                              document.getElementById('linkContainer').appendChild(linkContainer);
-                                          }
+                      inputGroup.appendChild(linkInput);
+                      inputGroup.appendChild(inputGroupAppend);
 
-                                          function removeLink(linkContainer) {
-                                              linkContainer.remove();
-                                          }
-                                                                    </script>
-                                                                          </div>
-                                                                      </div>
-                                                                  </div>
-                                                              </div>
-                                                          </div>
-                                                          <!-- PRODUCT TAB AREA END -->
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-    <!-- WISHLIST AREA START -->
+                      linkContainer.appendChild(inputGroup);
+
+                      document.getElementById('linkContainer').appendChild(linkContainer);
+                    }
+
+                    function removeLink(linkContainer) {
+                      linkContainer.remove();
+                    }
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- PRODUCT TAB AREA END -->
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- WISHLIST AREA START -->
+
+
+
+
 </body>
 
 </html>
