@@ -5,6 +5,7 @@
             @foreach($products as $product)
             @php
             $produk_name = $product->produk_name;
+            $produk_kuan = $product->kuantitas;
             $max_length = 23;
 
             if (strlen($produk_name) > $max_length) {

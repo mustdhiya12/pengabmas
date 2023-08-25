@@ -3,6 +3,7 @@
     @foreach ($products as $product)
     @php
     $produk_name = $product->produk_name;
+    $produk_kuan = $product->kuantitas;
     $max_length = 23;
 
     if (strlen($produk_name) > $max_length) {
@@ -10,6 +11,7 @@
     }
     @endphp
     <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+        @if ($produk_kuan >= 1)
         <div class="ltn__product-item ltn__product-item-3 text-left">
             <div class="product-img">
                 <a href="/produk/{{ $product->id }}" style="display: block; text-decoration: none;">
@@ -46,6 +48,37 @@
                 </div>
             </div>
         </div>
+        @else
+        <div class="ltn__product-item ltn__product-item-3 text-center">
+            <div class="product-img">
+                <a href="/produk/{{ $product->id }}" style="display: block;">
+                    @foreach (explode('|', $product->gambar) as $key => $fruit)
+                    @if ($key === 0)
+                    <img src="{{ asset('gambar/'.$fruit) }}" class="card-img-top" style="aspect-ratio: 1 / 1; filter: brightness(50%);" />
+                    @endif
+                    @endforeach
+                </a>
+                <div class="product-hover-action">
+                    <ul>
+                        @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
+                        <li>
+                            <a href="#">
+                                <i class="far fa-heart"></i>
+                            </a>
+                        </li>
+                        @endif
+                    </ul>
+                </div>
+            </div>
+            <div class="product-info">
+                <hr>
+                <h2 class="product-title"><a href="/produk/{{ $product->id }}">{!! $produk_name !!}</a></h2>
+                <div class="product-price">
+                    <span style="color: rgb(247, 62, 62);"> Stok Habis </span>
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
     @endforeach
     <!--  -->
