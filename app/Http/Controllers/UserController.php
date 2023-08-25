@@ -824,7 +824,6 @@ public function updateAccount(Request $request)
             'email' => 'nullable|email|unique:users,email,' . $user->id,
             'password' => 'nullable|confirmed',
             'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'link.*' => 'nullable|url',
             'status' => 'nullable|string',
         ]);
 
@@ -844,7 +843,7 @@ public function updateAccount(Request $request)
         }
         
         $user->status = $request->input('status');
-        
+
         if ($request->has('link')) {
             $newLinks = $request->input('link');
             $linkString = implode("|", $newLinks);
