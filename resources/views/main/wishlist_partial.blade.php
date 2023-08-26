@@ -31,7 +31,7 @@
                         @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
                         <li>
                             @php
-                            $isWishlist = checkIfInWishlist($product->id); // Ganti ini dengan logika cek wishlist
+                            $isWishlist = checkIfInWishlist($product->id);
                             @endphp
 
                             @if ($isWishlist)
