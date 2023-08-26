@@ -474,7 +474,7 @@
                                 <div class="container">
                                   <div class="avatar-upload">
                                     <div class="avatar-edit">
-                                      <input id="imageUpload" type="file" name="profile_picture" accept=".png, .jpg, .jpeg">
+                                      <input id="imageUpload" type="file" name="profile_picture" accept=".png, .jpg, .jpeg .gif">
                                       <label for="imageUpload"></label>
                                     </div>
                                     <div class="avatar-preview">
