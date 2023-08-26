@@ -64,5 +64,10 @@ public $timestamps = false;
             return $this->hasMany(Product::class);
         }
 
+        public function links()
+    {
+        return $this->hasMany(User::class, 'id');
+    }
+
 
 }
