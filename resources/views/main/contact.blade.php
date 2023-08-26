@@ -10,7 +10,11 @@
   <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=649a36bc940f820012547f57&product=privacy-policy-generator&source=platform" async="async">
   </script>
   <style>
-
+  .preview-img {
+        width: 568px;
+        height: 568px;
+        object-fit: contain;
+    }
   </style>
 </head>
 
@@ -114,7 +118,6 @@
 
     <!-- BLOG AREA START (blog-3) -->
     @php
-    // Contoh inisialisasi array blog (ganti ini dengan data yang sesuai dari database atau sumber lainnya)
     $blogs = [
     [
     'image' => 'picture/1.png',
@@ -122,7 +125,7 @@
     'category' => 'DevOps Engineer',
     'title' => 'Profile Muhammad Fauzan Nur Ilham',
     'date' => 'Agt 21, 2024',
-    'route' => 'main.home'
+    'route' => 'main.fauzan'
     ],
     [
     'image' => 'picture/2.png',
@@ -130,7 +133,7 @@
     'category' => 'Software Developer/Programmer',
     'title' => 'Profile Pandu Wirayuda',
     'date' => 'Agt 21, 2024',
-    'route' => 'main.home'
+    'route' => 'main.pandu'
     ],
     [
     'image' => 'picture/3.png',
@@ -138,7 +141,7 @@
     'category' => 'Software Developer/Programmer',
     'title' => 'Profile Muhammad Haikal Mahardika',
     'date' => 'Agt 21, 2024',
-    'route' => 'main.home'
+    'route' => 'main.haikal'
     ],
     ];
     @endphp
