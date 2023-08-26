@@ -361,7 +361,11 @@
                                             <p class="alert alert-success">{{ session('success') }}</p>
                                           </div>
                                           @endif
-                                          <!-- Untuk List Barang Yang di Wishlist taruh disini -->
+                                          <div class="row">
+                                            @foreach($users as $user)
+                                                @include('main.wishlist_partial', ['products' => $user->wishlist])
+                                            @endforeach
+                                          </div>                                        
                                         </div>
                                       </div>
                                     </section>

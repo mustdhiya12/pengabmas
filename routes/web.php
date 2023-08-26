@@ -104,6 +104,12 @@ Route::get('/shop', [MainController::class, 'get_data_produk_shop'])->name('main
 // Route view For function privacy policy
 Route::get('/pr', [MainController::class, 'pr'])->name('main.pr');
 
+// Route view for function get_wishlist
+Route::get('/dashboard/view', [UserController::class, 'get_wishlist'])->middleware('auth')->name('user.wishlist');
+
+// Route view for function checkIfInWishlist
+Route::get('/dashboard/check-wishlist/{product_id}', [YourControllerName::class, 'checkIfInWishlist'])->middleware('auth')->name('user.check.wishlist');
+
 // Route post For function updateItems
 Route::post('/dashboard/view/produk', [UserController::class, 'updateItems'])->middleware('auth')->name('34534534534534');
 

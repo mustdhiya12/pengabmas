@@ -1614,4 +1614,28 @@ public function job_orderan_selesai_kurir(){
     }
 }
 
+public function get_wishlist($user) {
+    if ($user->user_type == 'Pembeli') {
+        $wishlist = PesananUser::where('produk_buyer_id', $user->id)
+            ->join('produk', 'pesanan_users.produk_id', '=', 'produk.produk_id')
+            ->select('produk.*', 'pesanan_users.*')
+            ->get();
+
+        if ($wishlist->isEmpty()) {
+            return "Tidak ada barang yang di wishlist";
+        }
+
+        return view('user.dashboard', ['wishlist' => $wishlist]);
+    }
+}
+
+function checkIfInWishlist($product_id) {
+    $user_id = Auth::user()->id; // Ambil ID pengguna yang sedang login
+    $wishlist = Wishlist::where('user_id', $user_id)
+                        ->where('produk_id', $product_id)
+                        ->exists();
+
+    return $wishlist;
+}
+
 }
