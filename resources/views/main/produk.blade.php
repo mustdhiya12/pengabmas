@@ -105,8 +105,11 @@ use App\Models\likes_pro;
                         </style>
 
                         <div class="description-container">
-                            <p class="lead"><?= $short_description ?>
-                                <a id="expand-link" style="color: var(--border-color-4); cursor: pointer;">Baca Selanjutnya....</a>
+                            <p class="lead">
+                                <?= $short_description ?>
+                                <?php if (strlen($produk_deskripsi) > $max_length) : ?>
+                                    <a id="expand-link" style="color: var(--border-color-4); cursor: pointer;">Baca Selanjutnya....</a>
+                                <?php endif; ?>
                             </p>
 
                             <?php if (strlen($produk_deskripsi) > $max_length) : ?>
@@ -116,8 +119,7 @@ use App\Models\likes_pro;
                                 </div>
                             <?php endif; ?>
                         </div>
-
-
+                        
                         <script>
                             const expandLink = document.getElementById("expand-link");
                             const expandDescription = document.getElementById("expand-description");
