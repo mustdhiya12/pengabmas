@@ -17,9 +17,11 @@
 <body>
 
     @include('main/navbar')
-    <div style="margin-top:150px;" class="container m-4 p-5">
+    <div style="padding-top:150px;" class="container m-4 p-5">
     </div>
-    <div style="margin-top:150px;" class="container m-4 p-5">
+    <div style="padding-top:250px;" class="container m-4 p-5">
+    </div>
+    <div style="padding-top:150px;" class="container m-4 p-5">
         @if(session('success'))
         <div class="row justify-content-center">
             <div class="col-8">

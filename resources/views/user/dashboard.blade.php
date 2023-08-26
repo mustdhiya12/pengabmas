@@ -47,7 +47,7 @@
               <b style="color: aliceblue;">Status: </b>
               <p style="color:seashell;">{{ Auth::user()->status }}</p>
             </div>
-            
+
             <div class="ltn__breadcrumb-list pip">
               <ul>
                 <li><a class="pip" href="{{ route('main.home') }}">Home</a></li>
@@ -58,86 +58,87 @@
           <div class="container">
             <style>
               @keyframes zoomIn {
-                  from {
-                      transform: scale(1);
-                  }
-                  to {
-                      transform: scale(1.05);
-                  }
+                from {
+                  transform: scale(1);
+                }
+
+                to {
+                  transform: scale(1.05);
+                }
               }
 
               /* Terapkan animasi pada elemen saat di-hover */
               .zoom-in {
-                  transition: transform 0.3s ease-in-out;
+                transition: transform 0.3s ease-in-out;
               }
 
               .zoom-in:hover {
-                  animation: zoomIn 0.3s ease-in-out;
-                  transform: scale(1.05);
+                animation: zoomIn 0.3s ease-in-out;
+                transform: scale(1.05);
               }
             </style>
-                @if(!empty(Auth::user()) && Auth::user()->user_type == 'Penjual')
-                <div class="row row-cols-6">
-                  @php
-                  $links = explode('|', Auth::user()->link);
-                  @endphp
+            @if(!empty(Auth::user()) && Auth::user()->user_type == 'Penjual')
+            <div class="row row-cols-6">
+              @php
+              $links = explode('|', Auth::user()->link);
+              @endphp
 
-                  @foreach ($links as $link)
-                  @if ($link == null)
-                  <p class="text-danger"><b>Announcement: </b>Link tidak tersedia</p>
-                  @else
-                  @if (strpos($link, 'bhinneka') !== false)
-                  <a href="{{ $link }}" class="btn btn-bhineka mt-2 col-sm-3" style="color: white; background-color: #092c52;">
-                    <img src="{{ asset('icon/bhi.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Bhinneka
-                  </a>
-                  @elseif (strpos($link, 'tokopedia') !== false)
-                  <a href="{{ $link }}" class="btn btn-tokopedia mt-2 col-sm-3" style="color: white; background-color: #03ac0e;">
-                    <img src="{{ asset('icon/tokped.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Tokopedia
-                  </a>
-                  @elseif (strpos($link, 'shopee') !== false)
-                  <a href="{{ $link }}" class="btn btn-shopee mt-2 col-sm-3" style="color: white; background-color: #f7452e;">
-                    <img src="{{ asset('icon/sho.png') }}" alt="Shopee" style="width: 23px; height: 23px; filter: brightness(10.5) saturate(0%);"> Shopee
-                  </a>
-                  @elseif (strpos($link, 'bukalapak') !== false)
-                  <a href="{{ $link }}" class="btn btn-bukalapak mt-2 col-sm-3" style="color: white; background-color: #e31e52;">
-                    <img src="{{ asset('icon/buka.png') }}" alt="Shopee" style="width: 23px; height: 23px; filter: brightness(10.5) saturate(0%);"> Bukalapak
-                  </a>
-                  @elseif (strpos($link, 'lazada') !== false)
-                  <a href="{{ $link }}" class="btn btn-lazada mt-2 col-sm-3" style="color: white; background-color: #11146e;">
-                    <img src="{{ asset('icon/laz.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Lazada
-                  </a>
-                  @elseif (strpos($link, 'blibli') !== false)
-                  <a href="{{ $link }}" class="btn btn-blibli mt-2 col-sm-3" style="color: white; background-color: #0095da;">
-                    <img src="{{ asset('icon/blibli.png') }}" alt="Shopee" style="width: 23px; height: 23px; background-color: white; border-radius: 10px;"> Blibli.com
-                  </a>
-                  @elseif (strpos($link, 'me') !== false)
-                  <a href="{{ $link }}" class="btn btn-whatsapp mt-2 col-sm-3 zoom-in" style="color: white; background-color: #0cc243;">
-                    <i class="bi bi-whatsapp me-1"></i> Whatsapp
-                  </a>
-                  @elseif (strpos($link, 'instagram') !== false)
-                  <a href="{{ $link }}" class="btn btn-whatsapp mt-2 col-sm-3 zoom-in" style="color: white; background-color: #ff2e42;">
-                    <i class="bi bi-instagram"></i> instagram
-                  </a>
-                  @elseif (strpos($link, 'facebook') !== false)
-                  <a href="{{ $link }}" class="btn btn-whatsapp mt-2 col-sm-3 zoom-in" style="color: white; background-color: #0d8cf1;">
-                    <i class="bi bi-facebook"></i> facebook
-                  </a>
-                  @else
-                  @php
-                  $linkParts = explode('/', $link);
-                  $domain = $linkParts[2];
-                  $domainName = explode('.', $domain)[1];
-                  $domainName = preg_replace('/^www\.|^ww\./', '', $domainName);
-                  @endphp
-                  <a href="{{ $link }}" class="btn btn-otherlink mt-4 col-sm-3" style="color: white; background-color: #8c7e00;">
-                    <i class="bi bi-cart3 me-1"></i>{{ $domainName }}
-                  </a>
-                  @endif
-                  @endif
-                  @endforeach
-                </div>
-                @endif
-              </div>
+              @foreach ($links as $link)
+              @if ($link == null)
+              <p class="text-danger"><b>Announcement: </b>Link tidak tersedia</p>
+              @else
+              @if (strpos($link, 'bhinneka') !== false)
+              <a href="{{ $link }}" class="btn btn-bhineka mt-4 col-sm-5" style="color: white; background-color: #092c52;">
+                <img src="{{ asset('icon/bhi.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Bhinneka
+              </a>
+              @elseif (strpos($link, 'tokopedia') !== false)
+              <a href="{{ $link }}" class="btn btn-tokopedia mt-4 col-sm-5" style="color: white; background-color: #03ac0e;">
+                <img src="{{ asset('icon/tokped.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Tokopedia
+              </a>
+              @elseif (strpos($link, 'shopee') !== false)
+              <a href="{{ $link }}" class="btn btn-shopee mt-4 col-sm-5" style="color: white; background-color: #f7452e;">
+                <img src="{{ asset('icon/sho.png') }}" alt="Shopee" style="width: 23px; height: 23px; filter: brightness(10.5) saturate(0%);"> Shopee
+              </a>
+              @elseif (strpos($link, 'bukalapak') !== false)
+              <a href="{{ $link }}" class="btn btn-bukalapak mt-4 col-sm-5" style="color: white; background-color: #e31e52;">
+                <img src="{{ asset('icon/buka.png') }}" alt="Shopee" style="width: 23px; height: 23px; filter: brightness(10.5) saturate(0%);"> Bukalapak
+              </a>
+              @elseif (strpos($link, 'lazada') !== false)
+              <a href="{{ $link }}" class="btn btn-lazada mt-4 col-sm-5" style="color: white; background-color: #11146e;">
+                <img src="{{ asset('icon/laz.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Lazada
+              </a>
+              @elseif (strpos($link, 'blibli') !== false)
+              <a href="{{ $link }}" class="btn btn-blibli mt-4 col-sm-5" style="color: white; background-color: #0095da;">
+                <img src="{{ asset('icon/blibli.png') }}" alt="Shopee" style="width: 23px; height: 23px; background-color: white; border-radius: 10px;"> Blibli.com
+              </a>
+              @elseif (strpos($link, 'me') !== false)
+              <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-5" style="color: white; background-color: #0cc243;">
+                <i class="bi bi-whatsapp me-1"></i> Whatsapp
+              </a>
+              @elseif (strpos($link, 'instagram') !== false)
+              <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-5" style="color: white; background-color: #ff2e42;">
+                <i class="fab fa-instagram"></i> instagram
+              </a>
+              @elseif (strpos($link, 'facebook') !== false)
+              <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-5" style="color: white; background-color: #0d8cf1;">
+                <i class="fab fa-facebook-f"></i> facebook
+              </a>
+              @else
+              @php
+              $linkParts = explode('/', $link);
+              $domain = $linkParts[2];
+              $domainName = explode('.', $domain)[1];
+              $domainName = preg_replace('/^www\.|^ww\./', '', $domainName);
+              @endphp
+              <a href="{{ $link }}" class="btn btn-otherlink mt-4 col-sm-5" style="color: white; background-color: #8c7e00;">
+                <i class="bi bi-cart3 me-1"></i>{{ $domainName }}
+              </a>
+              @endif
+              @endif
+              @endforeach
+            </div>
+            @endif
+          </div>
         </div>
       </div>
     </div>
@@ -363,11 +364,11 @@
                                           @endif
                                           <div class="row">
                                             @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
-                                              @foreach($users as $user)
-                                                  @include('main.wishlist_partial', ['products' => $user->wishlist])
-                                              @endforeach
+                                            @foreach($users as $user)
+                                            @include('main.wishlist_partial', ['products' => $user->wishlist])
+                                            @endforeach
                                             @endif
-                                          </div>                                        
+                                          </div>
                                         </div>
                                       </div>
                                     </section>
@@ -381,75 +382,77 @@
                     <div class="tab-pane fade" id="liton_tab_1_5">
                       <style>
                         .containerss {
-                            max-width: 960px;
-                            margin: 30px auto;
-                            padding: 20px;
+                          max-width: 960px;
+                          margin: 30px auto;
+                          padding: 20px;
                         }
+
                         .avatar-upload {
-                            position: relative;
-                            max-width: 100px;
-                            margin: 10px auto;
+                          position: relative;
+                          max-width: 100px;
+                          margin: 10px auto;
                         }
 
                         .avatar-edit {
-                            position: absolute;
-                            right: 67px;
-                            z-index: 1;
-                            top: 10px;
+                          position: absolute;
+                          right: 67px;
+                          z-index: 1;
+                          top: 10px;
                         }
 
                         .avatar-edit input {
-                            display: none;
+                          display: none;
                         }
 
                         .avatar-edit label {
-                            display: inline-block;
-                            width: 30px;
-                            height: 30px;
-                            margin-bottom: 0;
-                            border-radius: 100%;
-                            background: #FFFFFF;
-                            border: 1px solid transparent;
-                            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-                            cursor: pointer;
-                            font-weight: normal;
-                            transition: all .2s ease-in-out;
+                          display: inline-block;
+                          width: 30px;
+                          height: 30px;
+                          margin-bottom: 0;
+                          border-radius: 100%;
+                          background: #FFFFFF;
+                          border: 1px solid transparent;
+                          box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+                          cursor: pointer;
+                          font-weight: normal;
+                          transition: all .2s ease-in-out;
                         }
 
                         .avatar-edit label:hover {
-                            background: #f1f1f1;
-                            border-color: #d6d6d6;
+                          background: #f1f1f1;
+                          border-color: #d6d6d6;
                         }
 
                         .avatar-edit label:after {
-                            content: "\f040";
-                            font-family: 'FontAwesome';
-                            color: #757575;
-                            position: absolute;
-                            top: 5px;
-                            left: 0;
-                            right: 0;
-                            text-align: center;
-                            margin: auto;
+                          content: "\f040";
+                          font-family: 'FontAwesome';
+                          color: #757575;
+                          position: absolute;
+                          top: 5px;
+                          left: 0;
+                          right: 0;
+                          text-align: center;
+                          margin: auto;
                         }
 
-                          .avatar-preview {
-                              right: 120px;
-                              width: 150px;
-                              height: 150px;
-                              position: relative;
-                              border-radius: 100%;
-                              border: 6px solid #F8F8F8;
-                              box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-                              > div {
-                                  width: 100%;
-                                  height: 100%;
-                                  border-radius: 100%;
-                                  background-size: cover;
-                                  background-repeat: no-repeat;
-                                  background-position: center;
-                              }
+                        .avatar-preview {
+                          right: 120px;
+                          width: 150px;
+                          height: 150px;
+                          position: relative;
+                          border-radius: 100%;
+                          border: 6px solid #F8F8F8;
+                          box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+
+                          >div {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 100%;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            background-position: center;
                           }
+                        }
                       </style>
                       <div class="ltn__myaccount-tab-content-inner">
                         <p>Welcome, {{ Auth::user()->name }} <small> - Profile</small></p>
@@ -479,15 +482,15 @@
                                     </div>
                                     <div class="avatar-preview">
                                       @if (Auth::user()->profile != null)
-                                          @foreach (explode('|', Auth::user()->profile) as $key => $fruit)
-                                              @if ($key === 0)
-                                                  <div id="imagePreview" style="background-image: url('{{ asset('picture/'.$fruit) }}');"></div>
-                                              @endif
-                                          @endforeach
-                                      @else
-                                          <div id="imagePreview" style="background-image: url('http://i.pravatar.cc/500?img=7');"></div>
+                                      @foreach (explode('|', Auth::user()->profile) as $key => $fruit)
+                                      @if ($key === 0)
+                                      <div id="imagePreview" style="background-image: url('{{ asset('picture/'.$fruit) }}');"></div>
                                       @endif
-                                  </div>                                  
+                                      @endforeach
+                                      @else
+                                      <div id="imagePreview" style="background-image: url('http://i.pravatar.cc/500?img=7');"></div>
+                                      @endif
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -500,41 +503,41 @@
                             </div>
                         </div>
                         <div class="row mb-50">
-                        <div class="col-md-6">
+                          <div class="col-md-6">
                             <label>Edit Links:</label>
                             <div id="linkContainer">
-                                @php
-                                if(isset($user)) {
-                                    $linkArray = explode('|', $user->link);
-                                }
-                                @endphp
+                              @php
+                              if(isset($user)) {
+                              $linkArray = explode('|', $user->link);
+                              }
+                              @endphp
 
-                                <ul id="linkList">
-                                    @if(isset($linkArray) && count($linkArray) > 0)
-                                        @foreach ($linkArray as $link)
-                                            <li>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control link-input" value="{{ $link }}" disabled>
-                                                    <div class="input-group-append">
-                                                        <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this)">Remove</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                    @endif
-                                </ul>
+                              <ul id="linkList">
+                                @if(isset($linkArray) && count($linkArray) > 0)
+                                @foreach ($linkArray as $link)
+                                <li>
+                                  <div class="input-group">
+                                    <input type="text" class="form-control link-input" value="{{ $link }}" disabled>
+                                    <div class="input-group-append">
+                                      <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this)">Remove</button>
+                                    </div>
+                                  </div>
+                                </li>
+                                @endforeach
+                                @endif
+                              </ul>
                             </div>
                             <button type="button" class="btn theme-btn-2 btn-effect-2 text-uppercase" onclick="enableEdit()">Edit Links</button>
+                          </div>
                         </div>
-                    </div>
 
-                    <div class="row mb-50">
-                        <div class="col-md-6">
+                        <div class="row mb-50">
+                          <div class="col-md-6">
                             <label>Add Link:</label>
                             <input type="url" id="newLink" placeholder="Enter Link URL">
                             <button type="button" class="btn theme-btn-2 btn-effect-2 text-uppercase" onclick="addNewLink()">Add Link</button>
+                          </div>
                         </div>
-                    </div>
 
                         <fieldset>
                           <legend>Password change</legend>
@@ -558,18 +561,18 @@
                   </div>
 
                   <script>
-                   function enableEdit() {
-                    const linkInputs = document.querySelectorAll('.link-input');
-                    linkInputs.forEach(input => {
+                    function enableEdit() {
+                      const linkInputs = document.querySelectorAll('.link-input');
+                      linkInputs.forEach(input => {
                         input.removeAttribute('disabled');
-                    });
-                }
+                      });
+                    }
 
-                function addNewLink() {
-                    const newLinkInput = document.getElementById('newLink');
-                    const linkList = document.getElementById('linkList');
+                    function addNewLink() {
+                      const newLinkInput = document.getElementById('newLink');
+                      const linkList = document.getElementById('linkList');
 
-                    if (newLinkInput.value.trim() !== '') {
+                      if (newLinkInput.value.trim() !== '') {
                         const li = document.createElement('li');
                         const inputGroup = document.createElement('div');
                         inputGroup.className = 'input-group';
@@ -588,7 +591,7 @@
                         removeButton.className = 'btn btn-outline-danger remove-link';
                         removeButton.textContent = 'Remove';
                         removeButton.onclick = function() {
-                            linkList.removeChild(li);
+                          linkList.removeChild(li);
                         };
 
                         buttonGroup.appendChild(removeButton);
@@ -598,32 +601,32 @@
                         linkList.appendChild(li);
 
                         newLinkInput.value = '';
+                      }
                     }
-                }
 
-                function removeLink(button) {
-                    const li = button.closest('li');
-                    li.remove();
-                }
-                            
+                    function removeLink(button) {
+                      const li = button.closest('li');
+                      li.remove();
+                    }
+
                     function removeLink(linkContainer) {
                       linkContainer.remove();
                     }
 
                     function readURL(input) {
                       if (input.files && input.files[0]) {
-                          var reader = new FileReader();
-                          reader.onload = function(e) {
-                              $('#imagePreview').css('background-image', 'url('+e.target.result +')');
-                              $('#imagePreview').hide();
-                              $('#imagePreview').fadeIn(650);
-                          }
-                          reader.readAsDataURL(input.files[0]);
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                          $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
+                          $('#imagePreview').hide();
+                          $('#imagePreview').fadeIn(650);
+                        }
+                        reader.readAsDataURL(input.files[0]);
                       }
-                  }
-                  $("#imageUpload").change(function() {
+                    }
+                    $("#imageUpload").change(function() {
                       readURL(this);
-                  });
+                    });
                   </script>
                 </div>
               </div>

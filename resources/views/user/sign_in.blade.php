@@ -34,7 +34,8 @@
   </style>
 
   @include('main/navbar')
-
+  <div style="margin-top:150px;" class="container m-5 p-5"></div>
+  <div class="ltn__utilize-overlay"></div>
   <div style="padding-top:180px;" class="container">
     <div class="d-flex justify-content-center">
       @if(session('success'))

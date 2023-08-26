@@ -26,7 +26,8 @@ use App\Models\likes_pro;
     <!-- Navigation-->
     @include('main/navbar')
     <!-- Product section-->
-
+    <div style="margin-top:150px;" class="container m-5 p-5"></div>
+    <div class="ltn__utilize-overlay"></div>
     <div class="content-section">
         <section class="m-4 p-5">
             <div class="container px-4 px-lg-5 my-5">
@@ -179,11 +180,11 @@ use App\Models\likes_pro;
                                 </a>
                                 @elseif (strpos($link, 'instagram') !== false)
                                 <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-5" style="color: white; background-color: #ff2e42;">
-                                    <i class="bi bi-instagram"></i> instagram
+                                    <i class="fab fa-instagram"></i> instagram
                                 </a>
                                 @elseif (strpos($link, 'facebook') !== false)
                                 <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-5" style="color: white; background-color: #0d8cf1;">
-                                    <i class="bi bi-facebook"></i> facebook
+                                    <i class="fab fa-facebook-f"></i> facebook
                                 </a>
                                 @else
                                 @php
