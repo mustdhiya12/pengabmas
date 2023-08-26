@@ -486,39 +486,41 @@
                             </div>
                         </div>
                         <div class="row mb-50">
-                          <div class="col-md-6">
-                            <label>Add Link:</label>
-                            <input type="url" id="newLink" placeholder="Enter Link URL">
-                            <button type="button" class="btn theme-btn-2 btn-effect-2 text-uppercase" onclick="addLink()">Add Link</button>
-                          </div>
-                        </div>
-
-                        <div class="row mb-50">
-                          <div class="col-md-6">
+                        <div class="col-md-6">
                             <label>Edit Links:</label>
                             <div id="linkContainer">
-                              @php
-                              if(isset($user)) {
-                              $linkArray = explode('|', $user->link);
-                              }
-                              @endphp
+                                @php
+                                if(isset($user)) {
+                                    $linkArray = explode('|', $user->link);
+                                }
+                                @endphp
 
-                              @isset($linkArray)
-                              @foreach ($linkArray as $link)
-                              <div class="link-container">
-                                <div class="input-group">
-                                  <input type="text" name="link[]" placeholder="Enter link" required class="form-control link-input" value="{{ $link }}">
-                                  <div class="input-group-append">
-                                    <button type="button" class="btn btn-outline-secondary add-link" onclick="addLink()">Add</button>
-                                    <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this.parentElement.parentElement.parentElement)">Remove</button>
-                                  </div>
-                                </div>
-                              </div>
-                              @endforeach
-                              @endisset
+                                <ul id="linkList">
+                                    @if(isset($linkArray) && count($linkArray) > 0)
+                                        @foreach ($linkArray as $link)
+                                            <li>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control link-input" value="{{ $link }}" disabled>
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this)">Remove</button>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    @endif
+                                </ul>
                             </div>
-                          </div>
+                            <button type="button" class="btn theme-btn-2 btn-effect-2 text-uppercase" onclick="enableEdit()">Edit Links</button>
                         </div>
+                    </div>
+
+                    <div class="row mb-50">
+                        <div class="col-md-6">
+                            <label>Add Link:</label>
+                            <input type="url" id="newLink" placeholder="Enter Link URL">
+                            <button type="button" class="btn theme-btn-2 btn-effect-2 text-uppercase" onclick="addNewLink()">Add Link</button>
+                        </div>
+                    </div>
 
                         <fieldset>
                           <legend>Password change</legend>
@@ -542,52 +544,54 @@
                   </div>
 
                   <script>
-                    function addLink() {
-                      var linkContainer = document.createElement('div');
-                      linkContainer.classList.add('link-container');
+                   function enableEdit() {
+                    const linkInputs = document.querySelectorAll('.link-input');
+                    linkInputs.forEach(input => {
+                        input.removeAttribute('disabled');
+                    });
+                }
 
-                      var inputGroup = document.createElement('div');
-                      inputGroup.classList.add('input-group');
+                function addNewLink() {
+                    const newLinkInput = document.getElementById('newLink');
+                    const linkList = document.getElementById('linkList');
 
-                      var linkInput = document.createElement('input');
-                      linkInput.type = 'text';
-                      linkInput.classList.add('form-control', 'link-input');
-                      linkInput.name = 'link[]';
-                      linkInput.placeholder = 'Enter link';
-                      linkInput.required = true;
+                    if (newLinkInput.value.trim() !== '') {
+                        const li = document.createElement('li');
+                        const inputGroup = document.createElement('div');
+                        inputGroup.className = 'input-group';
 
-                      var inputGroupAppend = document.createElement('div');
-                      inputGroupAppend.classList.add('input-group-append');
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.className = 'form-control link-input';
+                        input.value = newLinkInput.value;
+                        input.name = 'link[]';
 
-                      var addButton = document.createElement('button');
-                      addButton.type = 'button';
-                      addButton.classList.add('btn', 'btn-outline-secondary', 'add-link');
-                      addButton.textContent = 'Add';
-                      addButton.addEventListener('click', function() {
-                        addLink();
-                      });
+                        const buttonGroup = document.createElement('div');
+                        buttonGroup.className = 'input-group-append';
 
-                      var removeButton = document.createElement('button');
-                      removeButton.type = 'button';
-                      removeButton.classList.add('btn', 'btn-outline-danger', 'remove-link');
-                      removeButton.textContent = 'Remove';
-                      removeButton.addEventListener('click', function() {
-                        removeLink(linkContainer);
-                      });
+                        const removeButton = document.createElement('button');
+                        removeButton.type = 'button';
+                        removeButton.className = 'btn btn-outline-danger remove-link';
+                        removeButton.textContent = 'Remove';
+                        removeButton.onclick = function() {
+                            linkList.removeChild(li);
+                        };
 
-                      inputGroupAppend.appendChild(addButton);
-                      if (document.querySelectorAll('.link-container').length > 1) {
-                        inputGroupAppend.appendChild(removeButton);
-                      }
+                        buttonGroup.appendChild(removeButton);
+                        inputGroup.appendChild(input);
+                        inputGroup.appendChild(buttonGroup);
+                        li.appendChild(inputGroup);
+                        linkList.appendChild(li);
 
-                      inputGroup.appendChild(linkInput);
-                      inputGroup.appendChild(inputGroupAppend);
-
-                      linkContainer.appendChild(inputGroup);
-
-                      document.getElementById('linkContainer').appendChild(linkContainer);
+                        newLinkInput.value = '';
                     }
+                }
 
+                function removeLink(button) {
+                    const li = button.closest('li');
+                    li.remove();
+                }
+                            
                     function removeLink(linkContainer) {
                       linkContainer.remove();
                     }
