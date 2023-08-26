@@ -9,8 +9,7 @@ use App\Models\User;
 class Profile extends Model
 {
     protected $fillable = [
-        'user_id', 'picture_path','username', 'name', 'email', 'password', 'user_type', 'api_key',
-
+        'user_id', 'picture_path',
     ];
 
     public function user()

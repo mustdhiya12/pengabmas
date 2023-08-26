@@ -814,56 +814,68 @@ return response()->json($mang, 201);
 
 
 public function updateAccount(Request $request)
-    {
-        $user = Auth::user();
+{
+    $user = Auth::user();
 
-        if ($request->isMethod('post')) {
-            $this->validate($request, [
-                'username' => 'nullable|max:255|unique:users,username,' . $user->id,
-                'name' => 'required|max:255',
-                'email' => 'nullable|email|unique:users,email,' . $user->id,
-                'password' => 'nullable|min:6|confirmed',
-                'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-                'status' => 'nullable|string',
-                'link.*' => 'nullable|url',
-            ]);
+    if ($request->isMethod('post')) {
+        $this->validate($request, [
+            'username' => 'nullable|max:255|unique:users,username,' . $user->id,
+            'name' => 'required|max:255',
+            'email' => 'nullable|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|min:6|confirmed',
+            'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'status' => 'nullable|string',
+        ]);
 
-            $user->username = $request->input('username');
-            $user->name = $request->input('name');
-            $user->email = $request->input('email');
+        $user->username = $request->input('username');
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
 
-            if ($request->has('password')) {
-                $user->password = Hash::make($request->input('password'));
-            }
-            
-            if ($request->hasFile('profile_picture')) {
-                $profilePicture = $request->file('profile_picture');
-                $picturePath = $profilePicture->store('', 'public_profile_pictures');
-                
-                // Delete old profile picture if exists
-                if ($user->profile_picture) {
-                    Storage::disk('public_profile_pictures')->delete($user->profile_picture);
-                }
-                
-                $user->profile_picture = $picturePath;
-            }
-            
-            $user->status = $request->input('status');
-
-            if ($request->has('link')) {
-                $links = array_filter($request->input('link')); // Remove empty links
-                $user->link = implode("|", $links);
-            } else {
-                $user->link = null;
-            }
-
-            $user->save();
-
-            return back()->with('success', 'Account updated successfully!');
-        } else {
-            return view('user.dashboard', compact('user'));
+        if ($request->has('password')) {
+            $user->password = Hash::make($request->input('password'));
         }
+        
+        if ($request->hasFile('profile_picture')) {
+            $profilePicture = $request->file('profile_picture');
+            $picturePath = $profilePicture->store('', 'public_profile_pictures');
+            
+            // Delete old profile picture if exists
+            if ($user->profile) {
+                Storage::disk('public_profile_pictures')->delete($user->profile);
+            }
+            
+            $user->profile = $picturePath;
+        }
+        
+        $user->status = $request->input('status');
+
+        if ($request->has('new_link')) {
+            $newLinks = $request->input('new_link');
+            
+            // Filter out empty links
+            $newLinks = array_filter($newLinks, function($link) {
+                return !empty($link);
+            });
+            
+            // Merge new links with existing links
+            $linkArray = explode('|', $user->link);
+            $linkArray = array_merge($linkArray, $newLinks);
+            
+            // Remove duplicates and empty links
+            $linkArray = array_unique($linkArray);
+            
+            $user->link = implode("|", $linkArray);
+        }
+
+        $user->save();
+
+        return back()->with('success', 'Account updated successfully!');
+    } else {
+        return view('user.dashboard', compact('user'));
     }
+}
+
+
 
 
 

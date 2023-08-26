@@ -468,16 +468,19 @@
                                 <input type="email" name="email" value="{{ isset($user->email) ? $user->email : Auth::user()->email }}">
                               </div>
                               <div class="col-md-6">
-                                <label>Profile Picture:</label>
-                                <div class="container">
-                                  <div class="avatar-upload">
-                                    <div class="avatar-edit">
-                                      <input id="imageUpload" type="file" name="profile_picture" accept=".png, .jpg, .jpeg">
-                                      <label for="imageUpload"></label>
-                                    </div>
-                                    <div class="avatar-preview">
-                                      <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);"></div>
-                                    </div>
+                                      <label>Profile Picture:</label>
+                                      <div class="container">
+                                          <div class="avatar-upload">
+                                              <div class="avatar-edit">
+                                                  <input id="imageUpload" type="file" name="profile_picture" accept=".png, .jpg, .jpeg">
+                                                  <label for="imageUpload"></label>
+                                              </div>
+                                              <div class="avatar-preview">
+                                              <div id="imagePreview" style="background-image: url('{{ asset('picture/' . (Auth::user()->profile ? Auth::user()->profile : 'astronaut.png')) }}');"></div>
+                                            </div>
+                                          </div>
+                                      </div>
+                                  </div>
                                   </div>
                                 </div>
                               </div>
@@ -490,42 +493,37 @@
                             </div>
                         </div>
                         <div class="row mb-50">
-                        <div class="col-md-6">
-                            <label>Edit Links:</label>
-                            <div id="linkContainer">
-                                @php
-                                if(isset($user)) {
-                                    $linkArray = explode('|', $user->link);
-                                }
-                                @endphp
-
-                                <ul id="linkList">
-                                    @if(isset($linkArray) && count($linkArray) > 0)
-                                        @foreach ($linkArray as $link)
-                                            <li>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control link-input" value="{{ $link }}" disabled>
-                                                    <div class="input-group-append">
-                                                        <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this)">Remove</button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                    @endif
-                                </ul>
+                            <!-- Bagian untuk menambahkan link baru -->
+                            <div class="col-md-6">
+                                <label>Add Link:</label>
+                                <input type="url" id="newLink" placeholder="Enter Link URL">
+                                <button type="button" class="btn theme-btn-2 btn-effect-2 text-uppercase" onclick="addNewLink()">Add Link</button>
                             </div>
-                            <button type="button" class="btn theme-btn-2 btn-effect-2 text-uppercase" onclick="enableEdit()">Edit Links</button>
                         </div>
-                    </div>
-
-                    <div class="row mb-50">
-                        <div class="col-md-6">
-                            <label>Add Link:</label>
-                            <input type="url" id="newLink" placeholder="Enter Link URL">
-                            <button type="button" class="btn theme-btn-2 btn-effect-2 text-uppercase" onclick="addNewLink()">Add Link</button>
+                            <div class="row mb-50">
+                            <div class="col-md-6">
+                                <div id="linkContainer">
+                                    <ul id="linkList">
+                                        <!-- Loop through existing links if any -->
+                                        @php
+                                        $linkArray = explode('|', Auth::user()->link);
+                                        @endphp
+                                        @if(count($linkArray) > 0)
+                                            @foreach ($linkArray as $link)
+                                                <li>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control link-input" name="existing_link[]" value="{{ $link }}" disabled>
+                                                        <div class="input-group-append">
+                                                            <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this)">Remove</button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        @endif
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
                         <fieldset>
                           <legend>Password change</legend>
                           <div class="row">
@@ -546,59 +544,47 @@
                       </div>
                     </div>
                   </div>
-
                   <script>
-                   function enableEdit() {
-                    const linkInputs = document.querySelectorAll('.link-input');
-                    linkInputs.forEach(input => {
-                        input.removeAttribute('disabled');
-                    });
-                }
+                  function addNewLink() {
+        const newLinkInput = document.getElementById('newLink');
+        const linkList = document.getElementById('linkList');
+        
+        if (newLinkInput.value.trim() !== '') {
+            const li = document.createElement('li');
+            const inputGroup = document.createElement('div');
+            inputGroup.className = 'input-group';
+            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'form-control link-input';
+            input.value = newLinkInput.value;
+            input.name = 'new_link[]'; // Make sure this matches your PHP code
+            
+            const buttonGroup = document.createElement('div');
+            buttonGroup.className = 'input-group-append';
+            
+            const removeButton = document.createElement('button');
+            removeButton.type = 'button';
+            removeButton.className = 'btn btn-outline-danger remove-link';
+            removeButton.textContent = 'Remove';
+            removeButton.onclick = function() {
+                linkList.removeChild(li);
+            };
+            
+            buttonGroup.appendChild(removeButton);
+            inputGroup.appendChild(input);
+            inputGroup.appendChild(buttonGroup);
+            li.appendChild(inputGroup);
+            linkList.appendChild(li);
+            
+            newLinkInput.value = ''; // Clear the input after adding a link
+              }
+          }
 
-                function addNewLink() {
-                    const newLinkInput = document.getElementById('newLink');
-                    const linkList = document.getElementById('linkList');
-
-                    if (newLinkInput.value.trim() !== '') {
-                        const li = document.createElement('li');
-                        const inputGroup = document.createElement('div');
-                        inputGroup.className = 'input-group';
-
-                        const input = document.createElement('input');
-                        input.type = 'text';
-                        input.className = 'form-control link-input';
-                        input.value = newLinkInput.value;
-                        input.name = 'link[]';
-
-                        const buttonGroup = document.createElement('div');
-                        buttonGroup.className = 'input-group-append';
-
-                        const removeButton = document.createElement('button');
-                        removeButton.type = 'button';
-                        removeButton.className = 'btn btn-outline-danger remove-link';
-                        removeButton.textContent = 'Remove';
-                        removeButton.onclick = function() {
-                            linkList.removeChild(li);
-                        };
-
-                        buttonGroup.appendChild(removeButton);
-                        inputGroup.appendChild(input);
-                        inputGroup.appendChild(buttonGroup);
-                        li.appendChild(inputGroup);
-                        linkList.appendChild(li);
-
-                        newLinkInput.value = '';
-                    }
-                }
-
-                function removeLink(button) {
-                    const li = button.closest('li');
-                    li.remove();
-                }
-                            
-                    function removeLink(linkContainer) {
-                      linkContainer.remove();
-                    }
+          function removeLink(button) {
+              const li = button.closest('li');
+              li.remove();
+          } 
 
                     function readURL(input) {
                       if (input.files && input.files[0]) {
@@ -611,6 +597,7 @@
                           reader.readAsDataURL(input.files[0]);
                       }
                   }
+
                   $("#imageUpload").change(function() {
                       readURL(this);
                   });
