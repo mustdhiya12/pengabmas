@@ -57,9 +57,9 @@
                 <div class="showing-product-number text-left">
                     <h1>Search Form</h1>
                     <form action="{{ route('products.search') }}" method="get" class="row row-cols-3">
-                        <input type="text" name="query" placeholder="Query" value="<?php echo isset($query) ? $query : ''; ?>">
-                        <input type="number" name="min_price" placeholder="Min Price" value="<?php echo isset($minPrice) ? $minPrice : ''; ?>">
-                        <input type="number" name="max_price" placeholder="Max Price" value="<?php echo isset($maxPrice) ? $maxPrice : ''; ?>">
+                        <input type="text" name="query" placeholder="Nama Produk" value="<?php echo isset($query) ? $query : ''; ?>">
+                        <input type="number" name="min_price" placeholder="Minimal Harga (Opsional)" value="<?php echo isset($minPrice) ? $minPrice : ''; ?>">
+                        <input type="number" name="max_price" placeholder="Maksimal Harga (Opsional)" value="<?php echo isset($maxPrice) ? $maxPrice : ''; ?>">
                         <button type="submit" class="theme-btn-1 ">Search</button>
                     </form>
                 </div>
