@@ -47,7 +47,7 @@
               <b style="color: aliceblue;">Status: </b>
               <p style="color:seashell;">{{ Auth::user()->status }}</p>
             </div>
-            
+
             <div class="ltn__breadcrumb-list pip">
               <ul>
                 <li><a class="pip" href="{{ route('main.home') }}">Home</a></li>
@@ -58,86 +58,87 @@
           <div class="container">
             <style>
               @keyframes zoomIn {
-                  from {
-                      transform: scale(1);
-                  }
-                  to {
-                      transform: scale(1.05);
-                  }
+                from {
+                  transform: scale(1);
+                }
+
+                to {
+                  transform: scale(1.05);
+                }
               }
 
               /* Terapkan animasi pada elemen saat di-hover */
               .zoom-in {
-                  transition: transform 0.3s ease-in-out;
+                transition: transform 0.3s ease-in-out;
               }
 
               .zoom-in:hover {
-                  animation: zoomIn 0.3s ease-in-out;
-                  transform: scale(1.05);
+                animation: zoomIn 0.3s ease-in-out;
+                transform: scale(1.05);
               }
             </style>
-                @if(!empty(Auth::user()) && Auth::user()->user_type == 'Penjual')
-                <div class="row row-cols-6">
-                  @php
-                  $links = explode('|', Auth::user()->link);
-                  @endphp
+            @if(!empty(Auth::user()) && Auth::user()->user_type == 'Penjual')
+            <div class="row row-cols-6">
+              @php
+              $links = explode('|', Auth::user()->link);
+              @endphp
 
-                  @foreach ($links as $link)
-                  @if ($link == null)
-                  <p class="text-danger"><b>Announcement: </b>Link tidak tersedia</p>
-                  @else
-                  @if (strpos($link, 'bhinneka') !== false)
-                  <a href="{{ $link }}" class="btn btn-bhineka mt-2 col-sm-3" style="color: white; background-color: #092c52;">
-                    <img src="{{ asset('icon/bhi.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Bhinneka
-                  </a>
-                  @elseif (strpos($link, 'tokopedia') !== false)
-                  <a href="{{ $link }}" class="btn btn-tokopedia mt-2 col-sm-3" style="color: white; background-color: #03ac0e;">
-                    <img src="{{ asset('icon/tokped.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Tokopedia
-                  </a>
-                  @elseif (strpos($link, 'shopee') !== false)
-                  <a href="{{ $link }}" class="btn btn-shopee mt-2 col-sm-3" style="color: white; background-color: #f7452e;">
-                    <img src="{{ asset('icon/sho.png') }}" alt="Shopee" style="width: 23px; height: 23px; filter: brightness(10.5) saturate(0%);"> Shopee
-                  </a>
-                  @elseif (strpos($link, 'bukalapak') !== false)
-                  <a href="{{ $link }}" class="btn btn-bukalapak mt-2 col-sm-3" style="color: white; background-color: #e31e52;">
-                    <img src="{{ asset('icon/buka.png') }}" alt="Shopee" style="width: 23px; height: 23px; filter: brightness(10.5) saturate(0%);"> Bukalapak
-                  </a>
-                  @elseif (strpos($link, 'lazada') !== false)
-                  <a href="{{ $link }}" class="btn btn-lazada mt-2 col-sm-3" style="color: white; background-color: #11146e;">
-                    <img src="{{ asset('icon/laz.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Lazada
-                  </a>
-                  @elseif (strpos($link, 'blibli') !== false)
-                  <a href="{{ $link }}" class="btn btn-blibli mt-2 col-sm-3" style="color: white; background-color: #0095da;">
-                    <img src="{{ asset('icon/blibli.png') }}" alt="Shopee" style="width: 23px; height: 23px; background-color: white; border-radius: 10px;"> Blibli.com
-                  </a>
-                  @elseif (strpos($link, 'me') !== false)
-                  <a href="{{ $link }}" class="btn btn-whatsapp mt-2 col-sm-3 zoom-in" style="color: white; background-color: #0cc243;">
-                    <i class="bi bi-whatsapp me-1"></i> Whatsapp
-                  </a>
-                  @elseif (strpos($link, 'instagram') !== false)
-                  <a href="{{ $link }}" class="btn btn-whatsapp mt-2 col-sm-3 zoom-in" style="color: white; background-color: #ff2e42;">
-                    <i class="bi bi-instagram"></i> instagram
-                  </a>
-                  @elseif (strpos($link, 'facebook') !== false)
-                  <a href="{{ $link }}" class="btn btn-whatsapp mt-2 col-sm-3 zoom-in" style="color: white; background-color: #0d8cf1;">
-                    <i class="bi bi-facebook"></i> facebook
-                  </a>
-                  @else
-                  @php
-                  $linkParts = explode('/', $link);
-                  $domain = $linkParts[2];
-                  $domainName = explode('.', $domain)[1];
-                  $domainName = preg_replace('/^www\.|^ww\./', '', $domainName);
-                  @endphp
-                  <a href="{{ $link }}" class="btn btn-otherlink mt-4 col-sm-3" style="color: white; background-color: #8c7e00;">
-                    <i class="bi bi-cart3 me-1"></i>{{ $domainName }}
-                  </a>
-                  @endif
-                  @endif
-                  @endforeach
-                </div>
-                @endif
-              </div>
+              @foreach ($links as $link)
+              @if ($link == null)
+              <p class="text-danger"><b>Announcement: </b>Link tidak tersedia</p>
+              @else
+              @if (strpos($link, 'bhinneka') !== false)
+              <a href="{{ $link }}" class="btn btn-bhineka mt-4 col-sm-5" style="color: white; background-color: #092c52;">
+                <img src="{{ asset('icon/bhi.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Bhinneka
+              </a>
+              @elseif (strpos($link, 'tokopedia') !== false)
+              <a href="{{ $link }}" class="btn btn-tokopedia mt-4 col-sm-5" style="color: white; background-color: #03ac0e;">
+                <img src="{{ asset('icon/tokped.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Tokopedia
+              </a>
+              @elseif (strpos($link, 'shopee') !== false)
+              <a href="{{ $link }}" class="btn btn-shopee mt-4 col-sm-5" style="color: white; background-color: #f7452e;">
+                <img src="{{ asset('icon/sho.png') }}" alt="Shopee" style="width: 23px; height: 23px; filter: brightness(10.5) saturate(0%);"> Shopee
+              </a>
+              @elseif (strpos($link, 'bukalapak') !== false)
+              <a href="{{ $link }}" class="btn btn-bukalapak mt-4 col-sm-5" style="color: white; background-color: #e31e52;">
+                <img src="{{ asset('icon/buka.png') }}" alt="Shopee" style="width: 23px; height: 23px; filter: brightness(10.5) saturate(0%);"> Bukalapak
+              </a>
+              @elseif (strpos($link, 'lazada') !== false)
+              <a href="{{ $link }}" class="btn btn-lazada mt-4 col-sm-5" style="color: white; background-color: #11146e;">
+                <img src="{{ asset('icon/laz.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Lazada
+              </a>
+              @elseif (strpos($link, 'blibli') !== false)
+              <a href="{{ $link }}" class="btn btn-blibli mt-4 col-sm-5" style="color: white; background-color: #0095da;">
+                <img src="{{ asset('icon/blibli.png') }}" alt="Shopee" style="width: 23px; height: 23px; background-color: white; border-radius: 10px;"> Blibli.com
+              </a>
+              @elseif (strpos($link, 'me') !== false)
+              <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-5" style="color: white; background-color: #0cc243;">
+                <i class="bi bi-whatsapp me-1"></i> Whatsapp
+              </a>
+              @elseif (strpos($link, 'instagram') !== false)
+              <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-5" style="color: white; background-color: #ff2e42;">
+                <i class="fab fa-instagram"></i> instagram
+              </a>
+              @elseif (strpos($link, 'facebook') !== false)
+              <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-5" style="color: white; background-color: #0d8cf1;">
+                <i class="fab fa-facebook-f"></i> facebook
+              </a>
+              @else
+              @php
+              $linkParts = explode('/', $link);
+              $domain = $linkParts[2];
+              $domainName = explode('.', $domain)[1];
+              $domainName = preg_replace('/^www\.|^ww\./', '', $domainName);
+              @endphp
+              <a href="{{ $link }}" class="btn btn-otherlink mt-4 col-sm-5" style="color: white; background-color: #8c7e00;">
+                <i class="bi bi-cart3 me-1"></i>{{ $domainName }}
+              </a>
+              @endif
+              @endif
+              @endforeach
+            </div>
+            @endif
+          </div>
         </div>
       </div>
     </div>
@@ -155,16 +156,16 @@
                   <div class="ltn__tab-menu-list mb-50">
                     <div class="nav">
                       <a class="active show" data-toggle="tab" href="#liton_tab_1_1">MyAccount <i class="fas fa-home"></i></a>
-                      @if(!empty(Auth::user()) && Auth::user()->user_type == 'Penjual' || Auth::user()->user_type == 'Admin')
+                      @if(!empty(Auth::user()) && (Auth::user()->user_type == 'Penjual' || Auth::user()->user_type == 'Admin'))
                       <a data-toggle="tab" href="#liton_tab_1_2">Product <i class="fas fa-file-alt"></i></a>
                       <a data-toggle="tab" href="#liton_tab_1_3">Product detail <i class="fas fa-plus"></i></a>
-                      @elseif(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
+                      @endif
+                      @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
                       <a data-toggle="tab" href="#liton_tab_1_4">Wishlist<i class="fas fa-heart"></i></a>
                       @endif
                       @if(!empty(Auth::user()) && Auth::user()->user_type == 'Admin')
-                      <a data-toggle="tab" href="#">User Management <i class="fas fa-user"></i></a>
+                      <a data-toggle="tab" href="#liton_tab_1_6">User Management <i class="fas fa-user"></i></a>
                       @endif
-                      <!-- <a data-toggle="tab" href="#">Notice <i class="fas fa-bell"></i></a> -->
                       <a data-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
                       <a href="{{ route('logout') }}">Logout <i class="fas fa-sign-out-alt"></i></a>
                     </div>
@@ -235,63 +236,88 @@
                                             <p class="alert alert-success">{{ session('success') }}</p>
                                           </div>
                                           @endif
-                                          <div class="row">
-                                            @foreach($users as $product)
-                                            <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
-                                              <div class="card w-100 my-2 shadow-2-strong">
-                                                @foreach (explode('|',$product->gambar) as $key => $fruit)
-                                                @if($key === 0)
-                                                <img src="{{ asset('gambar/'.$fruit ) }}" class="card-img-top" style="aspect-ratio: 1 / 1" />
-                                                @endif
-                                                @endforeach
-                                                <div class="product-info">
-                                                  <div class="card-body d-flex flex-column">
-                                                    <div class="product-price">
-                                                      <h5 class="card-title">{{$product->produk_name}}</h5>
-                                                      <hr>
-                                                      <p class="card-text" style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}} <br> <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price * 2}}</s></p>
-                                                    </div>
-                                                    <hr style="color: rgb(247, 161, 62); height: 1.5px;">
-                                                    <span>
-                                                      <form method="POST" action="{{ route('admin.hapus', $product->id) }}">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <div class="d-flex flex-row">
-                                                          <style>
-                                                            .kin:hover {
-                                                              background-color: var(--ltn__secondary-color-2);
-                                                              transition: background-color 0.3s ease-in-out;
-                                                              color: rgb(255, 255, 255);
-                                                            }
+                                          <div class="tab-pane fade active show" id="liton_product_grid">
+                                            <div class="ltn__product-tab-content-inner ltn__product-grid-view">
+                                              <div class="row">
+                                                @foreach($users as $product)
+                                                @php
+                                                $produk_name = $product->produk_name;
+                                                $max_length = 20;
 
-                                                            .kin {
-                                                              color: rgba(144, 144, 144, 0.534);
-                                                              padding: 5px 23px;
-                                                              display: inline-flex;
-                                                              justify-content: center;
-                                                              align-items: center;
-                                                              white-space: nowrap;
-                                                              text-align: center;
-                                                              border: none;
-                                                              border-radius: 5px;
-                                                            }
-                                                          </style>
-                                                          <div class="p-1">
-                                                            <a style="text-decoration: none;" href="{{route('user.view_edit') . '/' . $product->id }}">
-                                                              <button type="button" class="kin">Ubah</button>
-                                                            </a>
-                                                          </div>
-                                                          <div class="p-1">
-                                                            <button onclick="return confirm('!Peringatan!\nApakah anda yakin ingin menghapus produk ini?\nnama produk : {{ $product->produk_name }} ');" type="submit" class="kin">Hapus</button>
-                                                          </div>
+                                                if (strlen($produk_name) > $max_length) {
+                                                $produk_name = substr($produk_name, 0, $max_length) . '<span style="color: gray;">...</span>';
+                                                }
+                                                @endphp
+                                                <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
+                                                  <div class="card w-100 my-2 shadow-2-strong">
+                                                    @foreach (explode('|',$product->gambar) as $key => $fruit)
+                                                    @if($key === 0)
+                                                    <img src="{{ asset('gambar/'.$fruit ) }}" class="card-img-top" style="aspect-ratio: 1 / 1" />
+                                                    @endif
+                                                    @endforeach
+                                                    <div class="product-info">
+                                                      <div class="card-body d-flex flex-column">
+                                                        <div class="product-price">
+                                                          <h5 class="card-title">{!! $produk_name !!}</h5>
+                                                          <hr>
+                                                          <p class="card-text" style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}} <br> <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price * 2}}</s></p>
                                                         </div>
-                                                      </form>
-                                                    </span>
+                                                        <hr style="color: rgb(247, 161, 62); height: 1.5px;">
+                                                        <span>
+                                                          <form method="POST" action="{{ route('admin.hapus', $product->id) }}">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="d-flex flex-row">
+                                                              <style>
+                                                                .kin:hover {
+                                                                  background-color: var(--ltn__secondary-color-2);
+                                                                  transition: background-color 0.3s ease-in-out;
+                                                                  color: rgb(255, 255, 255);
+                                                                }
+
+                                                                .kin {
+                                                                  color: rgba(144, 144, 144, 0.534);
+                                                                  padding: 5px 23px;
+                                                                  display: inline-flex;
+                                                                  justify-content: center;
+                                                                  align-items: center;
+                                                                  white-space: nowrap;
+                                                                  text-align: center;
+                                                                  border: none;
+                                                                  border-radius: 5px;
+                                                                }
+
+                                                                @media (max-width: 1391px) {
+                                                                    .kin {
+                                                                        padding: 4px 5px;
+                                                                    }
+                                                                }
+
+                                                                @media (max-width: 768px) {
+                                                                    .kin {
+                                                                        padding: 3px 5%;
+                                                                    }
+                                                                }
+
+                                                              </style>
+                                                              <div class="p-1">
+                                                                <a style="text-decoration: none;" href="{{route('user.view_edit') . '/' . $product->id }}">
+                                                                  <button type="button" class="kin">Ubah</button>
+                                                                </a>
+                                                              </div>
+                                                              <div class="p-1">
+                                                                <button onclick="return confirm('!Peringatan!\nApakah anda yakin ingin menghapus produk ini?\nnama produk : {{ $product->produk_name }} ');" type="submit" class="kin">Hapus</button>
+                                                              </div>
+                                                            </div>
+                                                          </form>
+                                                        </span>
+                                                      </div>
+                                                    </div>
                                                   </div>
                                                 </div>
+                                                @endforeach
                                               </div>
                                             </div>
-                                            @endforeach
                                           </div>
                                         </div>
                                       </div>
@@ -362,10 +388,12 @@
                                           </div>
                                           @endif
                                           <div class="row">
+                                            @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
                                             @foreach($users as $user)
-                                                @include('main.wishlist_partial', ['products' => $user->wishlist])
+                                            @include('main.wishlist_partial', ['products' => $user->wishlist])
                                             @endforeach
-                                          </div>                                        
+                                            @endif
+                                          </div>
                                         </div>
                                       </div>
                                     </section>
@@ -379,75 +407,77 @@
                     <div class="tab-pane fade" id="liton_tab_1_5">
                       <style>
                         .containerss {
-                            max-width: 960px;
-                            margin: 30px auto;
-                            padding: 20px;
+                          max-width: 960px;
+                          margin: 30px auto;
+                          padding: 20px;
                         }
+
                         .avatar-upload {
-                            position: relative;
-                            max-width: 100px;
-                            margin: 10px auto;
+                          position: relative;
+                          max-width: 100px;
+                          margin: 10px auto;
                         }
 
                         .avatar-edit {
-                            position: absolute;
-                            right: 67px;
-                            z-index: 1;
-                            top: 10px;
+                          position: absolute;
+                          right: 67px;
+                          z-index: 1;
+                          top: 10px;
                         }
 
                         .avatar-edit input {
-                            display: none;
+                          display: none;
                         }
 
                         .avatar-edit label {
-                            display: inline-block;
-                            width: 30px;
-                            height: 30px;
-                            margin-bottom: 0;
-                            border-radius: 100%;
-                            background: #FFFFFF;
-                            border: 1px solid transparent;
-                            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-                            cursor: pointer;
-                            font-weight: normal;
-                            transition: all .2s ease-in-out;
+                          display: inline-block;
+                          width: 30px;
+                          height: 30px;
+                          margin-bottom: 0;
+                          border-radius: 100%;
+                          background: #FFFFFF;
+                          border: 1px solid transparent;
+                          box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+                          cursor: pointer;
+                          font-weight: normal;
+                          transition: all .2s ease-in-out;
                         }
 
                         .avatar-edit label:hover {
-                            background: #f1f1f1;
-                            border-color: #d6d6d6;
+                          background: #f1f1f1;
+                          border-color: #d6d6d6;
                         }
 
                         .avatar-edit label:after {
-                            content: "\f040";
-                            font-family: 'FontAwesome';
-                            color: #757575;
-                            position: absolute;
-                            top: 5px;
-                            left: 0;
-                            right: 0;
-                            text-align: center;
-                            margin: auto;
+                          content: "\f040";
+                          font-family: 'FontAwesome';
+                          color: #757575;
+                          position: absolute;
+                          top: 5px;
+                          left: 0;
+                          right: 0;
+                          text-align: center;
+                          margin: auto;
                         }
 
-                          .avatar-preview {
-                              right: 120px;
-                              width: 150px;
-                              height: 150px;
-                              position: relative;
-                              border-radius: 100%;
-                              border: 6px solid #F8F8F8;
-                              box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-                              > div {
-                                  width: 100%;
-                                  height: 100%;
-                                  border-radius: 100%;
-                                  background-size: cover;
-                                  background-repeat: no-repeat;
-                                  background-position: center;
-                              }
+                        .avatar-preview {
+                          right: 120px;
+                          width: 150px;
+                          height: 150px;
+                          position: relative;
+                          border-radius: 100%;
+                          border: 6px solid #F8F8F8;
+                          box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+
+                          >div {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 100%;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            background-position: center;
                           }
+                        }
                       </style>
                       <div class="ltn__myaccount-tab-content-inner">
                         <p>Welcome, {{ Auth::user()->name }} <small> - Profile</small></p>
@@ -545,62 +575,64 @@
                     </div>
                   </div>
                   <script>
-                  function addNewLink() {
-        const newLinkInput = document.getElementById('newLink');
-        const linkList = document.getElementById('linkList');
-        
-        if (newLinkInput.value.trim() !== '') {
-            const li = document.createElement('li');
-            const inputGroup = document.createElement('div');
-            inputGroup.className = 'input-group';
-            
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.className = 'form-control link-input';
-            input.value = newLinkInput.value;
-            input.name = 'new_link[]'; // Make sure this matches your PHP code
-            
-            const buttonGroup = document.createElement('div');
-            buttonGroup.className = 'input-group-append';
-            
-            const removeButton = document.createElement('button');
-            removeButton.type = 'button';
-            removeButton.className = 'btn btn-outline-danger remove-link';
-            removeButton.textContent = 'Remove';
-            removeButton.onclick = function() {
-                linkList.removeChild(li);
-            };
-            
-            buttonGroup.appendChild(removeButton);
-            inputGroup.appendChild(input);
-            inputGroup.appendChild(buttonGroup);
-            li.appendChild(inputGroup);
-            linkList.appendChild(li);
-            
-            newLinkInput.value = ''; // Clear the input after adding a link
-              }
-          }
+                  
+                    function addNewLink() {
+                      const newLinkInput = document.getElementById('newLink');
+                      const linkList = document.getElementById('linkList');
 
-          function removeLink(button) {
-              const li = button.closest('li');
-              li.remove();
-          } 
+                      if (newLinkInput.value.trim() !== '') {
+                        const li = document.createElement('li');
+                        const inputGroup = document.createElement('div');
+                        inputGroup.className = 'input-group';
+
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.className = 'form-control link-input';
+                        input.value = newLinkInput.value;
+                        input.name = 'link[]';
+
+                        const buttonGroup = document.createElement('div');
+                        buttonGroup.className = 'input-group-append';
+
+                        const removeButton = document.createElement('button');
+                        removeButton.type = 'button';
+                        removeButton.className = 'btn btn-outline-danger remove-link';
+                        removeButton.textContent = 'Remove';
+                        removeButton.onclick = function() {
+                          linkList.removeChild(li);
+                        };
+
+                        buttonGroup.appendChild(removeButton);
+                        inputGroup.appendChild(input);
+                        inputGroup.appendChild(buttonGroup);
+                        li.appendChild(inputGroup);
+                        linkList.appendChild(li);
+
+                        newLinkInput.value = '';
+                      }
+                    }
+
+                    function removeLink(button) {
+                      const li = button.closest('li');
+                      li.remove();
+                    }
+
+                   
 
                     function readURL(input) {
                       if (input.files && input.files[0]) {
-                          var reader = new FileReader();
-                          reader.onload = function(e) {
-                              $('#imagePreview').css('background-image', 'url('+e.target.result +')');
-                              $('#imagePreview').hide();
-                              $('#imagePreview').fadeIn(650);
-                          }
-                          reader.readAsDataURL(input.files[0]);
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                          $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
+                          $('#imagePreview').hide();
+                          $('#imagePreview').fadeIn(650);
+                        }
+                        reader.readAsDataURL(input.files[0]);
                       }
-                  }
-
-                  $("#imageUpload").change(function() {
+                    }
+                    $("#imageUpload").change(function() {
                       readURL(this);
-                  });
+                    });
                   </script>
                 </div>
               </div>

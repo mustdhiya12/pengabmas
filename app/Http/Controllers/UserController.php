@@ -1639,6 +1639,9 @@ public function get_wishlist($user) {
 
         return view('user.dashboard', ['wishlist' => $wishlist]);
     }
+    elseif ($user->user_type == 'Penjual' || $user->user_type == 'Admin') {
+        return redirect()->route('main.dashboard');
+    }
 }
 
 function checkIfInWishlist($product_id) {

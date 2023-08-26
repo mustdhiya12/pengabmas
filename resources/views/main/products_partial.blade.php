@@ -1,4 +1,5 @@
 <div class="row ltn__tab-product-slider-one-active--- slick-arrow-1">
+    <!-- ltn__product-item -->
     @foreach ($products as $product)
     @php
     $produk_name = $product->produk_name;
@@ -6,10 +7,9 @@
     $max_length = 23;
 
     if (strlen($produk_name) > $max_length) {
-        $produk_name = substr($produk_name, 0, $max_length) . '<span style="color: gray;">...</span>';
+    $produk_name = substr($produk_name, 0, $max_length) . '<span style="color: gray;">...</span>';
     }
     @endphp
-
     <div class="col-lg-3 col-md-4 col-sm-6 col-6">
         @if ($produk_kuan >= 1)
         <div class="ltn__product-item ltn__product-item-3 text-left">
@@ -23,26 +23,17 @@
                 </a>
                 <div class="product-badge">
                     <ul>
-                        <li class="sale-badge" style="background-color: rgb(247, 161, 62);">-{{rand(1, 90)}}%</li>
+                        <li class="sale-badge" style="background-color: rgb(247, 161, 62);">-{{rand(1,
+                                        90)}}%</li>
                     </ul>
                 </div>
                 <div class="product-hover-action">
                     <ul>
                         @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
                         <li>
-                            @php
-                            $isWishlist = checkIfInWishlist($product->id); // Ganti ini dengan logika cek wishlist
-                            @endphp
-
-                            @if ($isWishlist)
-                            <a href="#" class="text-danger">
-                                <i class="fas fa-heart"></i> Wishlist
+                            <a href="#">
+                                <i class="far fa-heart"></i>
                             </a>
-                            @else
-                            <a href="#" class="text-muted">
-                                <i class="far fa-heart"></i> Wishlist
-                            </a>
-                            @endif
                         </li>
                         @endif
                     </ul>
@@ -71,19 +62,9 @@
                     <ul>
                         @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
                         <li>
-                            @php
-                            $isWishlist = checkIfInWishlist($product->id); // Ganti ini dengan logika cek wishlist
-                            @endphp
-
-                            @if ($isWishlist)
-                            <a href="#" class="text-danger">
-                                <i class="fas fa-heart"></i> Wishlist
+                            <a href="#">
+                                <i class="far fa-heart"></i>
                             </a>
-                            @else
-                            <a href="#" class="text-muted">
-                                <i class="far fa-heart"></i> Wishlist
-                            </a>
-                            @endif
                         </li>
                         @endif
                     </ul>
@@ -100,4 +81,5 @@
         @endif
     </div>
     @endforeach
+    <!--  -->
 </div>

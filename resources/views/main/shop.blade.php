@@ -358,11 +358,7 @@
     <script>
         var page = 2; // Mulai dari halaman 2, mengasumsikan halaman 1 sudah dimuat
         var loading = false;
-        var hasMorePages = {
-            {
-                $products - > hasMorePages() ? 'true' : 'false'
-            }
-        };
+        var hasMorePages = {{ $products->hasMorePages() ? 'true' : 'false' }};
 
         function loadMoreProducts() {
             if (loading || !hasMorePages) {

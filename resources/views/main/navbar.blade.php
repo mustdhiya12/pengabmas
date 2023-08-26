@@ -100,49 +100,53 @@
                         <div class="col ">
                             <div class="site-logo-wrap">
                                 <style>
-                                .waviy {
-                                    position: relative;
-                                }
-
-                                .waviy span {
-                                    position: relative;
-                                    display: inline-block;
-                                    font-size: 40px;
-                                    color: black;
-                                    text-transform: uppercase;
-                                    animation: none;
-                                }
-
-                                .waviy:hover span {
-                                    color: var(--ltn__secondary-color);
-                                    animation: fadeInAndFlip 2s;
-                                    animation-delay: calc(0.1s * var(--i));
-                                }
-
-                                @keyframes fadeInAndFlip {
-                                    0% {
-                                        opacity: 0;
+                                    .waviy {
+                                        position: relative;
                                     }
-                                    50%, 90%, 100% {
-                                        opacity: 1;
-                                        transform: rotateX(360deg);
+
+                                    .waviy span {
+                                        position: relative;
+                                        display: inline-block;
+                                        font-size: 40px;
+                                        color: black;
+                                        text-transform: uppercase;
+                                        animation: none;
                                     }
-                                }
+
+                                    .waviy:hover span {
+                                        color: var(--ltn__secondary-color);
+                                        animation: fadeInAndFlip 2s;
+                                        animation-delay: calc(0.1s * var(--i));
+                                    }
+
+                                    @keyframes fadeInAndFlip {
+                                        0% {
+                                            opacity: 0;
+                                        }
+
+                                        50%,
+                                        90%,
+                                        100% {
+                                            opacity: 1;
+                                            transform: rotateX(360deg);
+                                        }
+                                    }
                                 </style>
                                 </head>
+
                                 <body>
-                                <div class="site-logo">
-                                    <a href="{{ route('main.home') }}" rel="nofollow" alt="Logo" class="btn-hover-effect">
-                                        <img src="{{ asset('icon/Icon_unican.png') }}" data-text="UNICA" alt="UNICAN" style="width: 55px;" class="navbar-brand logo rounded-3">
-                                        <div class="waviy">
-                                            <span style="--i:1">U </span>
-                                            <span style="--i:2">N </span>
-                                            <span style="--i:3">I </span>
-                                            <span style="--i:4">C </span>
-                                            <span style="--i:5">A </span>
-                                        </div>
-                                    </a>
-                                </div>
+                                    <div class="site-logo">
+                                        <a href="{{ route('main.home') }}" rel="nofollow" alt="Logo" class="btn-hover-effect">
+                                            <img src="{{ asset('icon/Icon_unican.png') }}" data-text="UNICA" alt="UNICAN" style="width: 55px;" class="navbar-brand logo rounded-3">
+                                            <div class="waviy">
+                                                <span style="--i:1">U </span>
+                                                <span style="--i:2">N </span>
+                                                <span style="--i:3">I </span>
+                                                <span style="--i:4">C </span>
+                                                <span style="--i:5">A </span>
+                                            </div>
+                                        </a>
+                                    </div>
                             </div>
                         </div>
                         <div class="col header-menu-column menu-color-white---">
@@ -181,7 +185,6 @@
                                                 </a>
                                             </li>
                                             <li><a href="{{ route('user.dashboard') }}">Akun saya</a></li>
-                                            <li><a href="{{ route('main.produk') }}">Privasi & Kebijakan</a></li>
                                             <li><a href="{{ route('logout') }}">Keluar Akun</a></li>
                                             @else
                                             <li><a href="/client/login">Masuk Akun</a></li>
@@ -231,35 +234,25 @@
                     </div>
                     <button class="btn btn-outline-danger ltn__utilize-close">X</button>
                 </div>
-                <div class="ltn__utilize-menu">
+                <div class="ltn__utilize-buttons ltn__utilize-buttons-2">
                     <ul>
-                        <li class="menu-icon">
-                            <a href="{{ route('main.home') }}">Beranda</a>
-                        </li>
-                        <li class="menu-icon"><a href="{{ route('main.pr') }}">Tentang kami</a>
+                        @if(Auth::id())
+                        <li>
+                            <a href="{{ route('user.dashboard') }}" title="My Account">
+                                <img src="{{ asset('icon/astronaut.png') }}" class="img-fluid rounded-circle" width="33.5" alt="user_comment">
+                                {{Auth::user()->username}}
+                            </a>
                             <ul>
-                                <li><a href="{{ route('main.pr') }}">FAQ</a></li>
-                                <li><a href="https://www.google.com/maps/place/Universitas+Muhammadiyah+Kalimantan+Timur+Samarinda/@-0.4749719,117.1388952,15z/data=!4m2!3m1!1s0x0:0x108077d433712165?sa=X&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhZEAA&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhnEAg">Lokasi kami</a></li>
+                                <li><a href="{{ route('user.dashboard') }}">Akun saya</a></li>
+                                <li><a href="{{ route('logout') }}">Keluar Akun</a></li>
+                                @else
+                                <li><a href="/client/login">Masuk Akun</a></li>
+                                <li><a href="{{ route('user.sign_up') }}">Daftar Akun</a></li>
                             </ul>
                         </li>
-                        <li class="menu-icon">
-                            <a href="{{ route('main.shop') }}">Toko</a>
-                        </li>
-                        <li><a href="{{ route('main.contact') }}">Kontak kami</a></li>
-                    </ul>
-                </div>
-                <div class="ltn__utilize-buttons ltn__utilize-b uttons-2">
-                    <ul>
+                        @endif
                         <li>
-                            <a href="#" title="My Account">
-                                <span class="utilize-btn-icon">
-                                    <i class="far fa-user"></i>
-                                </span>
-                                Akun saya
-                            </a>
-                        </li>
-                        <li>
-                        @Auth
+                            @Auth
                             @if(Auth::user()->user_type == 'Pembeli')
                             <a href="{{ route('main.produk') }}" title="Wishlist">
                                 <span class="utilize-btn-icon">
@@ -271,8 +264,28 @@
                             @endif
                             @endauth
                         </li>
+
+                        
                     </ul>
                 </div>
+                <div class="ltn__utilize-menu">
+                    <ul>
+                        <li class="menu-icon">
+                            <a href="{{ route('main.home') }}">Beranda</a>
+                        </li>
+                        <li class="menu-icon"><a href="{{ route('main.pr') }}">Tentang kami</a>
+                            <ul>
+                                <li><a href="{{ route('main.produk') }}">Privasi & Kebijakan</a></li>
+                                <li><a href="https://www.google.com/maps/place/Universitas+Muhammadiyah+Kalimantan+Timur+Samarinda/@-0.4749719,117.1388952,15z/data=!4m2!3m1!1s0x0:0x108077d433712165?sa=X&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhZEAA&ved=2ahUKEwimqYzZ1qGAAxX_2TgGHagnDBAQ_BJ6BAhnEAg">Lokasi kami</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-icon">
+                            <a href="{{ route('main.shop') }}">Toko</a>
+                        </li>
+                        <li><a href="{{ route('main.contact') }}">Kontak kami</a></li>
+                    </ul>
+                </div>
+
                 <div class="ltn__social-media-2">
                     <ul>
                         <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>

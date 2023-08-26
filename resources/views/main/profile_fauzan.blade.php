@@ -54,8 +54,8 @@
                         </div>
                         <div class="ltn__breadcrumb-list">
                             <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li>Team Details</li>
+                                <li><a href="{{route('main.home')}}">Home</a></li>
+                                <li>Profile Tim</li>
                             </ul>
                         </div>
                     </div>
@@ -72,15 +72,15 @@
                 <div class="col-lg-4">
                     <div class="ltn__team-details-member-info text-center mb-40">
                         <div class="team-details-img">
-                            <img src="img/team/4.jpg" alt="Team Member Image">
+                            <img src="picture/fauzan.png" alt="Team Member Image">
                         </div>
-                        <h2>Rosalina D. William</h2>
-                        <h6 class="text-uppercase ltn__secondary-color">Organic Farmer</h6>
+                        <h2>Muhammad Fauzan Nur Ilham</h2>
+                        <h6 class="text-uppercase ltn__secondary-color">Developer</h6>
                         <div class="ltn__social-media-3">
                             <ul>
-                                <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                                <li><a href="https://www.facebook.com/profile.php?id=100008461894527" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.instagram.com/fauzan.ilham81/" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/muhammad-fauzan-nur-ilham-050454248/" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
                                 
                             </ul>
                         </div>
@@ -93,19 +93,18 @@
                             <div class="col-lg-6">
                                 <div class="ltn__team-details-member-about">
                                     <ul>
-                                        <li><strong>Positions:</strong> Senior Organic Farmer</li>
-                                        <li><strong>Experience:</strong> 10+ Years</li>
-                                        <li><strong>Location:</strong> 13/A, NYC</li>
-                                        <li><strong>Practice Area:</strong> Gardening</li>
+                                        <li><strong>Positions:</strong> Lecturer</li>
+                                        <li><strong>Experience:</strong> 1 Years</li>
+                                        <li><strong>Location:</strong> Muhammadiyah University of East Kalimantan</li>
+                                        <li><strong>Practice Area:</strong> Campus</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="ltn__team-details-member-about">
                                     <ul>
-                                        <li><strong>Email:</strong> example@example.com</li>
-                                        <li><strong>Fax:</strong> +0123-456 789</li>
-                                        <li><strong>Phone:</strong> +0123-456 789</li>
+                                        <li><strong>Email:</strong> 2111102441149@umkt.ac.id</li>
+                                        <li><strong>Phone:</strong> +62812-5488-8102</li>
                                     </ul>
                                 </div>
                             </div>
