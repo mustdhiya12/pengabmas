@@ -248,7 +248,7 @@
                                                 $produk_name = substr($produk_name, 0, $max_length) . '<span style="color: gray;">...</span>';
                                                 }
                                                 @endphp
-                                                <div class="col-xl-4 col-sm-5 col-5">
+                                                <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
                                                   <div class="card w-100 my-2 shadow-2-strong">
                                                     @foreach (explode('|',$product->gambar) as $key => $fruit)
                                                     @if($key === 0)
@@ -299,12 +299,6 @@
                                                                     }
                                                                 }
 
-                                                                @media (max-width: 480px) {
-                                                                    .kin {
-                                                                        font-size: 12px;
-                                                                        padding: 2px 5%;
-                                                                    }
-                                                                }
                                                               </style>
                                                               <div class="p-1">
                                                                 <a style="text-decoration: none;" href="{{route('user.view_edit') . '/' . $product->id }}">
