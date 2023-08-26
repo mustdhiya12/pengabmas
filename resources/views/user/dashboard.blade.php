@@ -240,6 +240,14 @@
                                             <div class="ltn__product-tab-content-inner ltn__product-grid-view">
                                               <div class="row">
                                                 @foreach($users as $product)
+                                                @php
+                                                $produk_name = $product->produk_name;
+                                                $max_length = 20;
+
+                                                if (strlen($produk_name) > $max_length) {
+                                                $produk_name = substr($produk_name, 0, $max_length) . '<span style="color: gray;">...</span>';
+                                                }
+                                                @endphp
                                                 <div class="col-xl-4 col-sm-5 col-5">
                                                   <div class="card w-100 my-2 shadow-2-strong">
                                                     @foreach (explode('|',$product->gambar) as $key => $fruit)
@@ -250,7 +258,7 @@
                                                     <div class="product-info">
                                                       <div class="card-body d-flex flex-column">
                                                         <div class="product-price">
-                                                          <h5 class="card-title">{{$product->produk_name}}</h5>
+                                                          <h5 class="card-title">{!! $produk_name !!}</h5>
                                                           <hr>
                                                           <p class="card-text" style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}} <br> <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price * 2}}</s></p>
                                                         </div>
