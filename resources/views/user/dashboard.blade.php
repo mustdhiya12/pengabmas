@@ -155,16 +155,16 @@
                   <div class="ltn__tab-menu-list mb-50">
                     <div class="nav">
                       <a class="active show" data-toggle="tab" href="#liton_tab_1_1">MyAccount <i class="fas fa-home"></i></a>
-                      @if(!empty(Auth::user()) && Auth::user()->user_type == 'Penjual' || Auth::user()->user_type == 'Admin')
+                      @if(!empty(Auth::user()) && (Auth::user()->user_type == 'Penjual' || Auth::user()->user_type == 'Admin'))
                       <a data-toggle="tab" href="#liton_tab_1_2">Product <i class="fas fa-file-alt"></i></a>
                       <a data-toggle="tab" href="#liton_tab_1_3">Product detail <i class="fas fa-plus"></i></a>
-                      @elseif(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
+                      @endif
+                      @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
                       <a data-toggle="tab" href="#liton_tab_1_4">Wishlist<i class="fas fa-heart"></i></a>
                       @endif
                       @if(!empty(Auth::user()) && Auth::user()->user_type == 'Admin')
-                      <a data-toggle="tab" href="#">User Management <i class="fas fa-user"></i></a>
+                      <a data-toggle="tab" href="#liton_tab_1_6">User Management <i class="fas fa-user"></i></a>
                       @endif
-                      <!-- <a data-toggle="tab" href="#">Notice <i class="fas fa-bell"></i></a> -->
                       <a data-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
                       <a href="{{ route('logout') }}">Logout <i class="fas fa-sign-out-alt"></i></a>
                     </div>
@@ -362,9 +362,11 @@
                                           </div>
                                           @endif
                                           <div class="row">
-                                            @foreach($users as $user)
-                                                @include('main.wishlist_partial', ['products' => $user->wishlist])
-                                            @endforeach
+                                            @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
+                                              @foreach($users as $user)
+                                                  @include('main.wishlist_partial', ['products' => $user->wishlist])
+                                              @endforeach
+                                            @endif
                                           </div>                                        
                                         </div>
                                       </div>
@@ -476,8 +478,16 @@
                                       <label for="imageUpload"></label>
                                     </div>
                                     <div class="avatar-preview">
-                                      <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);"></div>
-                                    </div>
+                                      @if (Auth::user()->profile != null)
+                                          @foreach (explode('|', Auth::user()->profile) as $key => $fruit)
+                                              @if ($key === 0)
+                                                  <div id="imagePreview" style="background-image: url('{{ asset('picture/'.$fruit) }}');"></div>
+                                              @endif
+                                          @endforeach
+                                      @else
+                                          <div id="imagePreview" style="background-image: url('http://i.pravatar.cc/500?img=7');"></div>
+                                      @endif
+                                  </div>                                  
                                   </div>
                                 </div>
                               </div>
