@@ -235,63 +235,86 @@
                                             <p class="alert alert-success">{{ session('success') }}</p>
                                           </div>
                                           @endif
-                                          <div class="row">
-                                            @foreach($users as $product)
-                                            <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
-                                              <div class="card w-100 my-2 shadow-2-strong">
-                                                @foreach (explode('|',$product->gambar) as $key => $fruit)
-                                                @if($key === 0)
-                                                <img src="{{ asset('gambar/'.$fruit ) }}" class="card-img-top" style="aspect-ratio: 1 / 1" />
-                                                @endif
-                                                @endforeach
-                                                <div class="product-info">
-                                                  <div class="card-body d-flex flex-column">
-                                                    <div class="product-price">
-                                                      <h5 class="card-title">{{$product->produk_name}}</h5>
-                                                      <hr>
-                                                      <p class="card-text" style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}} <br> <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price * 2}}</s></p>
-                                                    </div>
-                                                    <hr style="color: rgb(247, 161, 62); height: 1.5px;">
-                                                    <span>
-                                                      <form method="POST" action="{{ route('admin.hapus', $product->id) }}">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <div class="d-flex flex-row">
-                                                          <style>
-                                                            .kin:hover {
-                                                              background-color: var(--ltn__secondary-color-2);
-                                                              transition: background-color 0.3s ease-in-out;
-                                                              color: rgb(255, 255, 255);
-                                                            }
-
-                                                            .kin {
-                                                              color: rgba(144, 144, 144, 0.534);
-                                                              padding: 5px 23px;
-                                                              display: inline-flex;
-                                                              justify-content: center;
-                                                              align-items: center;
-                                                              white-space: nowrap;
-                                                              text-align: center;
-                                                              border: none;
-                                                              border-radius: 5px;
-                                                            }
-                                                          </style>
-                                                          <div class="p-1">
-                                                            <a style="text-decoration: none;" href="{{route('user.view_edit') . '/' . $product->id }}">
-                                                              <button type="button" class="kin">Ubah</button>
-                                                            </a>
-                                                          </div>
-                                                          <div class="p-1">
-                                                            <button onclick="return confirm('!Peringatan!\nApakah anda yakin ingin menghapus produk ini?\nnama produk : {{ $product->produk_name }} ');" type="submit" class="kin">Hapus</button>
-                                                          </div>
+                                          <div class="tab-pane fade active show" id="liton_product_grid">
+                                            <div class="ltn__product-tab-content-inner ltn__product-grid-view">
+                                              <div class="row">
+                                                @foreach($users as $product)
+                                                <div class="col-xl-4 col-sm-5 col-5">
+                                                  <div class="card w-100 my-2 shadow-2-strong">
+                                                    @foreach (explode('|',$product->gambar) as $key => $fruit)
+                                                    @if($key === 0)
+                                                    <img src="{{ asset('gambar/'.$fruit ) }}" class="card-img-top" style="aspect-ratio: 1 / 1" />
+                                                    @endif
+                                                    @endforeach
+                                                    <div class="product-info">
+                                                      <div class="card-body d-flex flex-column">
+                                                        <div class="product-price">
+                                                          <h5 class="card-title">{{$product->produk_name}}</h5>
+                                                          <hr>
+                                                          <p class="card-text" style="color: rgb(247, 161, 62);">Rp.{{$product->min_price}} <br> <s style="color: rgb(215, 40, 40); text-decoration: line-through; text-decoration-style: double;">Rp.{{$product->min_price * 2}}</s></p>
                                                         </div>
-                                                      </form>
-                                                    </span>
+                                                        <hr style="color: rgb(247, 161, 62); height: 1.5px;">
+                                                        <span>
+                                                          <form method="POST" action="{{ route('admin.hapus', $product->id) }}">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="d-flex flex-row">
+                                                              <style>
+                                                                .kin:hover {
+                                                                  background-color: var(--ltn__secondary-color-2);
+                                                                  transition: background-color 0.3s ease-in-out;
+                                                                  color: rgb(255, 255, 255);
+                                                                }
+
+                                                                .kin {
+                                                                  color: rgba(144, 144, 144, 0.534);
+                                                                  padding: 5px 23px;
+                                                                  display: inline-flex;
+                                                                  justify-content: center;
+                                                                  align-items: center;
+                                                                  white-space: nowrap;
+                                                                  text-align: center;
+                                                                  border: none;
+                                                                  border-radius: 5px;
+                                                                }
+
+                                                                @media (max-width: 1391px) {
+                                                                    .kin {
+                                                                        padding: 4px 5px;
+                                                                    }
+                                                                }
+
+                                                                @media (max-width: 768px) {
+                                                                    .kin {
+                                                                        padding: 3px 5%;
+                                                                    }
+                                                                }
+
+                                                                @media (max-width: 480px) {
+                                                                    .kin {
+                                                                        font-size: 12px;
+                                                                        padding: 2px 5%;
+                                                                    }
+                                                                }
+                                                              </style>
+                                                              <div class="p-1">
+                                                                <a style="text-decoration: none;" href="{{route('user.view_edit') . '/' . $product->id }}">
+                                                                  <button type="button" class="kin">Ubah</button>
+                                                                </a>
+                                                              </div>
+                                                              <div class="p-1">
+                                                                <button onclick="return confirm('!Peringatan!\nApakah anda yakin ingin menghapus produk ini?\nnama produk : {{ $product->produk_name }} ');" type="submit" class="kin">Hapus</button>
+                                                              </div>
+                                                            </div>
+                                                          </form>
+                                                        </span>
+                                                      </div>
+                                                    </div>
                                                   </div>
                                                 </div>
+                                                @endforeach
                                               </div>
                                             </div>
-                                            @endforeach
                                           </div>
                                         </div>
                                       </div>
