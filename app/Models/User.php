@@ -42,17 +42,17 @@ public $timestamps = false;
         'email_verified_at' => 'datetime',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        static::created(function ($user) {
-            // Membuat profil baru untuk pengguna yang baru dibuat
-            $user->profile()->create([
-                'picture_path' => 'picture/astronaut.png', // Ganti dengan path default foto profil
-            ]);
-        });
-    }
+    //     static::created(function ($user) {
+    //         // Membuat profil baru untuk pengguna yang baru dibuat
+    //         $user->profile()->create([
+    //             'picture_path' => "{{ asset('picture/astronaut.png') }}", // Ganti dengan path default foto profil
+    //         ]);
+    //     });
+    // }
 
     public function profile()
 {

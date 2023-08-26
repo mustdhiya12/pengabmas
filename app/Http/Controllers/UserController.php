@@ -633,6 +633,7 @@ public function sign_up_action(Request $request)
     $api_key = bin2hex(random_bytes(32));
 
     $user = new User();
+    $user->profile = 'astronaut.png';
     $user->username = $request->input('username');
     $user->name = $request->input('name');
     $user->email = $request->input('email');

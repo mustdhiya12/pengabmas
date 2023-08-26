@@ -181,14 +181,15 @@ Route::delete('/comment/{id}/delete', [MainController::class, 'deleteComment'])-
 
 //load product home
 Route::get('/load-more-products', [MainController::class, 'loadMoreProducts'])->name('load.more.products');
-
-
 Route::get('/load-more-products2', [MainController::class, 'loadMoreProducts2'])->name('load.more.products2');
+Route::get('/load-more-products3', [MainController::class, 'loadMoreProducts3'])->name('load.more.products3');
+
 
  // Edit Account
-
 Route::get('/edit-account', [UserController::class, 'updateAccount'])->name('edit_account_form');
 Route::post('/edit-account', [UserController::class, 'updateAccount'])->name('edit_account');
+
+
 // profile:
 Route::get('/profile_fauzan', function () {
     return view('main.profile_fauzan');  

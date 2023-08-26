@@ -63,6 +63,17 @@
                                     <span id="showing-product-count">Menampilkan {{ count($products) }} Hasil:</span>
                                 </div>
                             </li>
+                            <li>
+                                <div class="showing-product-number text-right">
+                                <h1>Search Form</h1>
+                                <form action="{{ route('products.search') }}" method="get">
+                                    <input type="text" name="query" placeholder="Query" value="<?php echo isset($query) ? $query : ''; ?>"><br>
+                                    <input type="number" name="min_price" placeholder="Min Price" value="<?php echo isset($minPrice) ? $minPrice : ''; ?>"><br>
+                                    <input type="number" name="max_price" placeholder="Max Price" value="<?php echo isset($maxPrice) ? $maxPrice : ''; ?>"><br>
+                                    <button type="submit">Search</button>
+                                </form>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                     <div class="tab-content" id="product-list">

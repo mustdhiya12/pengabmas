@@ -340,6 +340,13 @@ class MainController extends Controller
         $products = Produk::paginate(8);
         return view('main.shop', compact('products'));
     }
+    public function get_data_produk_search()
+    {
+        $products = Produk::paginate(8);
+        return view('main.search', compact('products'));
+    }
+
+
     public function loadMoreProducts(Request $request)
     {
         $perPage = 8;
@@ -355,6 +362,20 @@ class MainController extends Controller
     }
 
     public function loadMoreProducts2(Request $request)
+    {
+        $perPage = 8;
+        $page = $request->input('page', 1);
+        $products = Produk::paginate($perPage, ['*'], 'page', $page);
+
+        $html = View::make('main.products_partial2', compact('products'))->render();
+
+        return response()->json([
+            'html' => $html,
+            'hasMore' => $products->hasMorePages()
+        ]);
+    }
+
+    public function loadMoreProducts3(Request $request)
     {
         $perPage = 8;
         $page = $request->input('page', 1);
