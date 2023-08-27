@@ -2,6 +2,41 @@
 <html class="no-js" lang="zxx">
 
 <head>
+    <style>
+        .search-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .search-form input {
+            flex: 1;
+            padding: 10px;
+            height: 70px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .search-btn {
+            flex-basis: 100%; /* Full width button */
+            padding: 10px;
+            height: 70px;
+            background-color: #ffa220;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .search-btn:hover {
+            background-color: #1c89fe;
+        }
+
+        .search-btn:active {
+            background-color: #ffb923;
+        }
+    </style>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Unica - Belanja</title>
@@ -56,12 +91,12 @@
             <div class="container">
                 <div class="showing-product-number text-left">
                     <h1>Search Form</h1>
-                    <form action="{{ route('products.search') }}" method="get" class="row row-cols-3">
+                    <form action="{{ route('products.search') }}" method="get" class="row row-cols-3 search-form">
                         <input type="text" name="query" placeholder="Nama Produk" value="<?php echo isset($query) ? $query : ''; ?>">
                         <input type="number" name="min_price" placeholder="Minimal Harga (Opsional)" value="<?php echo isset($minPrice) ? $minPrice : ''; ?>">
                         <input type="number" name="max_price" placeholder="Maksimal Harga (Opsional)" value="<?php echo isset($maxPrice) ? $maxPrice : ''; ?>">
-                        <button type="submit" class="theme-btn-1 ">Search</button>
-                    </form>
+                        <button type="submit" class="search-btn">Search</button>
+                    </form>                    
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
