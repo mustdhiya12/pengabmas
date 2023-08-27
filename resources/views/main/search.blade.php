@@ -3,7 +3,7 @@
 
 <head>
     <style>
-            .search-form {
+        .search-form {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
@@ -12,7 +12,7 @@
         .search-form input {
             flex: 1;
             padding: 10px;
-            height: 70px;
+            height: 65px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
@@ -20,7 +20,7 @@
         .search-btn {
             flex-basis: 100%; /* Full width button */
             padding: 10px;
-            height: 70px;
+            height: 65px;
             background-color: #ffa220;
             color: white;
             border: none;
@@ -34,7 +34,7 @@
         }
 
         .search-btn:active {
-            background-color: #ffa220;
+            background-color: #ffb923;
         }
     </style>
     <meta charset="utf-8">
