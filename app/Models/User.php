@@ -21,7 +21,7 @@ public $timestamps = false;
      * @var array
      */
     protected $fillable = [
-        'username', 'name', 'email', 'password', 'user_type', 'api_key',
+        'username', 'name', 'email', 'password', 'user_type', 'api_key' ,
     ];
 
     /**
@@ -64,10 +64,5 @@ public $timestamps = false;
             return $this->hasMany(Product::class);
         }
 
-        public function links()
-    {
-        return $this->hasMany(User::class, 'id');
-    }
-
-
+      
 }
