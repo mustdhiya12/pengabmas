@@ -14,7 +14,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -796,20 +796,20 @@ public function tambah_produk_api(Request $request)
         }
 
     if($user->user_type == 'Penjual'){
-$mang = pesanan_users::where('id_pesanan', $request->header('id_pesanan'))->first();
-$mang_seller = Produk::where('produk_id', $request->header('id_produk'))->where('produk_owner_id', $user->id)->first();
-if($mang->status_pesanan == 'belum_ditinjau'){
-$mang->status_pesanan = 'di_konfirmasi';
-$mang->save();
-}else{
-    return response()->json(['error' => 'sudah_di_tinjau'], 401);
-}
-return response()->json($mang, 201);
-
-   }else{
-       return view('eror.404');
+    $mang = pesanan_users::where('id_pesanan', $request->header('id_pesanan'))->first();
+    $mang_seller = Produk::where('produk_id', $request->header('id_produk'))->where('produk_owner_id', $user->id)->first();
+    if($mang->status_pesanan == 'belum_ditinjau'){
+    $mang->status_pesanan = 'di_konfirmasi';
+    $mang->save();
+    }else{
+        return response()->json(['error' => 'sudah_di_tinjau'], 401);
     }
-}
+    return response()->json($mang, 201);
+
+    }else{
+        return view('eror.404');
+        }
+    }
 
 
 
@@ -818,21 +818,30 @@ public function updateAccount(Request $request)
     $user = Auth::user();
 
     if ($request->isMethod('post')) {
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'username' => 'nullable|max:255|unique:users,username,' . $user->id,
             'name' => 'required|max:255',
             'email' => 'nullable|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|min:6|confirmed',
+            'current_password' => 'nullable|required_with:new_password|current_password',
+            'new_password' => 'nullable|confirmed',
             'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'nullable|string',
         ]);
 
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
         $user->username = $request->input('username');
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-
-        if ($request->has('password')) {
-            $user->password = Hash::make($request->input('password'));
+        
+        if ($request->has('current_password') && !empty($request->input('new_password'))) {
+            if (Hash::check($request->input('current_password'), $user->password)) {
+                $user->password = Hash::make($request->input('new_password'));
+            } else {
+                return back()->withErrors(['current_password' => 'Current password is incorrect'])->withInput();
+            }
         }
         
         if ($request->hasFile('profile_picture')) {
@@ -849,21 +858,23 @@ public function updateAccount(Request $request)
         
         $user->status = $request->input('status');
 
-        if ($request->has('new_link')) {
-            $newLinks = $request->input('new_link');
-            
-            // Filter out empty links
-            $newLinks = array_filter($newLinks, function($link) {
+        if ($request->has('link')) {
+            $linkArray = $request->input('link');
+            $linkArray = array_filter($linkArray, function ($link) {
                 return !empty($link);
             });
-            
-            // Merge new links with existing links
+        
+            $user->link = implode("|", $linkArray);
+        }
+        else {
+            $user->link = ''; // Set to an empty string if all links are removed
+        }
+
+        // Process the new link from the "New Link" input field
+        $newLink = $request->input('new_link');
+        if (!empty($newLink)) {
             $linkArray = explode('|', $user->link);
-            $linkArray = array_merge($linkArray, $newLinks);
-            
-            // Remove duplicates and empty links
-            $linkArray = array_unique($linkArray);
-            
+            $linkArray[] = $newLink;
             $user->link = implode("|", $linkArray);
         }
 
@@ -874,6 +885,7 @@ public function updateAccount(Request $request)
         return view('user.dashboard', compact('user'));
     }
 }
+
 
 
 

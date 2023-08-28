@@ -412,6 +412,11 @@
                           padding: 20px;
                         }
 
+                        .btn.theme-btn-1 {
+                              background-color: yellow; /* Ganti dengan warna yang Anda inginkan */
+                              color: blue; /* Ganti dengan warna yang Anda inginkan */
+                          }
+
                         .avatar-upload {
                           position: relative;
                           max-width: 100px;
@@ -461,25 +466,30 @@
                         }
 
                         .avatar-preview {
-                          right: 120px;
-                          width: 150px;
-                          height: 150px;
-                          position: relative;
-                          border-radius: 100%;
-                          border: 6px solid #F8F8F8;
-                          box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-
-                          >div {
-                            width: 100%;
-                            height: 100%;
-                            border-radius: 100%;
-                            background-size: cover;
-                            background-repeat: no-repeat;
-                            background-position: center;
-                          }
+                              right: 120px;
+                              width: 150px;
+                              height: 150px;
+                              position: relative;
+                              border-radius: 100%;
+                              border: 6px solid #F8F8F8;
+                              box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+                              > div {
+                                  width: 100%;
+                                  height: 100%;
+                                  border-radius: 100%;
+                                  background-size: cover;
+                                  background-repeat: no-repeat;
+                                  background-position: center;
+                              }
+                            }
+                            .white-box {
+                            background-color: white;
+                            padding: 20px;
+                            border-radius: 5px;
+                            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
                         }
                       </style>
-                      <div class="ltn__myaccount-tab-content-inner">
+                      <div class="white-box">
                         <p>Welcome, {{ Auth::user()->name }} <small> - Profile</small></p>
                         <div class="ltn__form-box">
                           <form action="{{ route('edit_account') }}" method="post" enctype="multipart/form-data">
@@ -498,7 +508,7 @@
                                 <input type="email" name="email" value="{{ isset($user->email) ? $user->email : Auth::user()->email }}">
                               </div>
                               <div class="col-md-6">
-                                      <label>Profile Picture:</label>
+                              <label>Profile Picture:</label>
                                       <div class="container">
                                           <div class="avatar-upload">
                                               <div class="avatar-edit">
@@ -512,75 +522,86 @@
                                       </div>
                                   </div>
                                   </div>
-                                </div>
-                              </div>
-                            </div>
+                                </div>                        
                             <div class="row mb-50">
                               <div class="col-md-40">
                                 <label>Status:</label>
                                 <textarea name="status" rows="4">{{ isset($user->status) ? $user->status : Auth::user()->status }}</textarea>
                               </div>
                             </div>
-                        </div>
                         <div class="row mb-50">
-                            <!-- Bagian untuk menambahkan link baru -->
-                            <div class="col-md-6">
-                                <label>Add Link:</label>
-                                <input type="url" id="newLink" placeholder="Enter Link URL">
-                                <button type="button" class="btn theme-btn-2 btn-effect-2 text-uppercase" onclick="addNewLink()">Add Link</button>
+                        <div class="input-group">
+                            <input id="newLink" type="text" class="form-control" placeholder="New Link">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-primary" onclick="addNewLink()">Tambahkan Link</button>
                             </div>
+                        </div>
+
                         </div>
                             <div class="row mb-50">
-                            <div class="col-md-6">
-                                <div id="linkContainer">
-                                    <ul id="linkList">
-                                        <!-- Loop through existing links if any -->
-                                        @php
-                                        $linkArray = explode('|', Auth::user()->link);
-                                        @endphp
-                                        @if(count($linkArray) > 0)
-                                            @foreach ($linkArray as $link)
-                                                <li>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control link-input" name="existing_link[]" value="{{ $link }}" disabled>
-                                                        <div class="input-group-append">
-                                                            <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this)">Remove</button>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            @endforeach
-                                        @endif
-                                    </ul>
-                                </div>
+                            <div class="col-md-50">
+                            <div id="linkContainer">
+                                <ul id="linkList">
+                                    @php
+                                    $linkArray = explode('|', Auth::user()->link);
+                                    @endphp
+                                    @foreach ($linkArray as $link)
+                                        <li>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control link-input" name="link[]" value="{{ $link }}">
+                                                <div class="input-group-append">
+                                                    <button type="button" class="btn btn-outline-danger remove-link" onclick="removeLink(this)">Remove</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
+                        <input type="hidden" name="new_link" id="newLinkHidden">
                         <fieldset>
-                          <legend>Password change</legend>
-                          <div class="row">
-                            <div class="col-md-12">
-                              <label>Current password (leave blank to leave unchanged):</label>
-                              <input type="password" name="current_password">
-                              <label>New password (leave blank to leave unchanged):</label>
-                              <input type="password" name="new_password">
-                              <label>Confirm new password:</label>
-                              <input type="password" name="new_password_confirmation">
+                            <legend>Ubah Kata Sandi</legend>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Kata Sandi((Silahkan Kosongkan Jika Tidak Ingin Mengubah):</label>
+                                    <input type="password" name="current_password">
+                                    <label>Kata Sandi Baru (Silahkan Kosongkan Jika Tidak Ingin Mengubah):</label>
+                                    <input type="password" name="new_password" id="new_password">
+                                    <label>Ulang Kata Sandi Baru (Silahkan Kosongkan Jika Tidak Ingin Mengubah):</label>
+                                    <input type="password" name="new_password_confirmation">
+                                </div>
                             </div>
-                          </div>
                         </fieldset>
                         <div class="btn-wrapper">
-                          <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Save Changes</button>
+                          <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Simpan</button>
                         </div>
                         </form>
                       </div>
                     </div>
+                  </div> 
+                  </div>                 
                   </div>
+                  </div>
+                  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                   <script>
-                  
-                    function addNewLink() {
-                      const newLinkInput = document.getElementById('newLink');
-                      const linkList = document.getElementById('linkList');
+                  $(document).ready(function() {
+                          $('#new_password').on('input', function() {
+                              validatePasswordMatch();
+                          });
 
-                      if (newLinkInput.value.trim() !== '') {
+                          function validatePasswordMatch() {
+                              var newPassword = $('#new_password').val();
+                              var confirmPassword = $('input[name=new_password_confirmation]').val();
+                              var validationMessage = newPassword === confirmPassword ? '' : 'Passwords do not match';
+                              $('#password-match-message').text(validationMessage);
+                          }
+                      });
+                   function addNewLink() {
+                    const newLinkInput = document.getElementById('newLink');
+                    const newLinkHidden = document.getElementById('newLinkHidden');
+                    const linkList = document.getElementById('linkList');
+
+                    if (newLinkInput.value.trim() !== '') {
                         const li = document.createElement('li');
                         const inputGroup = document.createElement('div');
                         inputGroup.className = 'input-group';
@@ -598,8 +619,8 @@
                         removeButton.type = 'button';
                         removeButton.className = 'btn btn-outline-danger remove-link';
                         removeButton.textContent = 'Remove';
-                        removeButton.onclick = function() {
-                          linkList.removeChild(li);
+                        removeButton.onclick = function () {
+                            linkList.removeChild(li);
                         };
 
                         buttonGroup.appendChild(removeButton);
@@ -608,31 +629,34 @@
                         li.appendChild(inputGroup);
                         linkList.appendChild(li);
 
-                        newLinkInput.value = '';
-                      }
+                        newLinkHidden.value = newLinkInput.value; // Set the value of the hidden input
+                        newLinkInput.value = ''; // Clear the input field value after adding a link
+
+                        alert('Link sudah tertambah.');
                     }
+                }
 
                     function removeLink(button) {
-                      const li = button.closest('li');
-                      li.remove();
+                        const li = button.closest('li');
+                        li.remove();
                     }
-
-                   
-
                     function readURL(input) {
                       if (input.files && input.files[0]) {
-                        var reader = new FileReader();
-                        reader.onload = function(e) {
-                          $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
-                          $('#imagePreview').hide();
-                          $('#imagePreview').fadeIn(650);
-                        }
-                        reader.readAsDataURL(input.files[0]);
+                          var reader = new FileReader();
+                          reader.onload = function(e) {
+                              var previewDiv = document.getElementById('imagePreview');
+                              previewDiv.style.backgroundImage = 'url(' + e.target.result + ')';
+                              previewDiv.style.display = 'block'; // Show the preview div
+                          }
+                          reader.readAsDataURL(input.files[0]);
                       }
-                    }
-                    $("#imageUpload").change(function() {
+                  }
+
+                  $("#imageUpload").change(function() {
                       readURL(this);
-                    });
+                  });
+                    
+
                   </script>
                 </div>
               </div>

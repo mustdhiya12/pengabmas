@@ -11,6 +11,8 @@ use App\Models\Produk;
 use App\Models\pesanan_users;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 
 
@@ -35,9 +37,13 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        
+        Validator::extend('current_password', function ($attribute, $value, $parameters, $validator) {
+            return Hash::check($value, Auth::user()->password);
+        });
+
         Blade::directive('formatReplyTime', function ($expression) {
             return "<?php echo formatReplyTime($expression); ?>";
+            
         });
     
         View::composer('main.navbar', function ($view) {
