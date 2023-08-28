@@ -81,13 +81,13 @@
                 <div class="ltn__slide-item-inner">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-12 align-self-center">
+                            <div class=" col-lg-6 align-self-center">
                                 <div class="slide-item-info">
                                     <div class="slide-item-info-inner ltn__slide-animation">
 
                                         <h6 class="slide-sub-title animated"><img src="{{ asset('icon/Icon_unican.png') }}" style="width: 35px;" alt="#">
                                             100% Produk Berkualitas</h6>
-                                        <h1 class="slide-title animated ">Menghubungkan Keunggulan, <br> Membuka Peluang.</h1>
+                                        <h1 class="slide-title animated" style="font-size: xx-large;">Menghubungkan Keunggulan, <br> Membuka Peluang.</h1>
                                         <div class="slide-brief animated d-none">
                                             <p>Melalui platform kami, kami menghubungkan beragam keunggulan produk dengan pelanggan, membuka peluang baru dalam dunia belanja online.</p>
                                         </div>
@@ -96,6 +96,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="slide-item-img ltn__slide-animation">
                                     <img src="{{ asset('icon/2.gif') }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
                                             -webkit-mask-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0));
@@ -118,7 +119,7 @@
                                     <div class="slide-item-info-inner ltn__slide-animation">
                                         <h6 class="slide-sub-title animated"><img src="{{ asset('icon/Icon_unican.png') }}" style="width: 35px;" alt="#">
                                             100% Produk Berkualitas</h6>
-                                        <h1 class="slide-title animated ">Menghubungkan Keunggulan, <br> Membuka Peluang.</h1>
+                                        <h1 class="slide-title animated" style="font-size: xx-large;">Menghubungkan Keunggulan, <br> Membuka Peluang.</h1>
                                         <div class="slide-brief animated">
                                             <p>Melalui platform kami, kami menghubungkan beragam keunggulan produk dengan pelanggan, membuka peluang baru dalam dunia belanja online.</p>
                                         </div>
@@ -129,7 +130,7 @@
                                     </div>
                                 </div>
                                 <div class="slide-item-img slide-img-left ltn__slide-animation">
-                                    <img class="rounded-3 slide-title animated" src="{{ asset('icon/1.gif') }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                                    <img  src="{{ asset('icon/1.gif') }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
                                         -webkit-mask-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0));
                                         mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0));
                                         z-index: 2;" alt="#">
@@ -207,12 +208,12 @@
                                 @endif
                                 @endforeach
                             </a>
-                            <div class="product-badge">
+                            <!-- <div class="product-badge">
                                 <ul>
                                     <li class="sale-badge" style="background-color: rgb(247, 161, 62);">-{{rand(1,
                                         90)}}%</li>
                                 </ul>
-                            </div>
+                            </div> -->
                             <div class="product-hover-action">
                                 <ul>
                                     @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
@@ -518,7 +519,11 @@
     <script>
         var page = 2; // Mulai dari halaman 2, mengasumsikan halaman 1 sudah dimuat
         var loading = false;
-        var hasMorePages = {{ $products->hasMorePages() ? 'true' : 'false' }};
+        var hasMorePages = {
+            {
+                $products - > hasMorePages() ? 'true' : 'false'
+            }
+        };
 
         function loadMoreProducts() {
             if (loading || !hasMorePages) {

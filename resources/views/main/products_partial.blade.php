@@ -21,12 +21,12 @@
                     @endif
                     @endforeach
                 </a>
-                <div class="product-badge">
+                <!-- <div class="product-badge">
                     <ul>
                         <li class="sale-badge" style="background-color: rgb(247, 161, 62);">-{{rand(1,
                                         90)}}%</li>
                     </ul>
-                </div>
+                </div> -->
                 <div class="product-hover-action">
                     <ul>
                         @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')

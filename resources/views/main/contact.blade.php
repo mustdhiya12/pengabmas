@@ -149,16 +149,16 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <div class="section-title-area ltn__section-title-2 text-center">
+            <!-- <div class="section-title-area ltn__section-title-2 text-center">
               <h6 class="section-subtitle ltn__secondary-color">// Pengenalan</h6>
               <h1 class="section-title white-color---">Blog Profil<span>.</span></h1>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="row ltn__blog-slider-one-active slick-arrow-1 ltn__blog-item-3-normal">
           @foreach($blogs as $blog)
           <!-- Blog Item -->
-          <div class="col-lg-12">
+          <!-- <div class="col-lg-12">
             <div class="ltn__blog-item ltn__blog-item-3">
               <div class="ltn__blog-img">
                 <a href="{{ route($blog['route']) }}"><img src="{{ $blog['image'] }}" alt="#"></a>
@@ -188,7 +188,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           @endforeach
           <!--  -->
         </div>

@@ -77,7 +77,7 @@
                 transform: scale(1.05);
               }
             </style>
-            @if(!empty(Auth::user()) && Auth::user()->user_type == 'Penjual')
+            @if(!empty(Auth::user()) && Auth::user()->user_type == ('Penjual' or 'Pembeli'))
             <div class="row row-cols-6">
               @php
               $links = explode('|', Auth::user()->link);
@@ -88,39 +88,39 @@
               <p class="text-danger"><b>Announcement: </b>Link tidak tersedia</p>
               @else
               @if (strpos($link, 'bhinneka') !== false)
-              <a href="{{ $link }}" class="btn btn-bhineka mt-4 col-sm-5" style="color: white; background-color: #092c52;">
+              <a href="{{ $link }}" class="btn btn-bhineka mt-4 col-sm-3" style="color: white; background-color: #092c52;">
                 <img src="{{ asset('icon/bhi.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Bhinneka
               </a>
               @elseif (strpos($link, 'tokopedia') !== false)
-              <a href="{{ $link }}" class="btn btn-tokopedia mt-4 col-sm-5" style="color: white; background-color: #03ac0e;">
+              <a href="{{ $link }}" class="btn btn-tokopedia mt-4 col-sm-3" style="color: white; background-color: #03ac0e;">
                 <img src="{{ asset('icon/tokped.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Tokopedia
               </a>
               @elseif (strpos($link, 'shopee') !== false)
-              <a href="{{ $link }}" class="btn btn-shopee mt-4 col-sm-5" style="color: white; background-color: #f7452e;">
+              <a href="{{ $link }}" class="btn btn-shopee mt-4 col-sm-3" style="color: white; background-color: #f7452e;">
                 <img src="{{ asset('icon/sho.png') }}" alt="Shopee" style="width: 23px; height: 23px; filter: brightness(10.5) saturate(0%);"> Shopee
               </a>
               @elseif (strpos($link, 'bukalapak') !== false)
-              <a href="{{ $link }}" class="btn btn-bukalapak mt-4 col-sm-5" style="color: white; background-color: #e31e52;">
+              <a href="{{ $link }}" class="btn btn-bukalapak mt-4 col-sm-3" style="color: white; background-color: #e31e52;">
                 <img src="{{ asset('icon/buka.png') }}" alt="Shopee" style="width: 23px; height: 23px; filter: brightness(10.5) saturate(0%);"> Bukalapak
               </a>
               @elseif (strpos($link, 'lazada') !== false)
-              <a href="{{ $link }}" class="btn btn-lazada mt-4 col-sm-5" style="color: white; background-color: #11146e;">
+              <a href="{{ $link }}" class="btn btn-lazada mt-4 col-sm-3" style="color: white; background-color: #11146e;">
                 <img src="{{ asset('icon/laz.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Lazada
               </a>
               @elseif (strpos($link, 'blibli') !== false)
-              <a href="{{ $link }}" class="btn btn-blibli mt-4 col-sm-5" style="color: white; background-color: #0095da;">
+              <a href="{{ $link }}" class="btn btn-blibli mt-4 col-sm-3" style="color: white; background-color: #0095da;">
                 <img src="{{ asset('icon/blibli.png') }}" alt="Shopee" style="width: 23px; height: 23px; background-color: white; border-radius: 10px;"> Blibli.com
               </a>
               @elseif (strpos($link, 'me') !== false)
-              <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-5" style="color: white; background-color: #0cc243;">
+              <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-3" style="color: white; background-color: #0cc243;">
                 <i class="bi bi-whatsapp me-1"></i> Whatsapp
               </a>
               @elseif (strpos($link, 'instagram') !== false)
-              <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-5" style="color: white; background-color: #ff2e42;">
+              <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-3" style="color: white; background-color: #ff2e42;">
                 <i class="fab fa-instagram"></i> instagram
               </a>
               @elseif (strpos($link, 'facebook') !== false)
-              <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-5" style="color: white; background-color: #0d8cf1;">
+              <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-3" style="color: white; background-color: #0d8cf1;">
                 <i class="fab fa-facebook-f"></i> facebook
               </a>
               @else
@@ -130,7 +130,7 @@
               $domainName = explode('.', $domain)[1];
               $domainName = preg_replace('/^www\.|^ww\./', '', $domainName);
               @endphp
-              <a href="{{ $link }}" class="btn btn-otherlink mt-4 col-sm-5" style="color: white; background-color: #8c7e00;">
+              <a href="{{ $link }}" class="btn btn-otherlink mt-4 col-sm-3" style="color: white; background-color: #8c7e00;">
                 <i class="bi bi-cart3 me-1"></i>{{ $domainName }}
               </a>
               @endif
@@ -160,9 +160,9 @@
                       <a data-toggle="tab" href="#liton_tab_1_2">Product <i class="fas fa-file-alt"></i></a>
                       <a data-toggle="tab" href="#liton_tab_1_3">Product detail <i class="fas fa-plus"></i></a>
                       @endif
-                      @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
+                      <!-- @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
                       <a data-toggle="tab" href="#liton_tab_1_4">Wishlist<i class="fas fa-heart"></i></a>
-                      @endif
+                      @endif -->
                       @if(!empty(Auth::user()) && Auth::user()->user_type == 'Admin')
                       <a data-toggle="tab" href="#liton_tab_1_6">User Management <i class="fas fa-user"></i></a>
                       @endif
@@ -559,8 +559,8 @@
                             </div>
                         </div>
                         <input type="hidden" name="new_link" id="newLinkHidden">
-                        <fieldset>
-                            <legend>Ubah Kata Sandi</legend>
+                        <fieldset style="padding-top: 50px;">
+                            <legend>Ubah Kata Sandi</legend><br>
                             <div class="row">
                                 <div class="col-md-12">
                                     <label>Kata Sandi((Silahkan Kosongkan Jika Tidak Ingin Mengubah):</label>

@@ -20,7 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="{{ asset('icon/Icon_unican.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('icon/Icon_unican.ico') }}" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
@@ -178,31 +178,38 @@
                                     <li>
                                         <a href="#"><i class="icon-user"></i></a>
                                         <ul>
+
                                             @if(Auth::id())
+                                            @foreach (explode('|', Auth::user()->profile) as $key => $fruit)
+                                            @if ($key === 0)
                                             <li><a href="{{ route('user.dashboard') }}" class="badge bg-white text-bg-light">
-                                                    <img src="{{ asset('icon/astronaut.png') }}" class="img-fluid rounded-circle" width="33.5" alt="user_comment">
+                                                    <img src="{{ asset('picture/'.$fruit) }}" class="img-fluid rounded-circle" width="33" alt="user_comment">
                                                     <u style="font-size: 15px;" class="ms-1">{{Auth::user()->username}}</u>
                                                 </a>
                                             </li>
+                                            @endif
+                                            @endforeach
                                             <li><a href="{{ route('user.dashboard') }}">Akun saya</a></li>
                                             <li><a href="{{ route('logout') }}">Keluar Akun</a></li>
                                             @else
                                             <li><a href="/client/login">Masuk Akun</a></li>
                                             <li><a href="{{ route('user.sign_up') }}">Daftar Akun</a></li>
+                                            
                                             @endif
                                         </ul>
+
                                     </li>
                                 </ul>
                             </div>
                             <!-- mini-cart -->
                             @Auth
                             @if(Auth::user()->user_type == 'Pembeli')
-                            <div class="mini-cart-icon">
+                            <!-- <div class="mini-cart-icon">
                                 <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle" href="{{ route('main.produk') }}">
                                     <i class="icon-shopping-cart"></i>
                                     <sup>{{$hitung}}</sup>
                                 </a>
-                            </div>
+                            </div> -->
                             @endif
                             @endauth
                             <!-- mini-cart -->
@@ -265,7 +272,7 @@
                             @endauth
                         </li>
 
-                        
+
                     </ul>
                 </div>
                 <div class="ltn__utilize-menu">
