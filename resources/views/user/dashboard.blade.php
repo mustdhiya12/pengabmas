@@ -425,7 +425,7 @@
 
                         .avatar-edit {
                           position: absolute;
-                          right: 67px;
+                          right: 5px;
                           z-index: 1;
                           top: 10px;
                         }
@@ -466,7 +466,7 @@
                         }
 
                         .avatar-preview {
-                              right: 120px;
+                              right: 50px;
                               width: 150px;
                               height: 150px;
                               position: relative;
