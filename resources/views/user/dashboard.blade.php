@@ -201,9 +201,7 @@
                                           </div>
                                           @endif
                                           <div class="row">
-                                            @foreach($users as $product)
                                             @include('main.products_partial3', ['products' => $users])
-                                            @endforeach
                                           </div>
                                         </div>
                                       </div>
