@@ -17,6 +17,11 @@
             border-radius: 4px;
         }
 
+        .search-form input:focus {
+            border-color: #ffa220;
+            outline: none;
+        }
+
         .search-btn {
             flex-basis: 100%; /* Full width button */
             padding: 10px;

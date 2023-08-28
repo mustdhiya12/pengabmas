@@ -17,6 +17,10 @@
             border-radius: 4px;
         }
 
+        .search-form:active input {
+            border: 1px solid #ffa220;
+        }
+
         .search-btn {
             flex-basis: 100%; /* Full width button */
             padding: 10px;
