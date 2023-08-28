@@ -429,19 +429,30 @@ class MainController extends Controller
         $query = $request->get('query');
         $minPrice = $request->get('min_price');
         $maxPrice = $request->get('max_price');
-
+    
         $products = Produk::where('produk_name', 'like', "%{$query}%");
-
-        if ($minPrice !== null && $maxPrice !== null) {
-            $products = $products->whereBetween('min_price', [$minPrice, $maxPrice]);
+    
+        if ($minPrice !== null) {
+            $products = $products->where('min_price', '>=', $minPrice);
         }
-
+    
+        if ($maxPrice !== null) {
+            $products = $products->where('max_price', '<=', $maxPrice);
+        }
+    
         $products = $products->get();
-
+    
         if ($products->isEmpty()) {
             return view('main.search')->with('message', 'No products found.');
         }
-
-        return view('main.search', compact('products'));
+    
+        return view('main.search', compact('products'))->with([
+            'query' => $query,
+            'min_price' => $minPrice,
+            'max_price' => $maxPrice
+        ]);
+        
     }
+    
+
 }

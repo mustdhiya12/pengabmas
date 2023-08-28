@@ -85,14 +85,14 @@
         <!-- PRODUCT DETAILS AREA START -->
         <div class="ltn__product-area ltn__product-gutter ">
             <div class="container">
-                <div class="showing-product-number text-left pb-100">
+                <div class="showing-product-number text-left">
                     <h1>Search Form</h1>
                     <form action="{{ route('products.search') }}" method="get" class="row row-cols-3 search-form">
-                        <input type="text" name="query" placeholder="Nama Produk" value="<?php echo isset($query) ? $query : ''; ?>">
-                        <input type="number" name="min_price" placeholder="Minimal Harga (Opsional)" value="<?php echo isset($minPrice) ? $minPrice : ''; ?>">
-                        <input type="number" name="max_price" placeholder="Maksimal Harga (Opsional)" value="<?php echo isset($maxPrice) ? $maxPrice : ''; ?>">
+                        <input type="text" name="query" placeholder="Nama Produk" value="{{ old('query', $query ?? '') }}">
+                        <input type="number" name="min_price" placeholder="Minimal Harga (Opsional)" value="{{ old('min_price', $min_price ?? '') }}">
+                        <input type="number" name="max_price" placeholder="Maksimal Harga (Opsional)" value="{{ old('max_price', $max_price ?? '') }}">
                         <button type="submit" class="search-btn">Search</button>
-                    </form>    
+                    </form>                    
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
