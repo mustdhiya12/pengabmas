@@ -29,7 +29,7 @@ use App\Models\likes_pro;
     <div style="margin-top:150px;" class="container m-5 p-5"></div>
     <div class="ltn__utilize-overlay"></div>
     <div class="content-section">
-        <section class="m-4 p-5">
+        <section>
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center">
                     <div class="col-md-6">
@@ -246,10 +246,7 @@ use App\Models\likes_pro;
                         @if(!empty(Auth::user()) && Auth::user()->user_type == 'Pembeli')
 
                         @if(is_null(Auth::user()->alamat) && is_null(Auth::user()->no_hp))
-                        <div class="alert alert-warning" role="alert">
-                            Tolong Tambahkan Alamat & No. Hp anda di <a href="{{route('settings')}}">pengaturan</a> sebelum
-                            melakukan komunikasi
-                        </div>
+                        
                         @if($mainpolopot->kuantitas < 1) <div class="alert alert-danger" role="alert">
                             Stok Habis
                     </div>
@@ -260,12 +257,11 @@ use App\Models\likes_pro;
                     <div class="d-flex">
 
 
-                        <input disabled name="kuantitas" style="width:90px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
+                        <!-- <input disabled name="kuantitas" style="width:90px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
                         <button disabled class="btn btn-outline-dark flex-shrink-0" type="submit">
                             + Wishlist
-                        </button>
+                        </button> -->
 
-                        @elseif(isset(Auth::user()->alamat) && isset(Auth::user()->no_hp))
 
 
 
@@ -285,19 +281,19 @@ use App\Models\likes_pro;
                             Stok Habis
                     </div>
 
-                    <input disabled required name="kuantitas" style="width:100px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
+                    <!-- <input disabled required name="kuantitas" style="width:100px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
                     <button disabled class="btn btn-primary" type="button">
                         + Wishlist
-                    </button>
+                    </button> -->
 
                     @elseif($mainpolopot->kuantitas >= 1)
 
 
 
-                    <input required name="kuantitas" style="width:100px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
+                    <!-- <input required name="kuantitas" style="width:100px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
                     <button class="btn btn-primary" type="submit">
                         + Wishlist
-                    </button>
+                    </button> -->
 
 
                     <input type="hidden" value="{{$mainpolopot->produk_name}}" name="produk_yang_ingin_di_pesan">
@@ -337,10 +333,10 @@ use App\Models\likes_pro;
             <div class="d-flex">
 
 
-                <input name="kuantitas" style="width:100px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
+                <!-- <input name="kuantitas" style="width:100px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
                 <button disabled class="btn btn-outline-dark flex-shrink-0" type="submit">
                     + Wishlist
-                </button>
+                </button> -->
 
                 @elseif(isset($not_in_chart_10 ))
                 <div class="alert alert-warning" role="alert">
@@ -356,10 +352,10 @@ use App\Models\likes_pro;
             <div class="d-flex">
 
 
-                <input name="kuantitas" style="width:100px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
+                <!-- <input name="kuantitas" style="width:100px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
                 <button disabled class="btn btn-outline-dark flex-shrink-0" type="submit">
                     + Wishlist
-                </button>
+                </button> -->
 
                 @elseif(isset($not_in_chart_8) )
                 <div class="alert alert-warning" role="alert">
@@ -375,10 +371,10 @@ use App\Models\likes_pro;
             <div class="d-flex">
 
 
-                <input name="kuantitas" style="width:100px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
+                <!-- <input name="kuantitas" style="width:100px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
                 <button disabled class="btn btn-outline-dark flex-shrink-0" type="submit">
                     + Wishlist
-                </button>
+                </button> -->
 
 
                 @else
@@ -391,18 +387,18 @@ use App\Models\likes_pro;
             <label for="inputQuantity">Stok Produk: {{$mainpolopot->kuantitas}}</label>
             @endif
             <div class="d-flex justify-content-between">
-                @if($mainpolopot->kuantitas
-                < 1) <input disabled name="kuantitas" style="width:100px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
+                @if($mainpolopot->kuantitas < 1) 
+                <!-- <input disabled name="kuantitas" style="width:100px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
                 <button disabled class="btn btn-primary" type="button">
                     + Wishlist
-                </button>
+                </button> -->
                 @elseif($mainpolopot->kuantitas >= 1)
 
 
-                <input required name="kuantitas" style="width:100px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
+                <!-- <input required name="kuantitas" style="width:100px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
                 <button class="btn btn-primary" type="submit">
                     + Wishlist
-                </button>
+                </button> -->
                 <input type="hidden" value="{{$mainpolopot->produk_name}}" name="produk_yang_ingin_di_pesan">
                 <input type="hidden" value="{{$mainpolopot->min_price}}" name="min_price">
                 <input type="hidden" value="{{$mainpolopot->max_price}}" name="max_price">
@@ -455,12 +451,12 @@ use App\Models\likes_pro;
             @elseif($mainpolopot->kuantitas >= 1)
             <label for="inputQuantity">Stok Produk: {{$mainpolopot->kuantitas}}</label>
             @endif
-            <div class="d-flex">
+            <!-- <div class="d-flex">
                 <input disabled name="kuantitas" style="width:100px;" class="form-control text-center me-4" id="inputQuantity" min="1" max="{{$mainpolopot->kuantitas}}" type="number" value="1" style="max-width: 3rem" />
                 <button disabled class="btn btn-outline-dark flex-shrink-0" type="submit">
                     + Wishlist
                 </button>
-            </div>
+            </div> -->
 
             @endif
             <br>
