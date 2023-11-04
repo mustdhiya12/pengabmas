@@ -220,13 +220,14 @@
                             <thead>
                               <style>
                                 .kap:hover {
-                                  background-color: var(--ltn__secondary-color-2);
+                                  background-color: #bb7320;
                                   transition: background-color 0.3s ease-in-out;
                                   color: rgb(255, 255, 255);
                                 }
 
                                 .kap {
-                                  color: rgba(144, 144, 144, 0.534);
+                                  color: rgba(255, 255, 255);
+                                  background-color: var(--ltn__secondary-color-2);
                                   padding: 5px 100px;
                                   text-indent: 5px;
                                   display: inline-flex;
