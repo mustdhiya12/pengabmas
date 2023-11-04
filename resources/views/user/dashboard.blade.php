@@ -218,6 +218,41 @@
                         <div class="table-responsive">
                           <table class="table">
                             <thead>
+                              <style>
+                                .kap:hover {
+                                  background-color: var(--ltn__secondary-color-2);
+                                  transition: background-color 0.3s ease-in-out;
+                                  color: rgb(255, 255, 255);
+                                }
+
+                                .kap {
+                                  color: rgba(144, 144, 144, 0.534);
+                                  padding: 5px 100px;
+                                  text-indent: 5px;
+                                  display: inline-flex;
+                                  justify-content: center;
+                                  align-items: center;
+                                  white-space: nowrap;
+                                  text-align: center;
+                                  border: none;
+                                  border-radius: 5px;
+                                  width: 100%;
+                                }
+
+                                .profile-picture {
+                                  width: 128px;
+                                  height: 128px;
+                                  border-radius: 50%;
+                                  object-fit: cover;
+                                }
+                              </style>
+                              <tr class="d-flex justify-content-center align-items-center">
+                                <form action="{{ route('user.tambah') }}">
+                                  <button type="submit" class="col-lg-3 kap">
+                                    <i class="fa fa-plus"></i> Tambah Produk
+                                  </button>
+                                </form>
+                              </tr>
                               <tr>
                                 <div class="tab-block">
                                   <ul class="nav nav-tabs">
@@ -323,43 +358,6 @@
                                   </div>
                               </tr>
                             </thead>
-                            <tbody>
-                              <style>
-                                .kap:hover {
-                                  background-color: var(--ltn__secondary-color-2);
-                                  transition: background-color 0.3s ease-in-out;
-                                  color: rgb(255, 255, 255);
-                                }
-
-                                .kap {
-                                  color: rgba(144, 144, 144, 0.534);
-                                  padding: 5px 100px;
-                                  text-indent: 5px;
-                                  display: inline-flex;
-                                  justify-content: center;
-                                  align-items: center;
-                                  white-space: nowrap;
-                                  text-align: center;
-                                  border: none;
-                                  border-radius: 5px;
-                                  width: 100%;
-                                }
-
-                                .profile-picture {
-                                  width: 128px;
-                                  height: 128px;
-                                  border-radius: 50%;
-                                  object-fit: cover;
-                                }
-                              </style>
-                              <td class="d-flex justify-content-center align-items-center">
-                                <form action="{{ route('user.tambah') }}">
-                                  <button type="submit" class="col-lg-10 kap">
-                                    <i class="fa fa-plus"></i> Tambah Produk
-                                  </button>
-                                </form>
-                              </td>
-                            </tbody>
                           </table>
                         </div>
                       </div>
