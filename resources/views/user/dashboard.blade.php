@@ -76,68 +76,107 @@
                 animation: zoomIn 0.3s ease-in-out;
                 transform: scale(1.05);
               }
+              @media screen and (max-width: 550px) {
+                .hil-text {
+                  font-size: 0;
+                  line-height: 0;
+                  color: transparent;
+                }
+
+                .hil-text::after {
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  background-size: cover;
+                  z-index: -1;
+                }
+              }
             </style>
-            @if(!empty(Auth::user()) && Auth::user()->user_type == ('Penjual' or 'Pembeli'))
-            <div class="row row-cols-6">
+
+            @if(!empty(Auth::user()) && in_array(Auth::user()->user_type, ['Penjual', 'Pembeli']))
               @php
-              $links = explode('|', Auth::user()->link);
+                $links = explode('|', Auth::user()->link);
               @endphp
 
               @foreach ($links as $link)
-              @if ($link == null)
-              <p class="text-danger"><b>Announcement: </b>Link tidak tersedia</p>
-              @else
-              @if (strpos($link, 'bhinneka') !== false)
-              <a href="{{ $link }}" class="btn btn-bhineka mt-4 col-sm-3" style="color: white; background-color: #092c52;">
-                <img src="{{ asset('icon/bhi.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Bhinneka
-              </a>
-              @elseif (strpos($link, 'tokopedia') !== false)
-              <a href="{{ $link }}" class="btn btn-tokopedia mt-4 col-sm-3" style="color: white; background-color: #03ac0e;">
-                <img src="{{ asset('icon/tokped.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Tokopedia
-              </a>
-              @elseif (strpos($link, 'shopee') !== false)
-              <a href="{{ $link }}" class="btn btn-shopee mt-4 col-sm-3" style="color: white; background-color: #f7452e;">
-                <img src="{{ asset('icon/sho.png') }}" alt="Shopee" style="width: 23px; height: 23px; filter: brightness(10.5) saturate(0%);"> Shopee
-              </a>
-              @elseif (strpos($link, 'bukalapak') !== false)
-              <a href="{{ $link }}" class="btn btn-bukalapak mt-4 col-sm-3" style="color: white; background-color: #e31e52;">
-                <img src="{{ asset('icon/buka.png') }}" alt="Shopee" style="width: 23px; height: 23px; filter: brightness(10.5) saturate(0%);"> Bukalapak
-              </a>
-              @elseif (strpos($link, 'lazada') !== false)
-              <a href="{{ $link }}" class="btn btn-lazada mt-4 col-sm-3" style="color: white; background-color: #11146e;">
-                <img src="{{ asset('icon/laz.png') }}" alt="Shopee" style="width: 23px; height: 23px;"> Lazada
-              </a>
-              @elseif (strpos($link, 'blibli') !== false)
-              <a href="{{ $link }}" class="btn btn-blibli mt-4 col-sm-3" style="color: white; background-color: #0095da;">
-                <img src="{{ asset('icon/blibli.png') }}" alt="Shopee" style="width: 23px; height: 23px; background-color: white; border-radius: 10px;"> Blibli.com
-              </a>
-              @elseif (strpos($link, 'me') !== false)
-              <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-3" style="color: white; background-color: #0cc243;">
-                <i class="bi bi-whatsapp me-1"></i> Whatsapp
-              </a>
-              @elseif (strpos($link, 'instagram') !== false)
-              <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-3" style="color: white; background-color: #ff2e42;">
-                <i class="fab fa-instagram"></i> instagram
-              </a>
-              @elseif (strpos($link, 'facebook') !== false)
-              <a href="{{ $link }}" class="btn btn-whatsapp mt-4 col-sm-3" style="color: white; background-color: #0d8cf1;">
-                <i class="fab fa-facebook-f"></i> facebook
-              </a>
-              @else
-              @php
+                @if ($link == null)
+                  <p class="text-danger"><b>Announcement: </b>Link tidak tersedia</p> <br>
+                @else
+                  @php
+                    $domainName = getDomainName($link);
+                  @endphp
+                  <div class="hil-text">
+                    <a href="{{ $link }}" class="btn btn-{{ getButtonClass($link) }} mt-4 col-sm-3" style="color: white; background-color: {{ getButtonColor($link) }};">
+                      {!! getButtonIcon($link) !!} <span>{{ $domainName }}</span>
+                    </a>
+                  </div>
+                @endif
+              @endforeach
+            @endif
+
+
+            @php
+            function getDomainName($link) {
               $linkParts = explode('/', $link);
               $domain = $linkParts[2];
               $domainName = explode('.', $domain)[1];
-              $domainName = preg_replace('/^www\.|^ww\./', '', $domainName);
+              return preg_replace('/^www\.|^ww\./', '', $domainName);
+            }
+
+            function getButtonClass($link) {
+              $class = 'otherlink';
+              $platforms = ['bhinneka', 'tokopedia', 'shopee', 'bukalapak', 'lazada', 'blibli', 'me', 'instagram', 'facebook'];
+              foreach ($platforms as $platform) {
+                if (strpos($link, $platform) !== false) {
+                  $class = strtolower($platform);
+                  break;
+                }
+              }
+              return $class;
+            }
+
+            function getButtonColor($link) {
+              $colors = [
+                'bhinneka' => '#092c52',
+                'tokopedia' => '#03ac0e',
+                'shopee' => '#f7452e',
+                'bukalapak' => '#e31e52',
+                'lazada' => '#11146e',
+                'blibli' => '#0095da',
+                'me' => '#0cc243',
+                'instagram' => '#ff2e42',
+                'facebook' => '#0d8cf1',
+              ];
+
+              foreach ($colors as $platform => $color) {
+                if (strpos($link, $platform) !== false) {
+                  return $color;
+                }
+              }
+
+              return '#8c7e00'; // Default color for other links
+            }
+
+            function getButtonIcon($link) {
+              $icons = [
+                'me' => '<i class="bi bi-whatsapp me-1"></i>',
+                'instagram' => '<i class="fab fa-instagram"></i>',
+                'facebook' => '<i class="fab fa-facebook-f"></i>',
+              ];
+
+              foreach ($icons as $platform => $icon) {
+                if (strpos($link, $platform) !== false) {
+                  return $icon;
+                  }
+                }
+
+                return ''; // No icon for other links
+              }
               @endphp
-              <a href="{{ $link }}" class="btn btn-otherlink mt-4 col-sm-3" style="color: white; background-color: #8c7e00;">
-                <i class="bi bi-cart3 me-1"></i>{{ $domainName }}
-              </a>
-              @endif
-              @endif
-              @endforeach
-            </div>
-            @endif
+
           </div>
         </div>
       </div>
@@ -560,7 +599,7 @@
                             <legend>Ubah Kata Sandi</legend><br>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label>Kata Sandi((Silahkan Kosongkan Jika Tidak Ingin Mengubah):</label>
+                                    <label>Kata Sandi (Silahkan Kosongkan Jika Tidak Ingin Mengubah):</label>
                                     <input type="password" name="current_password">
                                     <label>Kata Sandi Baru (Silahkan Kosongkan Jika Tidak Ingin Mengubah):</label>
                                     <input type="password" name="new_password" id="new_password">
@@ -570,7 +609,7 @@
                             </div>
                         </fieldset>
                         <div class="btn-wrapper">
-                          <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Simpan</button>
+                          <button type="submit" class="btn theme-btn-1 text-uppercase" style="background-color: #e08926; color: white; ">Simpan</button>
                         </div>
                         </form>
                       </div>
